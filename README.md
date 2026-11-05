@@ -1,16 +1,16 @@
-# industrial-engineering-ai999x — offline, verified industrial engineering and supply chain solver with step-by-step answers
+# industrial-engineering-ai999x: offline, verified industrial engineering and supply chain solver with step-by-step answers
 
 [![tests](https://github.com/AI999X/industrial-engineering-ai999x/actions/workflows/ci.yml/badge.svg)](https://github.com/AI999X/industrial-engineering-ai999x/actions/workflows/ci.yml) [![PyPI](https://img.shields.io/pypi/v/industrial-engineering-ai999x)](https://pypi.org/project/industrial-engineering-ai999x/) [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow)](https://huggingface.co/AI999X/industrial-engineering-ai999x)
 
 **[Desktop app & command line](https://www.ai999x.com/desktop-cli/)** · **[Compute in your browser](https://www.ai999x.com/models/industrial-engineering-ai999x/#try)** · **[Install (Python)](https://pypi.org/project/industrial-engineering-ai999x/)** · **[Guides](https://huggingface.co/AI999X/industrial-engineering-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/industrial-engineering-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.1.0
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.5.0
 
-Field: **Engineering** · Tasks: Question Answering, Sentence Similarity, Feature Extraction
+Field: **Engineering** · Tasks: Question Answering
 
-industrial-engineering-ai999x is an offline, deterministic Python solver that answers industrial engineering and supply chain questions with verified results from 94 certified capabilities, gives 644 documented answers identically on Windows and Linux, and refuses rather than guesses when an answer cannot be verified.
+industrial-engineering-ai999x is an offline, deterministic industrial engineering and supply chain solver written in Rust: a desktop app, a command-line program, a browser module and a Python package. It answers industrial engineering and supply chain questions with verified results from 94 certified capabilities, gives 644 documented answers identically on Windows and Linux, and refuses rather than guesses when an answer cannot be verified.
 
-**industrial-engineering-ai999x** is a compact, deterministic industrial engineering and supply chain engine for Python. It reads a question in plain English (or a typed call), picks a certified industrial engineering and supply chain capability, computes the answer exactly, checks it, and returns the result with its steps, units, LaTeX and assumptions — or an honest refusal that says what is missing. It runs fully offline on any CPU, needs no GPU, no API key and no internet, and is built to give **zero wrong answers**: when it is not sure, it refuses instead of guessing.
+**industrial-engineering-ai999x** reads a question in plain English (or a typed call), picks a certified industrial engineering and supply chain capability, computes the answer exactly, checks it, and returns the result with its steps, units, LaTeX and assumptions, or a refusal that says what is missing. It runs fully offline on any CPU, needs no GPU, no API key and no internet, and is built to give **zero wrong answers**: when it is not sure, it refuses instead of guessing.
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-support%20development-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/ibnuljaiffarabi) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue) ![Offline](https://img.shields.io/badge/runs-offline%20on%20CPU-green) ![Rust](https://img.shields.io/badge/Rust-Windows%20%7C%20Linux%20%7C%20WebAssembly-orange)
 
@@ -20,13 +20,13 @@ industrial-engineering-ai999x is an offline, deterministic Python solver that an
 
 | Way to run it | For | Get it |
 |---|---|---|
-| **AI999X Industrial Engineering and Supply Chain desktop app** 1.4.0 | Windows, Linux — this model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.4.0/ai999x-industrial-engineering-1.4.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.4.0/ai999x-industrial-engineering-1.4.0-linux-x86_64.tar.gz) |
-| **AI999X desktop app** 1.4.0 | Windows, Linux — every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz) |
-| **Command line** (`industrial-engineering`) | Windows, Linux — one program per model, offline, no Python | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz) |
-| **In your browser** | any device — nothing to install | [Compute on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#try) |
+| **AI999X Industrial Engineering and Supply Chain desktop app** 1.5.0 | Windows, Linux. This model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz) |
+| **AI999X desktop app** 1.5.0 | Windows, Linux. Every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz) |
+| **Command line** (`industrial-engineering`) | Windows, Linux. One program per model, offline, no Python | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz) |
+| **In your browser** | any device. Nothing to install | [Compute on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#try) |
 | **Python** | Python 3.10+ | `pip install industrial-engineering-ai999x` |
 
-Checksums: [SHA256SUMS](https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS) · every version: [https://downloads.ai999x.com/desktop/latest/](https://downloads.ai999x.com/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
+Checksums: [SHA256SUMS](https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS) · every version: [https://downloads.ai999x.com/desktop/latest/](https://downloads.ai999x.com/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
 
 ## Quick start
 
@@ -37,11 +37,11 @@ Download **AI999X Industrial Engineering and Supply Chain** for your system (abo
 Linux, from a terminal:
 
 ```bash
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-industrial-engineering-1.4.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-industrial-engineering-1.4.0-linux-x86_64.tar.gz
-./ai999x-industrial-engineering-1.4.0-linux-x86_64/ai999x-industrial-engineering
+tar xzf ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
+./ai999x-industrial-engineering-1.5.0-linux-x86_64/ai999x-industrial-engineering
 ```
 
 ### Command line
@@ -49,30 +49,30 @@ tar xzf ai999x-industrial-engineering-1.4.0-linux-x86_64.tar.gz
 Linux:
 
 ```bash
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.4.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.4.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 industrial-engineering --version
 ```
 
 Windows (PowerShell):
 
 ```powershell
-$F = "ai999x-cli-1.4.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.4.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.4.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 industrial-engineering --version
 ```
 
 Every command below was run as shown; the text under it is what the program printed.
 
-**What a capability needs** — The equation or method, every input and output with its SI unit. Read this before solve: it tells you the input names.
+**What a capability needs**: The equation or method, every input and output with its SI unit. Read this before solve: it tells you the input names.
 
 ```console
 $ industrial-engineering info ie_eoq
@@ -89,7 +89,7 @@ Economic order quantity (EOQ)
   out  total_cost annual ordering plus holding cost []
 ```
 
-**Solve** — Inputs as name=value, each with any unit of the right kind. The answer lists every output, the method used, each input converted to SI, and the conditions the answer assumes.
+**Solve**: Inputs as name=value, each with any unit of the right kind. The answer lists every output, the method used, each input converted to SI, and the conditions the answer assumes.
 
 ```console
 $ industrial-engineering solve ie_eoq demand=1200.0 order_cost=100.0 holding_cost=6.0
@@ -106,7 +106,7 @@ total_cost = 1200
   assumes: demand > 0; order_cost > 0; holding_cost > 0 (per unit per year)
 ```
 
-**Many questions at once** — One JSON request per line in, one JSON answer per line out, in order: for scripts, notebooks and agents (the program starts once). In PowerShell: Get-Content cases.jsonl | industrial-engineering batch
+**Many questions at once**: One JSON request per line in, one JSON answer per line out, in order: for scripts, notebooks and agents (the program starts once). In PowerShell: Get-Content cases.jsonl | industrial-engineering batch
 
 `cases.jsonl`:
 
@@ -167,6 +167,8 @@ print(a.values or (a.value, a.unit))
 
 Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_break_even) and press **Compute in your browser**.
 
+_What this means:_ The break-even volume is 1000 units, generating revenue of 25000, with a contribution margin of 10.
+
 ### Multiproduct break-even (sales-mix weighted)
 
 Break-even revenue of several products sold in a fixed revenue mix: F / sum (1 - v_i/p_i) w_i.
@@ -195,6 +197,8 @@ print(a.values or (a.value, a.unit))
 
 Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_multiproduct_break_even) and press **Compute in your browser**.
 
+_What this means:_ This calculation determines the total sales revenue required to cover all fixed costs when multiple products are sold in a specific mix. By dividing the period's fixed cost, which is 3000, by the sum of each product's contribution margin percentage weighted by its share of total revenue, this gives the overall break-even point. The resulting weighted contribution ratio is 0.666136, leading to a necessary total revenue of 4503.59. This figure represents the exact sales level where total revenues equal total costs, ensuring neither profit nor loss occurs across the entire product portfolio.
+
 ### Centre-of-gravity location
 
 Location of a facility at the load-weighted average of the demand points' coordinates.
@@ -220,6 +224,8 @@ print(a.values or (a.value, a.unit))
 ```
 
 Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_center_of_gravity) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the centre-of-gravity location for a new facility by finding the weighted average of existing demand points. The coordinates are derived from the inputs x = [30, 90, 130, 60], y = [120, 110, 130, 40], and weights = [2000, 1000, 1000, 2000]. The resulting position, given as x* = 66.6667 and y* = 93.3333, represents the point that minimizes the weighted distance to all demand locations, assuming transportation costs are proportional to load volume and distance.
 
 ### Factor-rating method for site selection
 
@@ -247,20 +253,22 @@ print(a.values or (a.value, a.unit))
 
 Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_factor_rating) and press **Compute in your browser**.
 
+_What this means:_ This calculation determines the suitability of candidate sites by computing a weighted score for each. The process multiplies the importance weight assigned to each specific factor by the performance score given to that factor for a particular site, then sums these products to find the total weighted score for every site. The result shows that site 2 achieved the highest overall rating of 75.25. This indicates that, according to the criteria defined in the inputs, this location offers the best balance of factors relative to their assigned importance levels compared to all other candidates.
+
 ## Documentation
 
-- **Rust user guide** — the command line, every capability with a command and what it printed: [PDF](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_rust_guide.pdf) · [Markdown](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_rust_guide.md)
-- **Python guide** — every capability with a Python example: [PDF](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_capabilities.pdf) · [Markdown](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_capabilities.md)
-- **Desktop app & command line** — downloads, install, ask and search, figures, offline use, checksums: https://www.ai999x.com/desktop-cli/
-- **Model page** — compute in your browser, every capability explained: https://www.ai999x.com/models/industrial-engineering-ai999x/
+- **Rust user guide**: the command line, every capability with a command and what it printed: [PDF](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_rust_guide.pdf) · [Markdown](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_rust_guide.md)
+- **Python guide**: every capability with a Python example: [PDF](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_capabilities.pdf) · [Markdown](https://huggingface.co/AI999X/industrial-engineering-ai999x/blob/main/docs/industrial_engineering_ai999x_capabilities.md)
+- **Desktop app & command line**: downloads, install, ask and search, figures, offline use, checksums: https://www.ai999x.com/desktop-cli/
+- **Model page**: compute in your browser, every capability explained: https://www.ai999x.com/models/industrial-engineering-ai999x/
 
 ## Highlights
 
 - **Verified, not generated.** Every answer is computed by a certified industrial engineering and supply chain capability and checked (substituted back, dimension-checked or compared with an independent computation) before it is returned.
-- **Zero wrong answers by design.** Seven explicit outcomes — SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR — never a silent guess. Every one of its 644 documented answers is reproduced exactly on every tested platform.
+- **Zero wrong answers by design.** Seven explicit outcomes (SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR), never a silent guess. Every one of its 644 documented answers is reproduced exactly on every tested platform.
 - **Plain-English questions and a guaranteed typed interface.** `ask()` reads documented question forms; `solve(capability_id, **inputs)` always solves a supported task with valid inputs.
 - **Explains itself.** Steps, formulas in LaTeX, units, assumptions and the model used, ready for notebooks, tutoring apps and homework checkers.
-- **Native and in the browser.** Every capability also computes natively in Rust: the desktop app and the `industrial-engineering` command line for Windows and Linux, and WebAssembly on the model page — no Python, no network.
+- **Native and in the browser.** Every capability also computes natively in Rust: the desktop app and the `industrial-engineering` command line for Windows and Linux, and WebAssembly on the model page, no Python, no network.
 - **Small and portable.** Pure Python (sympy, mpmath); identical answers on Windows and Linux (Python 3.10, 3.11, 3.12, 3.13, 3.14).
 - **Coverage:** inventory policies, statistical process control, reliability, queueing, scheduling, forecasting, line balancing, learning curves and facility location.
 
@@ -268,7 +276,7 @@ Browser: [open this capability on the model page](https://www.ai999x.com/models/
 
 | Property | Value |
 |---|---|
-| Package | `industrial-engineering-ai999x` 1.1.0 (import `industrial_engineering_ai999x`) |
+| Package | `industrial-engineering-ai999x` 1.5.0 (import `industrial_engineering_ai999x`) |
 | Type | Deterministic neuro-symbolic industrial engineering and supply chain engine (rule-based reading + certified symbolic capabilities) |
 | Capabilities | 94 certified procedures |
 | Knowledge pack | version 1.0.0 |
@@ -302,14 +310,14 @@ industrial_engineering.ask("Who created you?").message
 # -> industrial-engineering-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-The Python package also installs a Python command, `industrial-engineering-ai999x "<question>"`; for the native program use `industrial-engineering` (above). The outputs above were produced by running this exact code on industrial-engineering-ai999x 1.1.0.
+The Python package also installs a Python command, `industrial-engineering-ai999x "<question>"`; for the native program use `industrial-engineering` (above). The outputs above were produced by running this exact code on industrial-engineering-ai999x 1.5.0.
 
 ## How every answer is verified
 
-1. **Reading** — the question is turned into typed quantities (value, unit, kind, role) and one asked quantity; every stated number must be used or the question is refused.
-2. **Planning** — only certified capabilities may answer; a capability applies only under the conditions the wording states (for example a pendulum, a liquid at rest, boiling).
-3. **Computing** — exact symbolic or high-precision numeric evaluation.
-4. **Checking** — dimensions, substitution back into the defining equation, and agreement between independent readings; any disagreement becomes a refusal, never a number.
+1. **Reading**: the question is turned into typed quantities (value, unit, kind, role) and one asked quantity; every stated number must be used or the question is refused.
+2. **Planning**: only certified capabilities may answer; a capability applies only under the conditions the wording states (for example a pendulum, a liquid at rest, boiling).
+3. **Computing**: exact symbolic or high-precision numeric evaluation.
+4. **Checking**: dimensions, substitution back into the defining equation, and agreement between independent readings; any disagreement becomes a refusal, never a number.
 
 Capabilities are certified before they ship: each must reproduce hand-worked reference cases, reject a deliberately wrong variant (a control), and leave every benchmark answer unchanged.
 
@@ -395,25 +403,25 @@ Every point was computed by `industrial-engineering-ai999x`.
 
 **Simple exponential smoothing forecast**
 
-![Simple exponential smoothing forecast — computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-exponential-smoothing-forecasts-vs-k.svg)
+![Simple exponential smoothing forecast, computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-exponential-smoothing-forecasts-vs-k.svg)
 
 _forecasts (forecasts for periods 1, ..., n + 1) for each index, as returned by industrial-engineering-ai999x for its example (5 values)._
 
 **Economic order quantity (EOQ)**
 
-![Economic order quantity (EOQ) — computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-eoq-q-vs-demand.svg)
+![Economic order quantity (EOQ), computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-eoq-q-vs-demand.svg)
 
 _Q (economic order quantity Q*) against demand (demand per year (units)), with holding_cost = 6, order_cost = 100. 31 points computed by industrial-engineering-ai999x; marked: demand = 1200, Q = 200._
 
 **M/M/c queue (Erlang C)**
 
-![M/M/c queue (Erlang C) — computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-mmc-queue-lq-vs-arrival-rate.svg)
+![M/M/c queue (Erlang C), computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-mmc-queue-lq-vs-arrival-rate.svg)
 
 _Lq (mean number waiting) against arrival_rate (mean arrival rate lambda (per time unit)), with servers = 3, service_rate = 4. 21 points computed by industrial-engineering-ai999x; marked: arrival_rate = 10, Lq = 3.51124._
 
 **Johnson's rule (two machines)**
 
-![Johnson's rule (two machines) — computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-johnson-two-machine-sequence-vs-k.svg)
+![Johnson's rule (two machines), computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-johnson-two-machine-sequence-vs-k.svg)
 
 _sequence (job order) for each index, as returned by industrial-engineering-ai999x for its example (5 values)._
 
@@ -428,22 +436,22 @@ _sequence (job order) for each index, as returned by industrial-engineering-ai99
 ## Out of scope
 
 - Open-ended explanation, essay writing or tutoring dialogue: it is a solver, not a chatbot.
-- Questions outside its certified industrial engineering and supply chain capabilities, and any question whose stated numbers it cannot all use — it refuses with the reason instead.
+- Questions outside its certified industrial engineering and supply chain capabilities, and any question whose stated numbers it cannot all use: it refuses with the reason instead.
 - High-stakes engineering, medical or legal decisions without independent review.
 
 ## Limitations
 
 - It answers what its certified capabilities cover (inventory policies, statistical process control, reliability, queueing, scheduling, forecasting, line balancing, learning curves and facility location); anything else is refused with a reason.
-- `ask()` reads documented question forms and common phrasings; unusual wording may be refused — use `solve()` for guaranteed results.
+- `ask()` reads documented question forms and common phrasings; unusual wording may be refused; use `solve()` for guaranteed results.
 - Results are as correct as the certified relations and their stated conditions; a certified relation is a checked model, not a claim about every physical situation.
 
 ## Citation
 
 ```bibtex
-@software{industrial_engineering_ai999x_1_1_0,
+@software{industrial_engineering_ai999x_1_5_0,
   title  = {industrial-engineering-ai999x: an offline, verified industrial engineering and supply chain solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.1.0},
+  year   = {2026}, version = {1.5.0},
   url    = {https://huggingface.co/AI999X/industrial-engineering-ai999x}
 }
 ```
@@ -460,4 +468,15 @@ Created and engineered by **Ibnul Jaif Farabi** · **[AI999X](https://huggingfac
 
 ## Source and releases
 
-This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/industrial-engineering-ai999x/) (`pip install .` builds it). Releases are tagged `v<version>`; the wheel is attached to each [GitHub release](https://github.com/AI999X/industrial-engineering-ai999x/releases). The optional ONNX models (formula graphs and, where measured, a decision model) are on [Hugging Face](https://huggingface.co/AI999X/industrial-engineering-ai999x/tree/main/onnx).
+This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/industrial-engineering-ai999x/) (`pip install .` builds it). Releases are tagged `v1.5.0`; the [GitHub release](https://github.com/AI999X/industrial-engineering-ai999x/releases/tag/v1.5.0) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
+
+## Build the program from source
+
+`rust/` holds the Rust source of the `industrial-engineering` command-line program and browser module: the AI999X engine (`rust/ax-engine`), this model (`rust/industrial-engineering`) and its data (`rust/models/industrial_engineering/pack.json`). With Rust 1.80 or later:
+
+```bash
+cd rust
+cargo build --release -p industrial-engineering-ai999x
+./target/release/industrial-engineering --help
+cargo test -p industrial-engineering-ai999x
+```
