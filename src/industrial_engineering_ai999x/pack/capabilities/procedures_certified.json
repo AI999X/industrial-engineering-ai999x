@@ -93,9 +93,13 @@
   "ie_time_study_sample_size",
   "ie_work_sampling_sample_size",
   "ie_oee",
-  "ie_capacity_utilization"
+  "ie_capacity_utilization",
+  "ie_depreciation_schedule",
+  "ie_after_tax_cash_flow",
+  "ie_earned_value",
+  "ie_productivity"
  ],
- "generated": "2026-10-31",
+ "generated": "2026-11-13",
  "tool": "tools/certify_procedures.py",
  "report": "release/procedure_certification.json",
  "weak_references": {

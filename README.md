@@ -4,11 +4,11 @@
 
 **[Desktop app & command line](https://www.ai999x.com/desktop-cli/)** · **[Compute in your browser](https://www.ai999x.com/models/industrial-engineering-ai999x/#try)** · **[Install (Python)](https://pypi.org/project/industrial-engineering-ai999x/)** · **[Guides](https://huggingface.co/AI999X/industrial-engineering-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/industrial-engineering-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.5.0
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.6.0
 
 Field: **Engineering** · Tasks: Question Answering
 
-industrial-engineering-ai999x is an offline, deterministic industrial engineering and supply chain solver written in Rust: a desktop app, a command-line program, a browser module and a Python package. It answers industrial engineering and supply chain questions with verified results from 94 certified capabilities, gives 644 documented answers identically on Windows and Linux, and refuses rather than guesses when an answer cannot be verified.
+industrial-engineering-ai999x is an offline, deterministic industrial engineering and supply chain solver written in Rust: a desktop app, a command-line program, a browser module and a Python package. It answers industrial engineering and supply chain questions with verified results from 98 certified capabilities, gives 678 documented answers identically on Windows and Linux, and refuses rather than guesses when an answer cannot be verified.
 
 **industrial-engineering-ai999x** reads a question in plain English (or a typed call), picks a certified industrial engineering and supply chain capability, computes the answer exactly, checks it, and returns the result with its steps, units, LaTeX and assumptions, or a refusal that says what is missing. It runs fully offline on any CPU, needs no GPU, no API key and no internet, and is built to give **zero wrong answers**: when it is not sure, it refuses instead of guessing.
 
@@ -20,13 +20,13 @@ industrial-engineering-ai999x is an offline, deterministic industrial engineerin
 
 | Way to run it | For | Get it |
 |---|---|---|
-| **AI999X Industrial Engineering and Supply Chain desktop app** 1.5.0 | Windows, Linux. This model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz) |
-| **AI999X desktop app** 1.5.0 | Windows, Linux. Every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz) |
-| **Command line** (`industrial-engineering`) | Windows, Linux. One program per model, offline, no Python | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz) |
+| **AI999X Industrial Engineering and Supply Chain desktop app** 1.6.0 | Windows, Linux. This model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-industrial-engineering-1.6.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-industrial-engineering-1.6.0-linux-x86_64.tar.gz) |
+| **AI999X desktop app** 1.6.0 | Windows, Linux. Every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz) |
+| **Command line** (`industrial-engineering`) | Windows, Linux. One program per model, offline, no Python | [Windows (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-windows-x86_64.zip) · [Linux (x86-64)](https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz) |
 | **In your browser** | any device. Nothing to install | [Compute on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#try) |
 | **Python** | Python 3.10+ | `pip install industrial-engineering-ai999x` |
 
-Checksums: [SHA256SUMS](https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS) · every version: [https://downloads.ai999x.com/desktop/latest/](https://downloads.ai999x.com/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
+Checksums: [SHA256SUMS](https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS) · every version: [https://downloads.ai999x.com/desktop/latest/](https://downloads.ai999x.com/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
 
 ## Quick start
 
@@ -37,11 +37,11 @@ Download **AI999X Industrial Engineering and Supply Chain** for your system (abo
 Linux, from a terminal:
 
 ```bash
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-industrial-engineering-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
-./ai999x-industrial-engineering-1.5.0-linux-x86_64/ai999x-industrial-engineering
+tar xzf ai999x-industrial-engineering-1.6.0-linux-x86_64.tar.gz
+./ai999x-industrial-engineering-1.6.0-linux-x86_64/ai999x-industrial-engineering
 ```
 
 ### Command line
@@ -49,23 +49,23 @@ tar xzf ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
 Linux:
 
 ```bash
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.6.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.6.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 industrial-engineering --version
 ```
 
 Windows (PowerShell):
 
 ```powershell
-$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.6.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.6.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 industrial-engineering --version
 ```
@@ -199,19 +199,27 @@ Browser: [open this capability on the model page](https://www.ai999x.com/models/
 
 _What this means:_ This calculation determines the total sales revenue required to cover all fixed costs when multiple products are sold in a specific mix. By dividing the period's fixed cost, which is 3000, by the sum of each product's contribution margin percentage weighted by its share of total revenue, this gives the overall break-even point. The resulting weighted contribution ratio is 0.666136, leading to a necessary total revenue of 4503.59. This figure represents the exact sales level where total revenues equal total costs, ensuring neither profit nor loss occurs across the entire product portfolio.
 
-### Centre-of-gravity location
+### After-tax cash flow with depreciation and recapture
 
-Location of a facility at the load-weighted average of the demand points' coordinates.
+Taxable income, taxes and after-tax cash flow of each year from the before-tax cash flows and the depreciation charges, and with the first cost and a sale price the book value, the gain (depreciation recapture) or loss on the sale and its tax, and the full after-tax cash-flow series.
 
 Command line:
 
 ```console
-$ industrial-engineering solve ie_center_of_gravity "x=[30, 90, 130, 60]" "y=[120, 110, 130, 40]" "weights=[2000, 1000, 1000, 2000]"
-x = 66.66666667
-y = 93.33333333
-total_weight = 6000
-  by: Centre-of-gravity location  (x* = sum w_i x_i / sum w_i, y* = sum w_i y_i / sum w_i)
-  assumes: equal lengths; weights >= 0, not all 0
+$ industrial-engineering solve ie_after_tax_cash_flow "before_tax_cash_flows=[5000, 5000, 5000]" "depreciation=[3000, 3000, 3000]" tax_rate=0.25 investment=9000 sale_price=1000
+taxable_income = [2000.0,2000.0,2000.0]
+taxes = [500.0,500.0,500.0]
+after_tax_cash_flows = [4500.0,4500.0,4500.0]
+total_tax = 1500
+book_value_end = 0
+gain_on_sale = 1000
+tax_on_sale = 250
+cash_flows_with_investment = [-9000.0,4500.0,4500.0,5250.0]
+  by: After-tax cash flow with depreciation and recapture  (TI = BTCF - D; taxes = t TI; ATCF = BTCF - taxes; at the sale: + S - t (S - BV))
+  tax_rate = 0.25
+  investment = 9000
+  sale_price = 1000
+  assumes: 0 <= tax rate < 1; one depreciation value per year, each >= 0; sale price <= first cost (no capital gain); a negative taxable income gives a tax credit; the gain or loss on the sale is taxed at the same rate
 ```
 
 Python:
@@ -219,27 +227,28 @@ Python:
 ```python
 import industrial_engineering_ai999x as m
 
-a = m.solve("ie_center_of_gravity", x=[30, 90, 130, 60], y=[120, 110, 130, 40], weights=[2000, 1000, 1000, 2000])
+a = m.solve("ie_after_tax_cash_flow", before_tax_cash_flows=[5000, 5000, 5000], depreciation=[3000, 3000, 3000], tax_rate="0.25", investment="9000", sale_price="1000")
 print(a.values or (a.value, a.unit))
 ```
 
-Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_center_of_gravity) and press **Compute in your browser**.
+Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_after_tax_cash_flow) and press **Compute in your browser**.
 
-_What this means:_ This calculation determines the centre-of-gravity location for a new facility by finding the weighted average of existing demand points. The coordinates are derived from the inputs x = [30, 90, 130, 60], y = [120, 110, 130, 40], and weights = [2000, 1000, 1000, 2000]. The resulting position, given as x* = 66.6667 and y* = 93.3333, represents the point that minimizes the weighted distance to all demand locations, assuming transportation costs are proportional to load volume and distance.
+### Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS)
 
-### Factor-rating method for site selection
-
-Weighted score of each candidate site (sum of factor weight x score) and the best site.
+Depreciation charge and end-of-year book value for every year of an asset's life by straight line, declining balance (factor/n of the book value, never below salvage), sum of years' digits or MACRS (half-year convention, salvage ignored), with one year picked out on request.
 
 Command line:
 
 ```console
-$ industrial-engineering solve ie_factor_rating "weights=[0.25, 0.45, 0.3]" "scores=[[70, 60, 90], [85, 80, 60]]"
-weighted_scores = [71.5,75.25]
-best_site = 2
-best_score = 75.25
-  by: Factor-rating method for site selection  (score_i = sum_j w_j s_ij)
-  assumes: weights >= 0; one score per factor in every row; ties go to the lower site number
+$ industrial-engineering solve ie_depreciation_schedule cost=10000 salvage=2000 life=5 method=straight-line
+depreciation = [1600.0,1600.0,1600.0,1600.0,1600.0]
+book_value = [8400.0,6800.0,5200.0,3600.0,2000.0]
+total_depreciation = 8000
+  by: Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS)  (SL: (P - S)/n; DB: d_t = min(f/n BV_{t-1}, BV_{t-1} - S); SYD: (P - S)(n - t + 1)/(n(n + 1)/2); MACRS: P x table rate)
+  cost = 10000
+  salvage = 2000
+  method = straight-line
+  assumes: cost > 0; 0 <= salvage < cost; life a whole number of years; MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage; declining balance: no switch to straight line
 ```
 
 Python:
@@ -247,13 +256,11 @@ Python:
 ```python
 import industrial_engineering_ai999x as m
 
-a = m.solve("ie_factor_rating", weights=[0.25, 0.45, 0.3], scores=[[70, 60, 90], [85, 80, 60]])
+a = m.solve("ie_depreciation_schedule", cost="10000", salvage="2000", life="5", method="straight-line")
 print(a.values or (a.value, a.unit))
 ```
 
-Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_factor_rating) and press **Compute in your browser**.
-
-_What this means:_ This calculation determines the suitability of candidate sites by computing a weighted score for each. The process multiplies the importance weight assigned to each specific factor by the performance score given to that factor for a particular site, then sums these products to find the total weighted score for every site. The result shows that site 2 achieved the highest overall rating of 75.25. This indicates that, according to the criteria defined in the inputs, this location offers the best balance of factors relative to their assigned importance levels compared to all other candidates.
+Browser: [open this capability on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#cap-ie_depreciation_schedule) and press **Compute in your browser**.
 
 ## Documentation
 
@@ -265,7 +272,7 @@ _What this means:_ This calculation determines the suitability of candidate site
 ## Highlights
 
 - **Verified, not generated.** Every answer is computed by a certified industrial engineering and supply chain capability and checked (substituted back, dimension-checked or compared with an independent computation) before it is returned.
-- **Zero wrong answers by design.** Seven explicit outcomes (SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR), never a silent guess. Every one of its 644 documented answers is reproduced exactly on every tested platform.
+- **Zero wrong answers by design.** Seven explicit outcomes (SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR), never a silent guess. Every one of its 678 documented answers is reproduced exactly on every tested platform.
 - **Plain-English questions and a guaranteed typed interface.** `ask()` reads documented question forms; `solve(capability_id, **inputs)` always solves a supported task with valid inputs.
 - **Explains itself.** Steps, formulas in LaTeX, units, assumptions and the model used, ready for notebooks, tutoring apps and homework checkers.
 - **Native and in the browser.** Every capability also computes natively in Rust: the desktop app and the `industrial-engineering` command line for Windows and Linux, and WebAssembly on the model page, no Python, no network.
@@ -276,11 +283,11 @@ _What this means:_ This calculation determines the suitability of candidate site
 
 | Property | Value |
 |---|---|
-| Package | `industrial-engineering-ai999x` 1.5.0 (import `industrial_engineering_ai999x`) |
+| Package | `industrial-engineering-ai999x` 1.6.0 (import `industrial_engineering_ai999x`) |
 | Type | Deterministic neuro-symbolic industrial engineering and supply chain engine (rule-based reading + certified symbolic capabilities) |
-| Capabilities | 94 certified procedures |
+| Capabilities | 98 certified procedures |
 | Knowledge pack | version 1.0.0 |
-| Golden answers | 644 documented answers, identical on every tested platform |
+| Golden answers | 678 documented answers, identical on every tested platform |
 | Platforms tested | Windows (Python 3.13), Linux x86-64 (Python 3.10, 3.11, 3.12, 3.13, 3.14) |
 | Runtime | CPU only, offline; no GPU, no network, no API key |
 | License | Apache-2.0 |
@@ -310,7 +317,7 @@ industrial_engineering.ask("Who created you?").message
 # -> industrial-engineering-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-The Python package also installs a Python command, `industrial-engineering-ai999x "<question>"`; for the native program use `industrial-engineering` (above). The outputs above were produced by running this exact code on industrial-engineering-ai999x 1.5.0.
+The Python package also installs a Python command, `industrial-engineering-ai999x "<question>"`; for the native program use `industrial-engineering` (above). The outputs above were produced by running this exact code on industrial-engineering-ai999x 1.6.0.
 
 ## How every answer is verified
 
@@ -401,12 +408,6 @@ Each question was put to `industrial-engineering-ai999x`; the answer is the one 
 
 Every point was computed by `industrial-engineering-ai999x`.
 
-**Simple exponential smoothing forecast**
-
-![Simple exponential smoothing forecast, computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-exponential-smoothing-forecasts-vs-k.svg)
-
-_forecasts (forecasts for periods 1, ..., n + 1) for each index, as returned by industrial-engineering-ai999x for its example (5 values)._
-
 **Economic order quantity (EOQ)**
 
 ![Economic order quantity (EOQ), computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-eoq-q-vs-demand.svg)
@@ -425,11 +426,17 @@ _Lq (mean number waiting) against arrival_rate (mean arrival rate lambda (per ti
 
 _sequence (job order) for each index, as returned by industrial-engineering-ai999x for its example (5 values)._
 
+**Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS)**
+
+![Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS), computed by industrial-engineering-ai999x](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-depreciation-schedule-book-value-vs-k.svg)
+
+_book_value (book value at the end of each year) for each index, as returned by industrial-engineering-ai999x for its example (5 values)._
+
 ## Capabilities
 
-94 certified procedures. A few of them:
+98 certified procedures. A few of them:
 
-- **Procedures:** (R, Q) reorder point for a target fill rate; ABC inventory classification; Annual inventory cost of an order quantity; Associative forecast by simple linear regression; Average run length of a Shewhart X-bar chart; Break-even point; Capacity utilisation and efficiency; Centre-of-gravity location; Cold standby redundancy; Confidence bounds on MTBF (chi-square); Cost-optimal number of servers; Cumulative-average learning curve (Wright); DPMO and sigma level; EOQ with all-units quantity discounts; EOQ with planned backorders; EWMA chart control limits; Earliest due date (EDD) sequence; Economic order quantity (EOQ); Economic production quantity (EPQ); Exponential (constant failure rate) reliability; Factor-rating method for site selection; Failure rate and MTBF of a series system; Fit a learning curve to data (log-log regression); Forecast accuracy: MAD, MSE, RMSE, MAPE, bias, tracking signal …
+- **Procedures:** (R, Q) reorder point for a target fill rate; ABC inventory classification; After-tax cash flow with depreciation and recapture; Annual inventory cost of an order quantity; Associative forecast by simple linear regression; Average run length of a Shewhart X-bar chart; Break-even point; Capacity utilisation and efficiency; Centre-of-gravity location; Cold standby redundancy; Confidence bounds on MTBF (chi-square); Cost-optimal number of servers; Cumulative-average learning curve (Wright); DPMO and sigma level; Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS); EOQ with all-units quantity discounts; EOQ with planned backorders; EWMA chart control limits; Earliest due date (EDD) sequence; Earned value analysis (CV, SV, CPI, SPI, EAC); Economic order quantity (EOQ); Economic production quantity (EPQ); Exponential (constant failure rate) reliability; Factor-rating method for site selection …
 
 `industrial_engineering_ai999x.templates()` lists every question form `ask()` reads; the capability guide (PDF, every example executed) is included in this repository.
 
@@ -448,10 +455,10 @@ _sequence (job order) for each index, as returned by industrial-engineering-ai99
 ## Citation
 
 ```bibtex
-@software{industrial_engineering_ai999x_1_5_0,
+@software{industrial_engineering_ai999x_1_6_0,
   title  = {industrial-engineering-ai999x: an offline, verified industrial engineering and supply chain solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.5.0},
+  year   = {2026}, version = {1.6.0},
   url    = {https://huggingface.co/AI999X/industrial-engineering-ai999x}
 }
 ```
@@ -468,7 +475,7 @@ Created and engineered by **Ibnul Jaif Farabi** · **[AI999X](https://huggingfac
 
 ## Source and releases
 
-This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/industrial-engineering-ai999x/) (`pip install .` builds it). Releases are tagged `v1.5.0`; the [GitHub release](https://github.com/AI999X/industrial-engineering-ai999x/releases/tag/v1.5.0) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
+This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/industrial-engineering-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.0`; the [GitHub release](https://github.com/AI999X/industrial-engineering-ai999x/releases/tag/v1.6.0) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
 
 ## Build the program from source
 

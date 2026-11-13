@@ -1,5 +1,5 @@
 {
- "package": "1.5.0",
+ "package": "1.6.0",
  "pack": "1.0.0",
  "knowledge_db": null,
  "files": {
@@ -7,8 +7,8 @@
   "dictionary/terms.json": "3781eac9e78cc74a52dfbb7f7c6ecd5f218e2a208be5aad6dabd1094f82ddc60",
   "knowledge/relations.json": "b6bc475c0515e56d6fe73efe1bf1953bd7771ecc1583cbd2f251ae686b398786",
   "knowledge/reference_cases.json": "7414a14e2c4202a7fae8cdd14e1a2ef7267f35a9665b0633001349c698d4e4e7",
-  "capabilities/procedures.py": "2c94b1c9eb8cf6338ce60688e6ebc414c2b20cfaa4179bb2b2febc5fc7fae497",
-  "capabilities/procedures_certified.json": "2e32f5aef2e3a5db29cba4fc1e6f57dc416c47762a762694b6889ada066f5f53",
+  "capabilities/procedures.py": "1aa73ad3dcdb1fc635bbe70c673f24bd6bdbadb020c9d92d92e2b38c0670be05",
+  "capabilities/procedures_certified.json": "da3c93774ed5fcbf7598477d34c6f85f4cd1a1ded79ba2b43acb4b08a8f27b67",
   "industrial_engineering_knowledge_public.sqlite": "5e30ae8c735f0092e0404ac2c3e34bbc9740071634d482b5570debcab0284d89"
  },
  "engine": [

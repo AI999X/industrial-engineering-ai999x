@@ -1,8 +1,8 @@
 # industrial-engineering: the Industrial Engineering and Supply Chain program, user guide
 
-**industrial-engineering-ai999x 1.1.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
+**industrial-engineering-ai999x 1.6.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
-Industrial Engineering and Supply Chain covers inventory policies (EOQ, reorder point, safety stock, newsvendor), statistical process control, reliability, queueing, scheduling, forecasting accuracy, line balancing, learning curves and facility location. This guide is about `industrial-engineering`, the model as a self-contained program for Windows and Linux: 94 capabilities in 11 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/industrial-engineering-ai999x/); the Python package (`pip install industrial-engineering-ai999x`) has its own guide. Every command output printed here is what the program printed.
+Industrial Engineering and Supply Chain covers inventory policies (EOQ, reorder point, safety stock, newsvendor), statistical process control, reliability, queueing, scheduling, forecasting accuracy, line balancing, learning curves and facility location. This guide is about `industrial-engineering`, the model as a self-contained program for Windows and Linux: 98 capabilities in 13 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/industrial-engineering-ai999x/); the Python package (`pip install industrial-engineering-ai999x`) has its own guide. Every command output printed here is what the program printed.
 
 ## Contents
 
@@ -17,37 +17,37 @@ Industrial Engineering and Supply Chain covers inventory policies (EOQ, reorder 
 
 ## 1. Get it
 
-Version 1.5.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
+Version 1.6.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
 
 | what | system | download |
 |---|---|---|
-| Desktop app: Industrial Engineering and Supply Chain | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-windows-x86_64.zip |
-| Desktop app: Industrial Engineering and Supply Chain | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz |
-| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip |
-| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz |
-| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip |
-| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz |
+| Desktop app: Industrial Engineering and Supply Chain | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-industrial-engineering-1.6.0-windows-x86_64.zip |
+| Desktop app: Industrial Engineering and Supply Chain | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-industrial-engineering-1.6.0-linux-x86_64.tar.gz |
+| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-windows-x86_64.zip |
+| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz |
+| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-windows-x86_64.zip |
+| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz |
 
 ### Desktop app
 
-Industrial Engineering and Supply Chain in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-industrial-engineering-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-industrial-engineering.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+Industrial Engineering and Supply Chain in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-industrial-engineering-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-industrial-engineering.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-industrial-engineering-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-industrial-engineering-1.5.0-linux-x86_64.tar.gz
-./ai999x-industrial-engineering-1.5.0-linux-x86_64/ai999x-industrial-engineering
+tar xzf ai999x-industrial-engineering-1.6.0-linux-x86_64.tar.gz
+./ai999x-industrial-engineering-1.6.0-linux-x86_64/ai999x-industrial-engineering
 ```
 
-It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
-./ai999x-1.5.0-linux-x86_64/ai999x
+tar xzf ai999x-1.6.0-linux-x86_64.tar.gz
+./ai999x-1.6.0-linux-x86_64/ai999x
 ```
 
 ### Command line: Linux
@@ -55,11 +55,11 @@ tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
 The bundle holds one program per model; `industrial-engineering` is this one. The checksum line should print OK.
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.6.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.6.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 industrial-engineering --version
 ```
 
@@ -68,12 +68,12 @@ industrial-engineering --version
 The fourth line should print True.
 
 ```powershell
-$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.6.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.6.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 industrial-engineering --version
 ```
@@ -96,7 +96,7 @@ Prints the model, its version and that this is the Rust build.
 
 ```shell
 $ industrial-engineering --version
-industrial-engineering-ai999x 1.5.0 (Rust build, ax-engine 1.5.0)
+industrial-engineering-ai999x 1.6.0 (Rust build, ax-engine 1.6.0)
 ```
 
 ### 2.2 Find a capability
@@ -124,13 +124,13 @@ Every capability the program answers: its id (what you pass to solve) and its na
 $ industrial-engineering list
 ie_abc_classification                    ABC inventory classification
 ie_acceptance_sampling                   Single sampling plan: OC, AOQ and ATI
+ie_after_tax_cash_flow                   After-tax cash flow with depreciation and recapture
 ie_arl_shewhart                          Average run length of a Shewhart X-bar chart
 ie_availability                          Inherent availability from MTBF and MTTR
 ie_break_even                            Break-even point
 ie_c_chart_limits                        c chart control limits
 ie_capacity_utilization                  Capacity utilisation and efficiency
-ie_center_of_gravity                     Centre-of-gravity location
-… 86 more
+… 90 more
 ```
 
 ### 2.4 What a capability needs
@@ -357,6 +357,96 @@ units_by_product = [763.319932828,1080.86102488,1125.89690092]
 ```
 
 **What the worked example means:** This calculation determines the total sales revenue required to cover all fixed costs when multiple products are sold in a specific mix. By dividing the period's fixed cost, which is 3000, by the sum of each product's contribution margin percentage weighted by its share of total revenue, this gives the overall break-even point. The resulting weighted contribution ratio is 0.666136, leading to a necessary total revenue of 4503.59. This figure represents the exact sales level where total revenues equal total costs, ensuring neither profit nor loss occurs across the entire product portfolio.
+
+### Engineering economy (2)
+
+<a id="ie_after_tax_cash_flow"></a>
+
+#### After-tax cash flow with depreciation and recapture, `ie_after_tax_cash_flow`
+
+Taxable income, taxes and after-tax cash flow of each year from the before-tax cash flows and the depreciation charges, and with the first cost and a sale price the book value, the gain (depreciation recapture) or loss on the sale and its tax, and the full after-tax cash-flow series.
+
+$$
+ATCF_k = BTCF_k - t\,(BTCF_k - D_k),\quad ATCF_n \mathrel{+}= S - t\,(S - BV_n)
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `before_tax_cash_flows` | in | before-tax cash flow of each year 1..n | - |
+| `depreciation` | in | depreciation charge of each year 1..n | - |
+| `tax_rate` | in | income tax rate (decimal; 25% = 0.25) | - |
+| `investment` | in | first cost at year 0 (optional) (optional) | - |
+| `sale_price` | in | market (salvage) value received at the end of year n (optional; needs the investment) (optional) | - |
+| `taxable_income` | out | BTCF - D of each year | - |
+| `taxes` | out | t (BTCF - D) of each year (negative = a tax credit) | - |
+| `after_tax_cash_flows` | out | BTCF - taxes of each year (without the sale) | - |
+| `total_tax` | out | sum of the yearly taxes | - |
+| `book_value_end` | out | first cost minus all depreciation | - |
+| `gain_on_sale` | out | sale price - book value (recapture; negative = loss) | - |
+| `tax_on_sale` | out | t x gain on the sale | - |
+| `cash_flows_with_investment` | out | after-tax series from year 0, the sale in year n | - |
+
+**Applies when:** 0 <= tax rate < 1; one depreciation value per year, each >= 0; sale price <= first cost (no capital gain); a negative taxable income gives a tax credit; the gain or loss on the sale is taxed at the same rate.
+
+```shell
+$ industrial-engineering solve ie_after_tax_cash_flow "before_tax_cash_flows=[5000, 5000, 5000]" "depreciation=[3000, 3000, 3000]" tax_rate=0.25 investment=9000 sale_price=1000
+taxable_income = [2000.0,2000.0,2000.0]
+taxes = [500.0,500.0,500.0]
+after_tax_cash_flows = [4500.0,4500.0,4500.0]
+total_tax = 1500
+book_value_end = 0
+gain_on_sale = 1000
+tax_on_sale = 250
+cash_flows_with_investment = [-9000.0,4500.0,4500.0,5250.0]
+  by: After-tax cash flow with depreciation and recapture  (TI = BTCF - D; taxes = t TI; ATCF = BTCF - taxes; at the sale: + S - t (S - BV))
+  tax_rate = 0.25
+  investment = 9000
+  sale_price = 1000
+  assumes: 0 <= tax rate < 1; one depreciation value per year, each >= 0; sale price <= first cost (no capital gain); a negative taxable income gives a tax credit; the gain or loss on the sale is taxed at the same rate
+```
+
+In the worked example, before_tax_cash_flows = [5000, 5000, 5000], depreciation = [3000, 3000, 3000], tax_rate = 0.25, investment = 9000, sale_price = 1000 go through the equation above and give taxable_income = [2000, 2000, 2000], taxes = [500, 500, 500], after_tax_cash_flows = [4500, 4500, 4500], total_tax = 1500. It applies only when 0 <= tax rate < 1; one depreciation value per year, each >= 0; sale price <= first cost (no capital gain); a negative taxable income gives a tax credit; the gain or loss on the sale is taxed at the same rate: outside that it says what is wrong instead of returning a number.
+
+<a id="ie_depreciation_schedule"></a>
+
+#### Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS), `ie_depreciation_schedule`
+
+Depreciation charge and end-of-year book value for every year of an asset's life by straight line, declining balance (factor/n of the book value, never below salvage), sum of years' digits or MACRS (half-year convention, salvage ignored), with one year picked out on request.
+
+$$
+d^{SL} = \frac{P-S}{n},\quad d^{DB}_t = \frac{f}{n}BV_{t-1},\quad d^{SYD}_t = (P-S)\frac{n-t+1}{n(n+1)/2},\quad d^{MACRS}_t = r_t P
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `cost` | in | first (installed) cost of the asset | - |
+| `life` | in | useful life or MACRS recovery period in years | - |
+| `method` | in | straight-line, declining-balance, sum-of-years-digits or macrs | - |
+| `salvage` | in | estimated salvage value at the end of the life (default 0; not used by MACRS) (optional) | - |
+| `factor` | in | declining-balance factor: 2 for double declining (default), 1.5 for 150 % (optional) | - |
+| `year` | in | the year to report (optional) (optional) | - |
+| `depreciation` | out | depreciation charge of each year | - |
+| `book_value` | out | book value at the end of each year | - |
+| `total_depreciation` | out | cost minus the final book value | - |
+| `depreciation_in_year` | out | the charge in the given year | - |
+| `book_value_end_of_year` | out | book value at the end of the given year | - |
+| `accumulated_depreciation` | out | depreciation up to the end of the given year | - |
+
+**Applies when:** cost > 0; 0 <= salvage < cost; life a whole number of years; MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage; declining balance: no switch to straight line.
+
+```shell
+$ industrial-engineering solve ie_depreciation_schedule cost=10000 salvage=2000 life=5 method=straight-line
+depreciation = [1600.0,1600.0,1600.0,1600.0,1600.0]
+book_value = [8400.0,6800.0,5200.0,3600.0,2000.0]
+total_depreciation = 8000
+  by: Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS)  (SL: (P - S)/n; DB: d_t = min(f/n BV_{t-1}, BV_{t-1} - S); SYD: (P - S)(n - t + 1)/(n(n + 1)/2); MACRS: P x table rate)
+  cost = 10000
+  salvage = 2000
+  method = straight-line
+  assumes: cost > 0; 0 <= salvage < cost; life a whole number of years; MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage; declining balance: no switch to straight line
+```
+
+In the worked example, cost = 10000, salvage = 2000, life = 5, method = straight-line go through the equation above and give depreciation = [1600, 1600, 1600, 1600, 1600], book_value = [8400, 6800, 5200, 3600, 2000], total_depreciation = 8000. It applies only when cost > 0; 0 <= salvage < cost; life a whole number of years; MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage; declining balance: no switch to straight line: outside that it says what is wrong instead of returning a number.
 
 ### Facility location (5)
 
@@ -1889,6 +1979,61 @@ exact_stations = 3.75
 ```
 
 **What the worked example means:** This calculation determines the takt or cycle time by dividing the available production time by the demand, resulting in a target of 8. Using this cycle time and the total task time, it computes the theoretical minimum number of workstations needed to meet demand. The exact station requirement is 3.75, which rounds up to a practical minimum of 4 stations.
+
+### Project management (1)
+
+<a id="ie_earned_value"></a>
+
+#### Earned value analysis (CV, SV, CPI, SPI, EAC), `ie_earned_value`
+
+Cost and schedule variances and performance indices of a project from planned value, earned value and actual cost; with the budget at completion the estimates at completion (CPI method, atypical, CPI x SPI), estimate to complete, variance at completion, TCPI and per cent complete.
+
+$$
+CV = EV - AC,\ SV = EV - PV,\ CPI = \frac{EV}{AC},\ SPI = \frac{EV}{PV},\ EAC = \frac{BAC}{CPI},\ TCPI = \frac{BAC-EV}{BAC-AC}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `planned_value` | in | planned value (budgeted cost of work scheduled) to date | - |
+| `earned_value` | in | earned value (budgeted cost of work performed) to date | - |
+| `actual_cost` | in | actual cost (of work performed) to date | - |
+| `budget_at_completion` | in | budget at completion (optional) (optional) | - |
+| `cost_variance` | out | CV = EV - AC (negative = over budget) | - |
+| `schedule_variance` | out | SV = EV - PV (negative = behind schedule) | - |
+| `cpi` | out | CPI = EV/AC | - |
+| `spi` | out | SPI = EV/PV | - |
+| `eac` | out | EAC = BAC/CPI (current cost efficiency continues) | - |
+| `etc` | out | ETC = EAC - AC | - |
+| `vac` | out | VAC = BAC - EAC | - |
+| `eac_atypical` | out | EAC = AC + BAC - EV (remaining work at budget) | - |
+| `eac_cpi_spi` | out | EAC = AC + (BAC - EV)/(CPI SPI) | - |
+| `tcpi` | out | TCPI = (BAC - EV)/(BAC - AC), when BAC > AC | - |
+| `percent_complete` | out | EV/BAC | - |
+
+**Applies when:** PV, AC > 0; 0 <= EV <= BAC; estimates at completion need EV > 0; TCPI only while the budget is not used up (BAC > AC).
+
+```shell
+$ industrial-engineering solve ie_earned_value planned_value=500 earned_value=400 actual_cost=450 budget_at_completion=1000
+cost_variance = -50
+schedule_variance = -100
+cpi = 0.8888888889
+spi = 0.8
+eac = 1125
+etc = 675
+vac = -125
+eac_atypical = 1050
+eac_cpi_spi = 1293.75
+percent_complete = 0.4
+tcpi = 1.090909091
+  by: Earned value analysis (CV, SV, CPI, SPI, EAC)  (CV = EV - AC, SV = EV - PV, CPI = EV/AC, SPI = EV/PV, EAC = BAC/CPI, ETC = EAC - AC, VAC = BAC - EAC)
+  planned_value = 500
+  earned_value = 400
+  actual_cost = 450
+  budget_at_completion = 1000
+  assumes: PV, AC > 0; 0 <= EV <= BAC; estimates at completion need EV > 0; TCPI only while the budget is not used up (BAC > AC)
+```
+
+In the worked example, planned_value = 500, earned_value = 400, actual_cost = 450, budget_at_completion = 1000 go through the equation above and give cost_variance = -50, schedule_variance = -100, cpi = 0.8888888889, spi = 0.8. It applies only when PV, AC > 0; 0 <= EV <= BAC; estimates at completion need EV > 0; TCPI only while the budget is not used up (BAC > AC): outside that it says what is wrong instead of returning a number.
 
 ### Queueing (8)
 
@@ -3522,7 +3667,7 @@ B4 = 2.089
 
 **What the worked example means:** This calculation determines the three-sigma control limits for an X-bar and S chart using the grand mean of 50 and the average subgroup standard deviation of 0.9. The center line is set at 50, with upper and lower limits derived from constants A3, B3, and B4 based on a subgroup size of 5. These boundaries help identify whether process variation remains within expected statistical limits.
 
-### Work measurement (5)
+### Work measurement (6)
 
 <a id="ie_capacity_utilization"></a>
 
@@ -3638,6 +3783,41 @@ run_time = 373
 ```
 
 **What the worked example means:** This calculation determines the Overall Equipment Effectiveness by multiplying three key factors: availability, performance, and quality. Availability measures how much time the machine was actually running compared to the planned production time, calculated as run time divided by planned time. Performance assesses how fast the machine ran relative to its ideal speed, using the ratio of ideal cycle time times total count over run time. Quality evaluates the proportion of good units produced out of the total units. The final result, 0.678571, represents the combined efficiency of these three dimensions, indicating that for every unit of planned time, only a fraction resulted in good parts at ideal speed.
+
+<a id="ie_productivity"></a>
+
+#### Single-factor and multifactor productivity, `ie_productivity`
+
+Partial (single-factor) productivity of output over each input, multifactor productivity over the sum of the inputs (all in one unit, e.g. money), and with a previous period the change in per cent.
+
+$$
+P_k = \frac{O}{I_k},\quad MFP = \frac{O}{\sum_k I_k},\quad \Delta\% = 100\,\frac{MFP_{now}-MFP_{prev}}{MFP_{prev}}
+$$
+
+| symbol |  | meaning | SI unit |
+|---|---|---|---|
+| `output` | in | output of the period (units or value) | - |
+| `input_amounts` | in | amount of each input (labour, material, capital, energy ...; one unit, e.g. cost, for the multifactor ratio) | - |
+| `previous_output` | in | output of the previous period (optional) (optional) | - |
+| `previous_inputs` | in | inputs of the previous period, in the same order (optional) (optional) | - |
+| `partial_productivities` | out | output / each input | - |
+| `multifactor_productivity` | out | output / sum of inputs | - |
+| `previous_multifactor_productivity` | out | previous output / sum of previous inputs | - |
+| `change_percent` | out | change in multifactor productivity, % | - |
+| `partial_change_percent` | out | change of each partial productivity, % | - |
+
+**Applies when:** output > 0; every input > 0; inputs in one unit for the multifactor ratio; the previous period lists the same inputs.
+
+```shell
+$ industrial-engineering solve ie_productivity output=10000 "input_amounts=[2000, 1500, 500]"
+partial_productivities = [5.0,6.66666666667,20.0]
+multifactor_productivity = 2.5
+  by: Single-factor and multifactor productivity  (partial = O / I_k; multifactor = O / sum I_k; change = (P_now - P_prev)/P_prev x 100)
+  output = 10000
+  assumes: output > 0; every input > 0; inputs in one unit for the multifactor ratio; the previous period lists the same inputs
+```
+
+In the worked example, output = 10000, input_amounts = [2000, 1500, 500] go through the equation above and give partial_productivities = [5, 6.666666667, 20], multifactor_productivity = 2.5. It applies only when output > 0; every input > 0; inputs in one unit for the multifactor ratio; the previous period lists the same inputs: outside that it says what is wrong instead of returning a number.
 
 <a id="ie_standard_time"></a>
 

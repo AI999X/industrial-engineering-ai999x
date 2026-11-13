@@ -15,7 +15,7 @@ def _bind(product) -> None:
     _P = product
 
 
-CapabilityId = Literal["ie_abc_classification", "ie_acceptance_sampling", "ie_arl_shewhart", "ie_availability", "ie_break_even", "ie_c_chart_limits", "ie_capacity_utilization", "ie_center_of_gravity", "ie_cpm_taguchi", "ie_dispatching_rule", "ie_dpmo_sigma_level", "ie_edd_sequence", "ie_eoq", "ie_eoq_backorders", "ie_eoq_quantity_discount", "ie_epq", "ie_erlang_c_staffing", "ie_ewma_limits", "ie_exponential_reliability", "ie_exponential_smoothing", "ie_factor_rating", "ie_flow_shop_makespan", "ie_forecast_errors", "ie_fraction_nonconforming", "ie_holt_trend", "ie_inventory_total_cost", "ie_inventory_turnover", "ie_johnson_three_machine", "ie_johnson_two_machine", "ie_k_out_of_n_reliability", "ie_kanban_count", "ie_largest_candidate_rule", "ie_learning_curve_cumulative_average", "ie_learning_curve_fit", "ie_learning_curve_total", "ie_learning_curve_unit", "ie_learning_rate_from_two_units", "ie_line_efficiency", "ie_linear_trend_forecast", "ie_littles_law", "ie_location_cost_volume", "ie_md1_queue", "ie_mg1_queue", "ie_mm1_queue", "ie_mm1k_queue", "ie_mmc_queue", "ie_moore_hodgson", "ie_moving_average_forecast", "ie_mtbf_confidence", "ie_multiproduct_break_even", "ie_newsvendor_discrete", "ie_newsvendor_normal", "ie_newsvendor_poisson", "ie_newsvendor_uniform", "ie_np_chart_limits", "ie_oee", "ie_order_up_to_level", "ie_p_chart_from_samples", "ie_p_chart_limits", "ie_parallel_mttf", "ie_parallel_reliability", "ie_process_capability", "ie_process_performance", "ie_queue_server_cost", "ie_ranked_positional_weight", "ie_rectilinear_location", "ie_redundancy_needed", "ie_regression_forecast", "ie_reorder_point", "ie_rolled_throughput_yield", "ie_rq_fill_rate", "ie_safety_stock", "ie_safety_stock_variable_lead_time", "ie_seasonal_index", "ie_series_parallel_reliability", "ie_series_reliability", "ie_service_level_from_reorder_point", "ie_sigma_from_range", "ie_spt_sequence", "ie_standard_time", "ie_standby_redundancy", "ie_system_failure_rate", "ie_tabular_cusum", "ie_takt_time", "ie_time_study_sample_size", "ie_tracking_signal", "ie_u_chart_limits", "ie_weber_location", "ie_weibull_median_rank_regression", "ie_weibull_reliability", "ie_weighted_moving_average", "ie_work_sampling_sample_size", "ie_xbar_r_limits", "ie_xbar_s_limits"]
+CapabilityId = Literal["ie_abc_classification", "ie_acceptance_sampling", "ie_after_tax_cash_flow", "ie_arl_shewhart", "ie_availability", "ie_break_even", "ie_c_chart_limits", "ie_capacity_utilization", "ie_center_of_gravity", "ie_cpm_taguchi", "ie_depreciation_schedule", "ie_dispatching_rule", "ie_dpmo_sigma_level", "ie_earned_value", "ie_edd_sequence", "ie_eoq", "ie_eoq_backorders", "ie_eoq_quantity_discount", "ie_epq", "ie_erlang_c_staffing", "ie_ewma_limits", "ie_exponential_reliability", "ie_exponential_smoothing", "ie_factor_rating", "ie_flow_shop_makespan", "ie_forecast_errors", "ie_fraction_nonconforming", "ie_holt_trend", "ie_inventory_total_cost", "ie_inventory_turnover", "ie_johnson_three_machine", "ie_johnson_two_machine", "ie_k_out_of_n_reliability", "ie_kanban_count", "ie_largest_candidate_rule", "ie_learning_curve_cumulative_average", "ie_learning_curve_fit", "ie_learning_curve_total", "ie_learning_curve_unit", "ie_learning_rate_from_two_units", "ie_line_efficiency", "ie_linear_trend_forecast", "ie_littles_law", "ie_location_cost_volume", "ie_md1_queue", "ie_mg1_queue", "ie_mm1_queue", "ie_mm1k_queue", "ie_mmc_queue", "ie_moore_hodgson", "ie_moving_average_forecast", "ie_mtbf_confidence", "ie_multiproduct_break_even", "ie_newsvendor_discrete", "ie_newsvendor_normal", "ie_newsvendor_poisson", "ie_newsvendor_uniform", "ie_np_chart_limits", "ie_oee", "ie_order_up_to_level", "ie_p_chart_from_samples", "ie_p_chart_limits", "ie_parallel_mttf", "ie_parallel_reliability", "ie_process_capability", "ie_process_performance", "ie_productivity", "ie_queue_server_cost", "ie_ranked_positional_weight", "ie_rectilinear_location", "ie_redundancy_needed", "ie_regression_forecast", "ie_reorder_point", "ie_rolled_throughput_yield", "ie_rq_fill_rate", "ie_safety_stock", "ie_safety_stock_variable_lead_time", "ie_seasonal_index", "ie_series_parallel_reliability", "ie_series_reliability", "ie_service_level_from_reorder_point", "ie_sigma_from_range", "ie_spt_sequence", "ie_standard_time", "ie_standby_redundancy", "ie_system_failure_rate", "ie_tabular_cusum", "ie_takt_time", "ie_time_study_sample_size", "ie_tracking_signal", "ie_u_chart_limits", "ie_weber_location", "ie_weibull_median_rank_regression", "ie_weibull_reliability", "ie_weighted_moving_average", "ie_work_sampling_sample_size", "ie_xbar_r_limits", "ie_xbar_s_limits"]
 
 
 def solve(find: CapabilityId | str, given: dict | None = None, conditions=(), *, target: str | None = None, **inputs):
@@ -56,6 +56,21 @@ def ie_acceptance_sampling(sample_size=None, acceptance_number=None, fraction_de
     """
     given = {k: v for k, v in dict(sample_size=sample_size, acceptance_number=acceptance_number, fraction_defective=fraction_defective, lot_size=lot_size).items() if v is not None}
     return _P.solve("ie_acceptance_sampling", **given)
+
+def ie_after_tax_cash_flow(before_tax_cash_flows=None, depreciation=None, tax_rate=None, investment=None, sale_price=None):
+    """After-tax cash flow with depreciation and recapture. Taxable income, taxes and after-tax cash flow of each year from the before-tax cash flows and the depreciation charges, and with the first cost and a sale price the book value, the gain (depreciation recapture) or loss on the sale and its tax, and the full after-tax cash-flow series.
+    Formula: ATCF_k = BTCF_k - t\\,(BTCF_k - D_k),\\quad ATCF_n \\mathrel{+}= S - t\\,(S - BV_n)
+    Inputs:
+        before_tax_cash_flows: before-tax cash flow of each year 1..n
+        depreciation: depreciation charge of each year 1..n
+        tax_rate: income tax rate (decimal; 25% = 0.25)
+        investment: first cost at year 0 (optional) (optional)
+        sale_price: market (salvage) value received at the end of year n (optional; needs the investment) (optional)
+    Outputs: taxable_income (BTCF - D of each year), taxes (t (BTCF - D) of each year (negative = a tax credit)), after_tax_cash_flows (BTCF - taxes of each year (without the sale)), total_tax (sum of the yearly taxes), book_value_end (first cost minus all depreciation), gain_on_sale (sale price - book value (recapture; negative = loss)), tax_on_sale (t x gain on the sale), cash_flows_with_investment (after-tax series from year 0, the sale in year n)
+    See also: help("ie_after_tax_cash_flow")
+    """
+    given = {k: v for k, v in dict(before_tax_cash_flows=before_tax_cash_flows, depreciation=depreciation, tax_rate=tax_rate, investment=investment, sale_price=sale_price).items() if v is not None}
+    return _P.solve("ie_after_tax_cash_flow", **given)
 
 def ie_arl_shewhart(shift=None, subgroup_size=None, limit_sigma=None):
     """Average run length of a Shewhart X-bar chart. Probability that a Shewhart chart signals on a sample after the mean shifts by k sigma, and the average run length (ARL) until it does.
@@ -149,6 +164,22 @@ def ie_cpm_taguchi(usl=None, lsl=None, mean=None, sd=None, target=None):
     given = {k: v for k, v in dict(usl=usl, lsl=lsl, mean=mean, sd=sd, target=target).items() if v is not None}
     return _P.solve("ie_cpm_taguchi", **given)
 
+def ie_depreciation_schedule(cost=None, life=None, method=None, salvage=None, factor=None, year=None):
+    """Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS). Depreciation charge and end-of-year book value for every year of an asset's life by straight line, declining balance (factor/n of the book value, never below salvage), sum of years' digits or MACRS (half-year convention, salvage ignored), with one year picked out on request.
+    Formula: d^{SL} = \\frac{P-S}{n},\\quad d^{DB}_t = \\frac{f}{n}BV_{t-1},\\quad d^{SYD}_t = (P-S)\\frac{n-t+1}{n(n+1)/2},\\quad d^{MACRS}_t = r_t P
+    Inputs:
+        cost: first (installed) cost of the asset
+        life: useful life or MACRS recovery period in years
+        method: straight-line, declining-balance, sum-of-years-digits or macrs
+        salvage: estimated salvage value at the end of the life (default 0; not used by MACRS) (optional)
+        factor: declining-balance factor: 2 for double declining (default), 1.5 for 150 % (optional)
+        year: the year to report (optional) (optional)
+    Outputs: depreciation (depreciation charge of each year), book_value (book value at the end of each year), total_depreciation (cost minus the final book value), depreciation_in_year (the charge in the given year), book_value_end_of_year (book value at the end of the given year), accumulated_depreciation (depreciation up to the end of the given year)
+    See also: help("ie_depreciation_schedule")
+    """
+    given = {k: v for k, v in dict(cost=cost, life=life, method=method, salvage=salvage, factor=factor, year=year).items() if v is not None}
+    return _P.solve("ie_depreciation_schedule", **given)
+
 def ie_dispatching_rule(processing_times=None, due_dates=None, rule=None):
     """Sequencing by a dispatching rule (FCFS, SPT, LPT, EDD, CR). Sequence jobs at one work centre by a priority rule and compare average completion time, utilisation, average number of jobs and tardiness.
     Formula: \\bar F = \\frac{\\sum C_j}{n},\\quad \\text{utilization} = \\frac{\\sum p_j}{\\sum C_j},\\quad \\bar N = \\frac{\\sum C_j}{C_{max}}
@@ -174,6 +205,20 @@ def ie_dpmo_sigma_level(defects=None, units=None, opportunities=None):
     """
     given = {k: v for k, v in dict(defects=defects, units=units, opportunities=opportunities).items() if v is not None}
     return _P.solve("ie_dpmo_sigma_level", **given)
+
+def ie_earned_value(planned_value=None, earned_value=None, actual_cost=None, budget_at_completion=None):
+    """Earned value analysis (CV, SV, CPI, SPI, EAC). Cost and schedule variances and performance indices of a project from planned value, earned value and actual cost; with the budget at completion the estimates at completion (CPI method, atypical, CPI x SPI), estimate to complete, variance at completion, TCPI and per cent complete.
+    Formula: CV = EV - AC,\\ SV = EV - PV,\\ CPI = \\frac{EV}{AC},\\ SPI = \\frac{EV}{PV},\\ EAC = \\frac{BAC}{CPI},\\ TCPI = \\frac{BAC-EV}{BAC-AC}
+    Inputs:
+        planned_value: planned value (budgeted cost of work scheduled) to date
+        earned_value: earned value (budgeted cost of work performed) to date
+        actual_cost: actual cost (of work performed) to date
+        budget_at_completion: budget at completion (optional) (optional)
+    Outputs: cost_variance (CV = EV - AC (negative = over budget)), schedule_variance (SV = EV - PV (negative = behind schedule)), cpi (CPI = EV/AC), spi (SPI = EV/PV), eac (EAC = BAC/CPI (current cost efficiency continues)), etc (ETC = EAC - AC), vac (VAC = BAC - EAC), eac_atypical (EAC = AC + BAC - EV (remaining work at budget)), eac_cpi_spi (EAC = AC + (BAC - EV)/(CPI SPI)), tcpi (TCPI = (BAC - EV)/(BAC - AC), when BAC > AC), percent_complete (EV/BAC)
+    See also: help("ie_earned_value")
+    """
+    given = {k: v for k, v in dict(planned_value=planned_value, earned_value=earned_value, actual_cost=actual_cost, budget_at_completion=budget_at_completion).items() if v is not None}
+    return _P.solve("ie_earned_value", **given)
 
 def ie_edd_sequence(processing_times=None, due_dates=None):
     """Earliest due date (EDD) sequence. Order jobs on one machine by earliest due date (minimises the maximum lateness) and report tardiness measures.
@@ -862,6 +907,20 @@ def ie_process_performance(data=None, usl=None, lsl=None):
     given = {k: v for k, v in dict(data=data, usl=usl, lsl=lsl).items() if v is not None}
     return _P.solve("ie_process_performance", **given)
 
+def ie_productivity(output=None, input_amounts=None, previous_output=None, previous_inputs=None):
+    """Single-factor and multifactor productivity. Partial (single-factor) productivity of output over each input, multifactor productivity over the sum of the inputs (all in one unit, e.g. money), and with a previous period the change in per cent.
+    Formula: P_k = \\frac{O}{I_k},\\quad MFP = \\frac{O}{\\sum_k I_k},\\quad \\Delta\\% = 100\\,\\frac{MFP_{now}-MFP_{prev}}{MFP_{prev}}
+    Inputs:
+        output: output of the period (units or value)
+        input_amounts: amount of each input (labour, material, capital, energy ...; one unit, e.g. cost, for the multifactor ratio)
+        previous_output: output of the previous period (optional) (optional)
+        previous_inputs: inputs of the previous period, in the same order (optional) (optional)
+    Outputs: partial_productivities (output / each input), multifactor_productivity (output / sum of inputs), previous_multifactor_productivity (previous output / sum of previous inputs), change_percent (change in multifactor productivity, %), partial_change_percent (change of each partial productivity, %)
+    See also: help("ie_productivity")
+    """
+    given = {k: v for k, v in dict(output=output, input_amounts=input_amounts, previous_output=previous_output, previous_inputs=previous_inputs).items() if v is not None}
+    return _P.solve("ie_productivity", **given)
+
 def ie_queue_server_cost(arrival_rate=None, service_rate=None, server_cost_rate=None, waiting_cost_rate=None, max_servers=None):
     """Cost-optimal number of servers. Number of servers of an M/M/c queue that minimises server cost plus the cost of customers waiting in the system per time unit.
     Formula: TC(c) = c\\,C_s + C_w\\,L(c)
@@ -1262,4 +1321,4 @@ def ie_xbar_s_limits(grand_mean=None, mean_sd=None, subgroup_size=None):
     return _P.solve("ie_xbar_s_limits", **given)
 
 
-__all__ = ["CapabilityId", "solve", "help", "ie_abc_classification", "ie_acceptance_sampling", "ie_arl_shewhart", "ie_availability", "ie_break_even", "ie_c_chart_limits", "ie_capacity_utilization", "ie_center_of_gravity", "ie_cpm_taguchi", "ie_dispatching_rule", "ie_dpmo_sigma_level", "ie_edd_sequence", "ie_eoq", "ie_eoq_backorders", "ie_eoq_quantity_discount", "ie_epq", "ie_erlang_c_staffing", "ie_ewma_limits", "ie_exponential_reliability", "ie_exponential_smoothing", "ie_factor_rating", "ie_flow_shop_makespan", "ie_forecast_errors", "ie_fraction_nonconforming", "ie_holt_trend", "ie_inventory_total_cost", "ie_inventory_turnover", "ie_johnson_three_machine", "ie_johnson_two_machine", "ie_k_out_of_n_reliability", "ie_kanban_count", "ie_largest_candidate_rule", "ie_learning_curve_cumulative_average", "ie_learning_curve_fit", "ie_learning_curve_total", "ie_learning_curve_unit", "ie_learning_rate_from_two_units", "ie_line_efficiency", "ie_linear_trend_forecast", "ie_littles_law", "ie_location_cost_volume", "ie_md1_queue", "ie_mg1_queue", "ie_mm1_queue", "ie_mm1k_queue", "ie_mmc_queue", "ie_moore_hodgson", "ie_moving_average_forecast", "ie_mtbf_confidence", "ie_multiproduct_break_even", "ie_newsvendor_discrete", "ie_newsvendor_normal", "ie_newsvendor_poisson", "ie_newsvendor_uniform", "ie_np_chart_limits", "ie_oee", "ie_order_up_to_level", "ie_p_chart_from_samples", "ie_p_chart_limits", "ie_parallel_mttf", "ie_parallel_reliability", "ie_process_capability", "ie_process_performance", "ie_queue_server_cost", "ie_ranked_positional_weight", "ie_rectilinear_location", "ie_redundancy_needed", "ie_regression_forecast", "ie_reorder_point", "ie_rolled_throughput_yield", "ie_rq_fill_rate", "ie_safety_stock", "ie_safety_stock_variable_lead_time", "ie_seasonal_index", "ie_series_parallel_reliability", "ie_series_reliability", "ie_service_level_from_reorder_point", "ie_sigma_from_range", "ie_spt_sequence", "ie_standard_time", "ie_standby_redundancy", "ie_system_failure_rate", "ie_tabular_cusum", "ie_takt_time", "ie_time_study_sample_size", "ie_tracking_signal", "ie_u_chart_limits", "ie_weber_location", "ie_weibull_median_rank_regression", "ie_weibull_reliability", "ie_weighted_moving_average", "ie_work_sampling_sample_size", "ie_xbar_r_limits", "ie_xbar_s_limits"]
+__all__ = ["CapabilityId", "solve", "help", "ie_abc_classification", "ie_acceptance_sampling", "ie_after_tax_cash_flow", "ie_arl_shewhart", "ie_availability", "ie_break_even", "ie_c_chart_limits", "ie_capacity_utilization", "ie_center_of_gravity", "ie_cpm_taguchi", "ie_depreciation_schedule", "ie_dispatching_rule", "ie_dpmo_sigma_level", "ie_earned_value", "ie_edd_sequence", "ie_eoq", "ie_eoq_backorders", "ie_eoq_quantity_discount", "ie_epq", "ie_erlang_c_staffing", "ie_ewma_limits", "ie_exponential_reliability", "ie_exponential_smoothing", "ie_factor_rating", "ie_flow_shop_makespan", "ie_forecast_errors", "ie_fraction_nonconforming", "ie_holt_trend", "ie_inventory_total_cost", "ie_inventory_turnover", "ie_johnson_three_machine", "ie_johnson_two_machine", "ie_k_out_of_n_reliability", "ie_kanban_count", "ie_largest_candidate_rule", "ie_learning_curve_cumulative_average", "ie_learning_curve_fit", "ie_learning_curve_total", "ie_learning_curve_unit", "ie_learning_rate_from_two_units", "ie_line_efficiency", "ie_linear_trend_forecast", "ie_littles_law", "ie_location_cost_volume", "ie_md1_queue", "ie_mg1_queue", "ie_mm1_queue", "ie_mm1k_queue", "ie_mmc_queue", "ie_moore_hodgson", "ie_moving_average_forecast", "ie_mtbf_confidence", "ie_multiproduct_break_even", "ie_newsvendor_discrete", "ie_newsvendor_normal", "ie_newsvendor_poisson", "ie_newsvendor_uniform", "ie_np_chart_limits", "ie_oee", "ie_order_up_to_level", "ie_p_chart_from_samples", "ie_p_chart_limits", "ie_parallel_mttf", "ie_parallel_reliability", "ie_process_capability", "ie_process_performance", "ie_productivity", "ie_queue_server_cost", "ie_ranked_positional_weight", "ie_rectilinear_location", "ie_redundancy_needed", "ie_regression_forecast", "ie_reorder_point", "ie_rolled_throughput_yield", "ie_rq_fill_rate", "ie_safety_stock", "ie_safety_stock_variable_lead_time", "ie_seasonal_index", "ie_series_parallel_reliability", "ie_series_reliability", "ie_service_level_from_reorder_point", "ie_sigma_from_range", "ie_spt_sequence", "ie_standard_time", "ie_standby_redundancy", "ie_system_failure_rate", "ie_tabular_cusum", "ie_takt_time", "ie_time_study_sample_size", "ie_tracking_signal", "ie_u_chart_limits", "ie_weber_location", "ie_weibull_median_rank_regression", "ie_weibull_reliability", "ie_weighted_moving_average", "ie_work_sampling_sample_size", "ie_xbar_r_limits", "ie_xbar_s_limits"]

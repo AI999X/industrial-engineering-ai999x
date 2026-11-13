@@ -19,6 +19,8 @@ result.show()
 | topic | capabilities |
 |---|---|
 | Break-even analysis | [Break-even point](#ie_break_even), [Multiproduct break-even (sales-mix weighted)](#ie_multiproduct_break_even) |
+| Engineering economy / depreciation | [Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS)](#ie_depreciation_schedule) |
+| Engineering economy / income taxes | [After-tax cash flow with depreciation and recapture](#ie_after_tax_cash_flow) |
 | Facility location / single facility | [Centre-of-gravity location](#ie_center_of_gravity), [Minimum weighted-distance location (Weber problem)](#ie_weber_location), [Minimum rectilinear-distance location (weighted median)](#ie_rectilinear_location) |
 | Facility location / site selection | [Factor-rating method for site selection](#ie_factor_rating), [Locational cost-volume (break-even) analysis](#ie_location_cost_volume) |
 | Forecasting / causal methods | [Associative forecast by simple linear regression](#ie_regression_forecast) |
@@ -40,6 +42,7 @@ result.show()
 | Line balancing / cycle time | [Takt (cycle) time and minimum stations](#ie_takt_time) |
 | Line balancing / heuristics | [Line balancing by the largest candidate rule](#ie_largest_candidate_rule), [Line balancing by ranked positional weight](#ie_ranked_positional_weight) |
 | Line balancing / measures | [Line balance efficiency, balance delay and idle time](#ie_line_efficiency) |
+| Project management / earned value | [Earned value analysis (CV, SV, CPI, SPI, EAC)](#ie_earned_value) |
 | Queueing / Little's law | [Little's law](#ie_littles_law) |
 | Queueing / M/G/1 queues | [M/D/1 queue (constant service time)](#ie_md1_queue), [M/G/1 queue (Pollaczek-Khinchine)](#ie_mg1_queue) |
 | Queueing / Markovian queues | [M/M/1 queue](#ie_mm1_queue), [M/M/c queue (Erlang C)](#ie_mmc_queue), [M/M/1/K queue (finite capacity)](#ie_mm1k_queue) |
@@ -57,7 +60,7 @@ result.show()
 | Statistical process control / chart performance | [Average run length of a Shewhart X-bar chart](#ie_arl_shewhart) |
 | Statistical process control / six sigma | [DPMO and sigma level](#ie_dpmo_sigma_level), [Rolled throughput yield](#ie_rolled_throughput_yield) |
 | Statistical process control / variables charts | [X-bar and R chart control limits](#ie_xbar_r_limits), [X-bar and S chart control limits](#ie_xbar_s_limits), [Process standard deviation from the average range](#ie_sigma_from_range) |
-| Work measurement / productivity | [Overall equipment effectiveness (OEE)](#ie_oee), [Capacity utilisation and efficiency](#ie_capacity_utilization) |
+| Work measurement / productivity | [Overall equipment effectiveness (OEE)](#ie_oee), [Capacity utilisation and efficiency](#ie_capacity_utilization), [Single-factor and multifactor productivity](#ie_productivity) |
 | Work measurement / time study | [Standard time from a time study](#ie_standard_time), [Number of cycles to time in a time study](#ie_time_study_sample_size) |
 | Work measurement / work sampling | [Work sampling sample size](#ie_work_sampling_sample_size) |
 
@@ -193,6 +196,10 @@ Call `solve("<id>", **inputs)` with plain numbers; the result's `values` holds e
 | ie_work_sampling_sample_size | Work sampling sample size | proportion, accuracy, confidence | sample_size, exact, z |
 | ie_oee | Overall equipment effectiveness (OEE) | planned_time, downtime, ideal_cycle_time, total_count, good_count | oee, availability, performance, quality, run_time |
 | ie_capacity_utilization | Capacity utilisation and efficiency | design_capacity, effective_capacity, actual_output | utilization, efficiency, effective_share |
+| ie_depreciation_schedule | Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS) | cost, life, method, salvage, factor, year | depreciation, book_value, total_depreciation, depreciation_in_year, book_value_end_of_year, accumulated_depreciation |
+| ie_after_tax_cash_flow | After-tax cash flow with depreciation and recapture | before_tax_cash_flows, depreciation, tax_rate, investment, sale_price | taxable_income, taxes, after_tax_cash_flows, total_tax, book_value_end, gain_on_sale, tax_on_sale, cash_flows_with_investment |
+| ie_earned_value | Earned value analysis (CV, SV, CPI, SPI, EAC) | planned_value, earned_value, actual_cost, budget_at_completion | cost_variance, schedule_variance, cpi, spi, eac, etc, vac, eac_atypical, eac_cpi_spi, tcpi, percent_complete |
+| ie_productivity | Single-factor and multifactor productivity | output, input_amounts, previous_output, previous_inputs | partial_productivities, multifactor_productivity, previous_multifactor_productivity, change_percent, partial_change_percent |
 
 <a id="ie_eoq"></a>
 
@@ -3712,10 +3719,6 @@ $$
 - **Assumes:** $0 < \alpha  \leq  1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![forecasts (forecasts for periods 1, ](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-exponential-smoothing-forecasts-vs-k.svg)
-
-*forecasts (forecasts for periods 1, ..., n + 1) for each index, as returned by industrial-engineering-ai999x for its example (5 values).*
-
 ![forecasts for periods 1, ](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-series)
 
 *forecasts for periods 1, ..., n + 1 (forecasts) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 140, last 143.229, largest 143.229). Inputs: data = [142, 153, 136, 150], alpha = 0.2, initial_forecast = 140.*
@@ -5143,3 +5146,258 @@ industrial_engineering_ai999x.solve('ie_capacity_utilization', design_capacity=5
 | Capacity utilization and efficiency with design capacity = 1200, effective capacity = 1000. | NEEDS_INPUT | ie_capacity_utilization needs actual_output (actual output). Example: solve('ie_capacity_utilization', design_capacity=1 |
 | Capacity utilization and efficiency with design capacity = 1200, effective capacity = 1000, actual output = 800, colour = 3. | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: industrial_engineering_ai999x.tem |
 | Capacity utilization and efficiency with design capacity = 1000, effective capacity = 1200, actual output = 800. | INVALID_INPUT | Capacity utilisation and efficiency: effective capacity cannot exceed design capacity. |
+
+<a id="ie_depreciation_schedule"></a>
+
+### Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS), `ie_depreciation_schedule`
+
+Depreciation charge and end-of-year book value for every year of an asset's life by straight line, declining balance (factor/n of the book value, never below salvage), sum of years' digits or MACRS (half-year convention, salvage ignored), with one year picked out on request.
+
+$$
+d^{SL} = \frac{P-S}{n},\quad d^{DB}_t = \frac{f}{n}BV_{t-1},\quad d^{SYD}_t = (P-S)\frac{n-t+1}{n(n+1)/2},\quad d^{MACRS}_t = r_t P
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `cost` | first (installed) cost of the asset |  |
+| `life` | useful life or MACRS recovery period in years |  |
+| `method` | straight-line, declining-balance, sum-of-years-digits or macrs |  |
+| `salvage` | estimated salvage value at the end of the life (default 0; not used by MACRS) |  |
+| `factor` | declining-balance factor: 2 for double declining (default), 1.5 for 150 % |  |
+| `year` | the year to report (optional) |  |
+
+| output | meaning |
+|---|---|
+| `depreciation` | depreciation charge of each year |
+| `book_value` | book value at the end of each year |
+| `total_depreciation` | cost minus the final book value |
+| `depreciation_in_year` | the charge in the given year |
+| `book_value_end_of_year` | book value at the end of the given year |
+| `accumulated_depreciation` | depreciation up to the end of the given year |
+
+- **Method:** SL: (P - S)/n; DB: d_t = min(f/n BV_{$t-1$}, BV_{$t-1$} - S); SYD: (P - S)(n - t + 1)/(n(n + 1)/2); MACRS: P x table rate
+- **Assumes:** cost > 0; 0 <= salvage < cost; life a whole number of years; MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage; declining balance: no switch to straight line
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![book_value (book value at the end of each year) for each index, as returned by industrial-engineering-ai999x for its example (5 values)](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-depreciation-schedule-book-value-vs-k.svg)
+
+*book_value (book value at the end of each year) for each index, as returned by industrial-engineering-ai999x for its example (5 values).*
+
+![depreciation charge of each year (depreciation) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 1600, last 1600, largest 1600); with book_value (book value at the end of each year)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-series)
+
+*depreciation charge of each year (depreciation) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 1600, last 1600, largest 1600); with book_value (book value at the end of each year). Inputs: cost = 10000, life = 5, method = straight-line, salvage = 2000.*
+
+![total_depreciation (cost minus the final book value) against cost (first (installed) cost of the asset) from 5000 to 15000](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-curve)
+
+*total_depreciation (cost minus the final book value) against cost (first (installed) cost of the asset) from 5000 to 15000. One curve for each value of salvage (estimated salvage value at the end of the life (default 0; not used by MACRS)): 2000, 1000, 4000. Other inputs as in the worked example: life = 5, method = straight-line. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, cost = 10000, total_depreciation = 8000.*
+
+```python
+industrial_engineering_ai999x.solve('ie_depreciation_schedule', cost=10000, salvage=2000, life=5, method='straight-line')
+# -> depreciation = [1600.0, 1600.0, 1600.0, 1600.0, 1600.0], book_value = [8400.0, 6800.0, 5200.0, 3600.0, 2000.0], total_depreciation = 8000   (SOLVED)
+```
+
+```python
+industrial_engineering_ai999x.solve('ie_depreciation_schedule', cost=10000, salvage=1000, life=5, method='sum-of-years-digits', year=2)
+# -> depreciation = [3000.0, 2400.0, 1800.0, 1200.0, 600.0], book_value = [7000.0, 4600.0, 2800.0, 1600.0, 1000.0], total_depreciation = 9000, depreciation_in_year = 2400, book_value_end_of_year = 4600, accumulated_depreciation = 5400   (SOLVED)
+```
+
+```python
+industrial_engineering_ai999x.solve('ie_depreciation_schedule', cost=10000, salvage=1000, life=5, method='declining-balance')
+# -> depreciation = [4000.0, 2400.0, 1440.0, 864.0, 296.0], book_value = [6000.0, 3600.0, 2160.0, 1296.0, 1000.0], total_depreciation = 9000   (SOLVED)
+```
+
+```python
+industrial_engineering_ai999x.solve('ie_depreciation_schedule', cost=10000, life=5, method='macrs')
+# -> depreciation = [2000.0, 3200.0, 1920.0, 1152.0, 1152.0, 576.0], book_value = [8000.0, 4800.0, 2880.0, 1728.0, 576.0, 0.0], total_depreciation = 10000   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Depreciation schedule with first cost = 10000, salvage value = 2000, useful life = 5, depreciation method = straight-line. | SOLVED | depreciation = [1600.0, 1600.0, 1600.0, 1600.0, 1600.0], book_value = [8400.0, 6800.0, 5200.0, 3600.0, 2000.0], total_depreciation = 8000 |
+| Depreciation schedule with first cost = 10000, salvage value = 1000, useful life = 5, depreciation method = sum-of-years-digits, year number = 2. | SOLVED | depreciation = [3000.0, 2400.0, 1800.0, 1200.0, 600.0], book_value = [7000.0, 4600.0, 2800.0, 1600.0, 1000.0], total_depreciation = 9000, depreciation_in_year = 2400, book_value_end_of_year = 4600, accumulated_depreciation = 5400 |
+| Depreciation schedule with first cost = 10000, salvage value = 2000, useful life = 5. | NEEDS_INPUT | ie_depreciation_schedule needs method (straight-line, declining-balance, sum-of-years-digits or macrs). Example: solve(' |
+| Depreciation schedule with first cost = 10000, salvage value = 2000, useful life = 5, depreciation method = straight-line, colour = 3. | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: industrial_engineering_ai999x.tem |
+| Depreciation schedule with first cost = 10000, salvage value = 12000, useful life = 5, depreciation method = straight-line. | INVALID_INPUT | Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS): the salvage value must be less th |
+| Depreciation schedule with first cost = 10000, useful life = 6, depreciation method = macrs. | INVALID_INPUT | Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS): a MACRS recovery period is 3, 5,  |
+
+<a id="ie_after_tax_cash_flow"></a>
+
+### After-tax cash flow with depreciation and recapture, `ie_after_tax_cash_flow`
+
+Taxable income, taxes and after-tax cash flow of each year from the before-tax cash flows and the depreciation charges, and with the first cost and a sale price the book value, the gain (depreciation recapture) or loss on the sale and its tax, and the full after-tax cash-flow series.
+
+$$
+ATCF_k = BTCF_k - t\,(BTCF_k - D_k),\quad ATCF_n \mathrel{+}= S - t\,(S - BV_n)
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `before_tax_cash_flows` | before-tax cash flow of each year 1..n |  |
+| `depreciation` | depreciation charge of each year 1..n |  |
+| `tax_rate` | income tax rate (decimal; 25% = 0.25) |  |
+| `investment` | first cost at year 0 (optional) |  |
+| `sale_price` | market (salvage) value received at the end of year n (optional; needs the investment) |  |
+
+| output | meaning |
+|---|---|
+| `taxable_income` | BTCF - D of each year |
+| `taxes` | t (BTCF - D) of each year (negative = a tax credit) |
+| `after_tax_cash_flows` | BTCF - taxes of each year (without the sale) |
+| `total_tax` | sum of the yearly taxes |
+| `book_value_end` | first cost minus all depreciation |
+| `gain_on_sale` | sale price - book value (recapture; negative = loss) |
+| `tax_on_sale` | t x gain on the sale |
+| `cash_flows_with_investment` | after-tax series from year 0, the sale in year n |
+
+- **Method:** TI = BTCF - D; taxes = t TI; ATCF = BTCF - taxes; at the sale: + S - t (S - BV)
+- **Assumes:** 0 <= tax rate < 1; one depreciation value per year, each >= 0; sale price <= first cost (no capital gain); a negative taxable income gives a tax credit; the gain or loss on the sale is taxed at the same rate
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![BTCF - taxes of each year (without the sale) (after_tax_cash_flows) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 4500, last 4500, largest 4500); with taxable_income (BTCF - D of each year), taxes (t (BTCF - D) of each year (negative = a tax credit))](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-series)
+
+*BTCF - taxes of each year (without the sale) (after_tax_cash_flows) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 4500, last 4500, largest 4500); with taxable_income (BTCF - D of each year), taxes (t (BTCF - D) of each year (negative = a tax credit)). Inputs: before_tax_cash_flows = [5000, 5000, 5000], depreciation = [3000, 3000, 3000], tax_rate = 0.25, investment = 9000, sale_price = 1000.*
+
+![total_tax (sum of the yearly taxes) against tax_rate (income tax rate (decimal; 25% = 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-curve)
+
+*total_tax (sum of the yearly taxes) against tax_rate (income tax rate (decimal; 25% = 0.25)) from 0.125 to 0.375. Other inputs as in the worked example: before_tax_cash_flows = [5000, 5000, 5000], depreciation = [3000, 3000, 3000], investment = 9000, sale_price = 1000. 31 points computed by industrial-engineering-ai999x; marked: the worked example, tax_rate = 0.25, total_tax = 1500.*
+
+```python
+industrial_engineering_ai999x.solve('ie_after_tax_cash_flow', before_tax_cash_flows=[5000, 5000, 5000], depreciation=[3000, 3000, 3000], tax_rate=0.25, investment=9000, sale_price=1000)
+# -> taxable_income = [2000.0, 2000.0, 2000.0], taxes = [500.0, 500.0, 500.0], after_tax_cash_flows = [4500.0, 4500.0, 4500.0], total_tax = 1500, book_value_end = 0, gain_on_sale = 1000, tax_on_sale = 250, cash_flows_with_investment = [-9000.0, 4500.0, 4500.0, 5250.0]   (SOLVED)
+```
+
+```python
+industrial_engineering_ai999x.solve('ie_after_tax_cash_flow', before_tax_cash_flows=[4000, 6000], depreciation=[5000, 3000], tax_rate=0.3)
+# -> taxable_income = [-1000.0, 3000.0], taxes = [-300.0, 900.0], after_tax_cash_flows = [4300.0, 5100.0], total_tax = 600   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| After-tax cash flow with before tax cash flows = [5000, 5000, 5000], depreciation charges = [3000, 3000, 3000], tax rate = 0.25, first cost = 9000, sale price = 1000. | SOLVED | taxable_income = [2000.0, 2000.0, 2000.0], taxes = [500.0, 500.0, 500.0], after_tax_cash_flows = [4500.0, 4500.0, 4500.0], total_tax = 1500, book_value_end = 0, gain_on_sale = 1000, tax_on_sale = 250, cash_flows_with_investment = [-9000.0, 4500.0, 4500.0, 5250.0] |
+| After-tax cash flow with before tax cash flows = [4000, 6000], depreciation charges = [5000, 3000], tax rate = 0.3. | SOLVED | taxable_income = [-1000.0, 3000.0], taxes = [-300.0, 900.0], after_tax_cash_flows = [4300.0, 5100.0], total_tax = 600 |
+| After-tax cash flow with before tax cash flows = [5000, 5000, 5000], depreciation charges = [3000, 3000, 3000], first cost = 9000, sale price = 1000. | NEEDS_INPUT | ie_after_tax_cash_flow needs tax_rate (income tax rate (decimal; 25% = 0.25)). Example: solve('ie_after_tax_cash_flow',  |
+| After-tax cash flow with before tax cash flows = [5000, 5000, 5000], depreciation charges = [3000, 3000, 3000], tax rate = 0.25, first cost = 9000, sale price = 1000, colour = 3. | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: industrial_engineering_ai999x.tem |
+| After-tax cash flow with before tax cash flows = [4000, 6000], depreciation charges = [5000, 3000], tax rate = 1.2. | INVALID_INPUT | After-tax cash flow with depreciation and recapture: tax_rate must lie strictly between -1e-300 and 1 (write 95% or 0.95 |
+| After-tax cash flow with before tax cash flows = [5000, 5000], depreciation charges = [3000, 3000], tax rate = 0.25, first cost = 9000, sale price = 12000. | INVALID_INPUT | After-tax cash flow with depreciation and recapture: a sale above the first cost (a capital gain) is outside this capabi |
+
+<a id="ie_earned_value"></a>
+
+### Earned value analysis (CV, SV, CPI, SPI, EAC), `ie_earned_value`
+
+Cost and schedule variances and performance indices of a project from planned value, earned value and actual cost; with the budget at completion the estimates at completion (CPI method, atypical, CPI x SPI), estimate to complete, variance at completion, TCPI and per cent complete.
+
+$$
+CV = EV - AC,\ SV = EV - PV,\ CPI = \frac{EV}{AC},\ SPI = \frac{EV}{PV},\ EAC = \frac{BAC}{CPI},\ TCPI = \frac{BAC-EV}{BAC-AC}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `planned_value` | planned value (budgeted cost of work scheduled) to date |  |
+| `earned_value` | earned value (budgeted cost of work performed) to date |  |
+| `actual_cost` | actual cost (of work performed) to date |  |
+| `budget_at_completion` | budget at completion (optional) |  |
+
+| output | meaning |
+|---|---|
+| `cost_variance` | $CV = EV - AC$ (negative = over budget) |
+| `schedule_variance` | $SV = EV - PV$ (negative = behind schedule) |
+| `cpi` | CPI = EV/AC |
+| `spi` | SPI = EV/PV |
+| `eac` | EAC = BAC/CPI (current cost efficiency continues) |
+| `etc` | ETC = EAC - AC |
+| `vac` | VAC = BAC - EAC |
+| `eac_atypical` | EAC = AC + BAC - EV (remaining work at budget) |
+| `eac_cpi_spi` | EAC = AC + (BAC - EV)/(CPI SPI) |
+| `tcpi` | TCPI = (BAC - EV)/(BAC - AC), when BAC > AC |
+| `percent_complete` | EV/BAC |
+
+- **Method:** $CV = EV - AC$, $SV = EV - PV$, CPI = EV/AC, SPI = EV/PV, EAC = BAC/CPI, ETC = EAC - AC, VAC = BAC - EAC
+- **Assumes:** PV, $AC > 0$; 0 <= EV <= BAC; estimates at completion need $EV > 0$; TCPI only while the budget is not used up (BAC > AC)
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![cpi (CPI = EV/AC) against actual_cost (actual cost (of work performed) to date) from 225 to 675](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-earned-value-curve)
+
+*cpi (CPI = EV/AC) against actual_cost (actual cost (of work performed) to date) from 225 to 675. One curve for each value of earned_value (earned value (budgeted cost of work performed) to date): 400, 200, 800. Other inputs as in the worked example: planned_value = 500, budget_at_completion = 1000. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, actual_cost = 450, cpi = 0.888889.*
+
+```python
+industrial_engineering_ai999x.solve('ie_earned_value', planned_value=500, earned_value=400, actual_cost=450, budget_at_completion=1000)
+# -> cost_variance = -50, schedule_variance = -100, cpi = 0.888889, spi = 0.8, eac = 1125, etc = 675, vac = -125, eac_atypical = 1050, eac_cpi_spi = 1293.75, percent_complete = 0.4, tcpi = 1.09091   (SOLVED)
+```
+
+```python
+industrial_engineering_ai999x.solve('ie_earned_value', planned_value=200000, earned_value=220000, actual_cost=200000)
+# -> cost_variance = 20000, schedule_variance = 20000, cpi = 1.1, spi = 1.1   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Earned value analysis with planned value = 500, earned value = 400, actual cost = 450, budget at completion = 1000. | SOLVED | cost_variance = -50, schedule_variance = -100, cpi = 0.888889, spi = 0.8, eac = 1125, etc = 675, vac = -125, eac_atypical = 1050, eac_cpi_spi = 1293.75, percent_complete = 0.4, tcpi = 1.09091 |
+| Earned value analysis with planned value = 200000, earned value = 220000, actual cost = 200000. | SOLVED | cost_variance = 20000, schedule_variance = 20000, cpi = 1.1, spi = 1.1 |
+| Earned value analysis with planned value = 500, earned value = 400, budget at completion = 1000. | NEEDS_INPUT | ie_earned_value needs actual_cost (actual cost (of work performed) to date). Example: solve('ie_earned_value', planned_v |
+| Earned value analysis with planned value = 500, earned value = 400, actual cost = 450, budget at completion = 1000, colour = 3. | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: industrial_engineering_ai999x.tem |
+| Earned value analysis with planned value = 500, earned value = 1200, actual cost = 450, budget at completion = 1000. | INVALID_INPUT | Earned value analysis (CV, SV, CPI, SPI, EAC): the earned value cannot exceed the budget at completion. |
+| Earned value analysis with planned value = 500, earned value = 400, actual cost = 0. | INVALID_INPUT | Earned value analysis (CV, SV, CPI, SPI, EAC): actual_cost must be positive. |
+
+<a id="ie_productivity"></a>
+
+### Single-factor and multifactor productivity, `ie_productivity`
+
+Partial (single-factor) productivity of output over each input, multifactor productivity over the sum of the inputs (all in one unit, e.g. money), and with a previous period the change in per cent.
+
+$$
+P_k = \frac{O}{I_k},\quad MFP = \frac{O}{\sum_k I_k},\quad \Delta\% = 100\,\frac{MFP_{now}-MFP_{prev}}{MFP_{prev}}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `output` | output of the period (units or value) |  |
+| `input_amounts` | amount of each input (labour, material, capital, energy ...; one unit, e.g. cost, for the multifactor ratio) |  |
+| `previous_output` | output of the previous period (optional) |  |
+| `previous_inputs` | inputs of the previous period, in the same order (optional) |  |
+
+| output | meaning |
+|---|---|
+| `partial_productivities` | output / each input |
+| `multifactor_productivity` | output / sum of inputs |
+| `previous_multifactor_productivity` | previous output / sum of previous inputs |
+| `change_percent` | change in multifactor productivity, % |
+| `partial_change_percent` | change of each partial productivity, % |
+
+- **Method:** partial = O / I_k; multifactor = O / sum I_k; change = (P_now - P_prev)/P_prev x 100
+- **Assumes:** output > 0; every input > 0; inputs in one unit for the multifactor ratio; the previous period lists the same inputs
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![output / each input (partial_productivities) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 5, last 20, largest 20)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-series)
+
+*output / each input (partial_productivities) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 5, last 20, largest 20). Inputs: output = 10000, input_amounts = [2000, 1500, 500].*
+
+![multifactor_productivity (output / sum of inputs) against output (output of the period (units or value)) from 5000 to 15000](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-curve)
+
+*multifactor_productivity (output / sum of inputs) against output (output of the period (units or value)) from 5000 to 15000. Other inputs as in the worked example: input_amounts = [2000, 1500, 500]. 31 points computed by industrial-engineering-ai999x; marked: the worked example, output = 10000, multifactor_productivity = 2.5.*
+
+```python
+industrial_engineering_ai999x.solve('ie_productivity', output=10000, input_amounts=[2000, 1500, 500])
+# -> partial_productivities = [5.0, 6.66666666667, 20.0], multifactor_productivity = 2.5   (SOLVED)
+```
+
+```python
+industrial_engineering_ai999x.solve('ie_productivity', output=12000, input_amounts=[2500, 1500, 500], previous_output=10000, previous_inputs=[2000, 1500, 500])
+# -> partial_productivities = [4.8, 8.0, 24.0], multifactor_productivity = 2.66667, previous_multifactor_productivity = 2.5, change_percent = 6.66667, partial_change_percent = [-4.0, 20.0, 20.0]   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Productivity with output value = 10000, input amounts = [2000, 1500, 500]. | SOLVED | partial_productivities = [5.0, 6.66666666667, 20.0], multifactor_productivity = 2.5 |
+| Productivity with output value = 12000, input amounts = [2500, 1500, 500], previous output = 10000, previous inputs = [2000, 1500, 500]. | SOLVED | partial_productivities = [4.8, 8.0, 24.0], multifactor_productivity = 2.66667, previous_multifactor_productivity = 2.5, change_percent = 6.66667, partial_change_percent = [-4.0, 20.0, 20.0] |
+| Productivity with output value = 10000. | NEEDS_INPUT | ie_productivity needs input_amounts (amount of each input (labour, material, capital, energy ...; one unit, e.g. cost, f |
+| Productivity with output value = 10000, input amounts = [2000, 1500, 500], colour = 3. | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: industrial_engineering_ai999x.tem |
+| Productivity with output value = 10000, input amounts = [2000, -5]. | INVALID_INPUT | Single-factor and multifactor productivity: every value of input_amounts must be positive. |
+| Productivity with output value = 12000, input amounts = [2500, 1500], previous output = 10000, previous inputs = [2000, 1500, 500]. | INVALID_INPUT | Single-factor and multifactor productivity: previous_inputs must list the same inputs as input_amounts. |

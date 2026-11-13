@@ -5167,6 +5167,473 @@ _add("ie_capacity_utilization", name="Capacity utilisation and efficiency", topi
      weak="a definition: the reference recomputes it exactly with fractions")
 
 
+# =====================================================================================================================
+# ENGINEERING ECONOMY, PROJECT CONTROL AND PRODUCTIVITY (core gaps, 2026-11-12)
+# =====================================================================================================================
+_ECON = "engineering economy"
+
+# Hand-worked outputs of the documented examples below (each checked twice by hand; to be replaced by the reference's
+# values on the build machine as for the other capabilities).
+EXAMPLE_OUTPUTS.update({
+    'ie_depreciation_schedule': [
+        {'depreciation': [1600.0, 1600.0, 1600.0, 1600.0, 1600.0], 'book_value': [8400.0, 6800.0, 5200.0, 3600.0, 2000.0], 'total_depreciation': 8000.0},
+        {'depreciation': [3000.0, 2400.0, 1800.0, 1200.0, 600.0], 'book_value': [7000.0, 4600.0, 2800.0, 1600.0, 1000.0],
+         'depreciation_in_year': 2400.0, 'book_value_end_of_year': 4600.0, 'accumulated_depreciation': 5400.0},
+        {'depreciation': [4000.0, 2400.0, 1440.0, 864.0, 296.0], 'book_value': [6000.0, 3600.0, 2160.0, 1296.0, 1000.0], 'total_depreciation': 9000.0},
+        {'depreciation': [2000.0, 3200.0, 1920.0, 1152.0, 1152.0, 576.0], 'book_value': [8000.0, 4800.0, 2880.0, 1728.0, 576.0, 0.0], 'total_depreciation': 10000.0}],
+    'ie_after_tax_cash_flow': [
+        {'taxable_income': [2000.0, 2000.0, 2000.0], 'taxes': [500.0, 500.0, 500.0], 'after_tax_cash_flows': [4500.0, 4500.0, 4500.0], 'total_tax': 1500.0,
+         'book_value_end': 0.0, 'gain_on_sale': 1000.0, 'tax_on_sale': 250.0, 'cash_flows_with_investment': [-9000.0, 4500.0, 4500.0, 5250.0]},
+        {'taxable_income': [-1000.0, 3000.0], 'taxes': [-300.0, 900.0], 'after_tax_cash_flows': [4300.0, 5100.0], 'total_tax': 600.0}],
+    'ie_earned_value': [
+        {'cost_variance': -50.0, 'schedule_variance': -100.0, 'cpi': 0.888888888889, 'spi': 0.8, 'eac': 1125.0, 'etc': 675.0, 'vac': -125.0,
+         'eac_atypical': 1050.0, 'eac_cpi_spi': 1293.75, 'tcpi': 1.09090909091, 'percent_complete': 0.4},
+        {'cost_variance': 20000.0, 'schedule_variance': 20000.0, 'cpi': 1.1, 'spi': 1.1}],
+    'ie_productivity': [
+        {'partial_productivities': [5.0, 6.66666666667, 20.0], 'multifactor_productivity': 2.5},
+        {'multifactor_productivity': 2.66666666667, 'previous_multifactor_productivity': 2.5, 'change_percent': 6.66666666667}],
+})
+
+# MACRS (GDS, half-year convention) percentages as published in the public tax tables, as fractions; the reference
+# checks every entry against the 200 % (150 % for 15 and 20 years) declining balance switching to straight line.
+_MACRS = {
+    3: [0.3333, 0.4445, 0.1481, 0.0741],
+    5: [0.2, 0.32, 0.192, 0.1152, 0.1152, 0.0576],
+    7: [0.1429, 0.2449, 0.1749, 0.1249, 0.0893, 0.0892, 0.0893, 0.0446],
+    10: [0.1, 0.18, 0.144, 0.1152, 0.0922, 0.0737, 0.0655, 0.0655, 0.0656, 0.0655, 0.0328],
+    15: [0.05, 0.095, 0.0855, 0.077, 0.0693, 0.0623, 0.059, 0.059, 0.0591, 0.059, 0.0591, 0.059, 0.0591, 0.059, 0.0591, 0.0295],
+    20: [0.0375, 0.07219, 0.06677, 0.06177, 0.05713, 0.05285, 0.04888, 0.04522, 0.04462, 0.04461, 0.04462, 0.04461, 0.04462,
+         0.04461, 0.04462, 0.04461, 0.04462, 0.04461, 0.04462, 0.04461, 0.02231],
+}
+_DEP_METHODS = ("straight-line", "declining-balance", "sum-of-years-digits", "macrs")
+
+
+def depreciation_schedule(cost, life, method, salvage=None, factor=None, year=None):
+    P = _pos("cost", cost)
+    n = _int("life", life, 1, 100)
+    _need(method in _DEP_METHODS, "method is straight-line, declining-balance, sum-of-years-digits or macrs")
+    if method == "macrs":
+        _need(salvage is None, "MACRS ignores the salvage value: leave it out")
+        _need(n in _MACRS, "a MACRS recovery period is 3, 5, 7, 10, 15 or 20 years")
+    S = 0.0
+    if salvage is not None:
+        S = _nonneg("salvage", salvage)
+    _need(S < P, "the salvage value must be less than the cost")
+    f = 2.0
+    if factor is not None:
+        _need(method == "declining-balance", "a declining-balance factor applies only to the declining-balance method")
+        f = _pos("factor", factor)
+        _need(f / n <= 1, "the declining-balance rate factor/life must not exceed 1")
+    dep = []
+    if method == "straight-line":
+        for t in range(n):
+            dep.append((P - S) / n)
+    elif method == "sum-of-years-digits":
+        syd = n * (n + 1) / 2
+        for t in range(1, n + 1):
+            dep.append((P - S) * (n - t + 1) / syd)
+    elif method == "declining-balance":
+        r = f / n
+        bv = P
+        for t in range(n):
+            d = min(r * bv, bv - S)
+            dep.append(d)
+            bv = bv - d
+    else:
+        for p in _MACRS[n]:
+            dep.append(P * p)
+    book = []
+    bv = P
+    for d in dep:
+        bv = bv - d
+        if abs(bv - S) <= 1e-12 * P:
+            bv = S
+        book.append(bv)
+    out = {"depreciation": dep, "book_value": book, "total_depreciation": P - book[-1]}
+    if year is not None:
+        y = _int("year", year, 1, len(dep))
+        out["depreciation_in_year"] = dep[y - 1]
+        out["book_value_end_of_year"] = book[y - 1]
+        out["accumulated_depreciation"] = P - book[y - 1]
+    return _rd(out)
+
+
+def _macrs_computed(n):
+    """MACRS rates rebuilt from their rule: 200 % declining balance (150 % for 15 and 20 years), half-year convention
+    in the first and last year, switching to straight line over the remaining recovery time when that is larger."""
+    rate = (1.5 if n >= 15 else 2.0) / n
+    bv, rates = 1.0, []
+    for k in range(n + 1):
+        remaining = n - k + 0.5                        # years of recovery left at the start of year k + 1
+        if k == 0:
+            d = 0.5 * rate * bv
+        elif k == n:
+            d = bv
+        else:
+            d = max(rate * bv, bv / remaining)
+        rates.append(d)
+        bv -= d
+    return rates
+
+
+def _ref_depreciation(cost, life, method, salvage=None, factor=None, year=None):
+    import numpy as np
+    from fractions import Fraction
+    P, S, n = cost, (salvage or 0.0), life
+    if method == "straight-line":
+        book = [float(v) for v in np.linspace(P, S, n + 1)]
+    elif method == "sum-of-years-digits":                  # remaining digits: BV_t = S + (P - S)(n - t)(n - t + 1)/(n(n + 1))
+        book = [S + (P - S) * (n - t) * (n - t + 1) / (n * (n + 1)) for t in range(n + 1)]
+    elif method == "declining-balance":                    # closed form, held at the salvage value
+        r = (factor or 2.0) / n
+        book = [max(P * (1 - r) ** t, S) for t in range(n + 1)]
+    else:
+        table, rule = _MACRS[n], _macrs_computed(n)
+        if len(table) != len(rule) or any(abs(a - b) > 2e-4 for a, b in zip(table, rule)) or abs(sum(table) - 1) > 1e-9:
+            raise AssertionError("the MACRS table disagrees with its rule")
+        acc, book = Fraction(0), [P]
+        for p in table:
+            acc += Fraction(repr(p))
+            book.append(float(Fraction(repr(P)) * (1 - acc)))
+    dep = [book[t] - book[t + 1] for t in range(len(book) - 1)]
+    out = {"depreciation": dep, "book_value": book[1:], "total_depreciation": P - book[-1]}
+    if year is not None:
+        out["depreciation_in_year"] = dep[year - 1]
+        out["book_value_end_of_year"] = book[year]
+        out["accumulated_depreciation"] = P - book[year]
+    return out
+
+
+def _wrong_depreciation(cost, life, method, salvage=None, factor=None, year=None):
+    """Plausible mistakes: the salvage value ignored (straight line, sum of years' digits), the declining-balance rate
+    applied to cost minus salvage, MACRS replaced by straight line over the recovery period."""
+    S = salvage or 0.0
+    n = life
+    if method == "straight-line":
+        dep = [cost / n] * n
+    elif method == "sum-of-years-digits":
+        dep = [cost * (n - t + 1) / (n * (n + 1) / 2) for t in range(1, n + 1)]
+    elif method == "declining-balance":
+        r = (factor or 2.0) / n
+        bv, dep = cost - S, []
+        for _ in range(n):
+            dep.append(r * bv)
+            bv -= r * bv
+    else:
+        dep = [cost / n] * n
+    return {"depreciation": dep}
+
+
+def _rand_depreciation(rng):
+    method = rng.choice(list(_DEP_METHODS))
+    cost = _u(rng, 1000, 1e6, 0)
+    if method == "macrs":
+        x = {"cost": cost, "life": rng.choice(sorted(_MACRS)), "method": method}
+    else:
+        x = {"cost": cost, "life": rng.randint(2, 20), "method": method, "salvage": round(cost * rng.uniform(0.05, 0.3), 0)}
+        if method == "declining-balance" and rng.random() < 0.5:
+            x["factor"] = rng.choice([1.5, 2.0])
+    if rng.random() < 0.4:
+        x["year"] = rng.randint(1, x["life"])
+    return x
+
+
+_add("ie_depreciation_schedule", name="Depreciation schedule (straight line, declining balance, sum of years' digits, MACRS)",
+     topic=f"{_ECON} / depreciation", level="beginner",
+     purpose="Depreciation charge and end-of-year book value for every year of an asset's life by straight line, "
+             "declining balance (factor/n of the book value, never below salvage), sum of years' digits or MACRS "
+             "(half-year convention, salvage ignored), with one year picked out on request.",
+     inputs=[_i("cost", "first (installed) cost of the asset", "first cost", "initial cost", "purchase cost", "basis"),
+             _i("life", "useful life or MACRS recovery period in years", "useful life", "recovery period", "n", "years", type="integer"),
+             _i("method", "straight-line, declining-balance, sum-of-years-digits or macrs", "depreciation method", type="choice",
+                choices=list(_DEP_METHODS), syn={"sl": "straight-line", "straight": "straight-line", "db": "declining-balance",
+                                                 "ddb": "declining-balance", "double-declining-balance": "declining-balance",
+                                                 "syd": "sum-of-years-digits", "sum-of-years": "sum-of-years-digits"}),
+             _i("salvage", "estimated salvage value at the end of the life (default 0; not used by MACRS)", "salvage value",
+                "residual value", required=False),
+             _i("factor", "declining-balance factor: 2 for double declining (default), 1.5 for 150 %", "declining balance factor",
+                "db factor", required=False),
+             _i("year", "the year to report (optional)", "year number", "for year", type="integer", required=False)],
+     outputs=[_o("depreciation", "depreciation charge of each year"), _o("book_value", "book value at the end of each year"),
+              _o("total_depreciation", "cost minus the final book value"), _o("depreciation_in_year", "the charge in the given year"),
+              _o("book_value_end_of_year", "book value at the end of the given year"),
+              _o("accumulated_depreciation", "depreciation up to the end of the given year")],
+     primary="depreciation", conditions=["cost > 0", "0 <= salvage < cost", "life a whole number of years",
+                                         "MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage", "declining balance: no switch to straight line"],
+     method="SL: (P - S)/n; DB: d_t = min(f/n BV_{t-1}, BV_{t-1} - S); SYD: (P - S)(n - t + 1)/(n(n + 1)/2); MACRS: P x table rate",
+     latex=r"d^{SL} = \frac{P-S}{n},\quad d^{DB}_t = \frac{f}{n}BV_{t-1},\quad d^{SYD}_t = (P-S)\frac{n-t+1}{n(n+1)/2},\quad d^{MACRS}_t = r_t P",
+     run=depreciation_schedule, reference=_ref_depreciation, wrong=_wrong_depreciation, rand=_rand_depreciation,
+     triggers=["depreciation schedule", "depreciation", "book value"], ask="depreciation schedule",
+     examples=[{"cost": 10000, "salvage": 2000, "life": 5, "method": "straight-line"},
+               {"cost": 10000, "salvage": 1000, "life": 5, "method": "sum-of-years-digits", "year": 2},
+               {"cost": 10000, "salvage": 1000, "life": 5, "method": "declining-balance"},
+               {"cost": 10000, "life": 5, "method": "macrs"}],
+     invalid=[{"cost": 10000, "salvage": 12000, "life": 5, "method": "straight-line"}, {"cost": 10000, "life": 6, "method": "macrs"}],
+     weak="MACRS: the published table is checked against its rule (to the table's rounding) and then applied; the other "
+          "methods are recomputed by closed forms for the book value")
+
+
+def after_tax_cash_flow(before_tax_cash_flows, depreciation, tax_rate, investment=None, sale_price=None):
+    b = _vec("before_tax_cash_flows", before_tax_cash_flows, 1, 100)
+    d = _vec("depreciation", depreciation, 1, 100, nonneg=True)
+    _need(len(b) == len(d), "before_tax_cash_flows and depreciation must have one value per year each")
+    t = _prob("tax_rate", tax_rate, -1e-300, 1.0)
+    ti, tax, atcf = [], [], []
+    for i in range(len(b)):
+        ti.append(b[i] - d[i])
+        tax.append(t * (b[i] - d[i]))
+        atcf.append(b[i] - t * (b[i] - d[i]))
+    out = {"taxable_income": ti, "taxes": tax, "after_tax_cash_flows": atcf, "total_tax": math.fsum(tax)}
+    if sale_price is not None:
+        _need(investment is not None, "the investment (first cost) is needed for the book value at the sale")
+    if investment is not None:
+        I = _pos("investment", investment)
+        D = math.fsum(d)
+        _need(D <= I * (1 + 1e-12), "the depreciation cannot add up to more than the investment")
+        bv = I - D
+        if abs(bv) <= 1e-12 * I:
+            bv = 0.0
+        out["book_value_end"] = bv
+        flows = [-I]
+        for v in atcf:
+            flows.append(v)
+        if sale_price is not None:
+            Sv = _nonneg("sale_price", sale_price)
+            _need(Sv <= I, "a sale above the first cost (a capital gain) is outside this capability")
+            gain = Sv - bv
+            if abs(gain) <= 1e-12 * I:
+                gain = 0.0
+            out["gain_on_sale"] = gain
+            out["tax_on_sale"] = t * gain
+            flows[-1] = flows[-1] + Sv - t * gain
+        out["cash_flows_with_investment"] = flows
+    return _rd(out)
+
+
+def _ref_atcf(before_tax_cash_flows, depreciation, tax_rate, investment=None, sale_price=None):
+    """Exact fractions by the tax-shield form ATCF = BTCF (1 - t) + t D; the after-tax sale proceeds as
+    S (1 - t) + t BV."""
+    from fractions import Fraction
+    F = lambda v: Fraction(repr(float(v)))
+    t = F(tax_rate)
+    atcf = [F(b) * (1 - t) + t * F(d) for b, d in zip(before_tax_cash_flows, depreciation)]
+    out = {"taxable_income": [float(F(b) - F(d)) for b, d in zip(before_tax_cash_flows, depreciation)],
+           "after_tax_cash_flows": [float(v) for v in atcf], "total_tax": float(sum(F(b) - v for b, v in zip(before_tax_cash_flows, atcf)))}
+    if investment is not None:
+        bv = F(investment) - sum(F(d) for d in depreciation)
+        out["book_value_end"] = float(bv)
+        flows = [-F(investment)] + list(atcf)
+        if sale_price is not None:
+            out["gain_on_sale"] = float(F(sale_price) - bv)
+            out["tax_on_sale"] = float(t * (F(sale_price) - bv))
+            flows[-1] += F(sale_price) * (1 - t) + t * bv
+        out["cash_flows_with_investment"] = [float(v) for v in flows]
+    return out
+
+
+def _rand_atcf(rng):
+    n = rng.randint(2, 8)
+    inv = _u(rng, 1e4, 1e6, 0)
+    d = round(inv * 0.8 / n, 2)
+    x = {"before_tax_cash_flows": [round(inv * rng.uniform(0.1, 0.5), 0) for _ in range(n)], "depreciation": [d] * n,
+         "tax_rate": rng.choice([0.21, 0.25, 0.3, 0.35, 0.4])}
+    if rng.random() < 0.7:
+        x["investment"] = inv
+        if rng.random() < 0.6:
+            x["sale_price"] = round(inv * rng.choice([rng.uniform(0.02, 0.15), rng.uniform(0.25, 0.6)]), 0)
+    return x
+
+
+_add("ie_after_tax_cash_flow", name="After-tax cash flow with depreciation and recapture", topic=f"{_ECON} / income taxes",
+     level="intermediate",
+     purpose="Taxable income, taxes and after-tax cash flow of each year from the before-tax cash flows and the "
+             "depreciation charges, and with the first cost and a sale price the book value, the gain (depreciation "
+             "recapture) or loss on the sale and its tax, and the full after-tax cash-flow series.",
+     inputs=[_i("before_tax_cash_flows", "before-tax cash flow of each year 1..n", "before tax cash flows", "btcf", "before-tax cash flow", type="vector"),
+             _i("depreciation", "depreciation charge of each year 1..n", "depreciation charges", "depreciation per year", type="vector"),
+             _i("tax_rate", "income tax rate (decimal; 25% = 0.25)", "tax rate", "effective tax rate", "income tax rate"),
+             _i("investment", "first cost at year 0 (optional)", "first cost", "initial investment", "investment cost", required=False),
+             _i("sale_price", "market (salvage) value received at the end of year n (optional; needs the investment)", "sale price",
+                "salvage value", "market value", "selling price", required=False)],
+     outputs=[_o("taxable_income", "BTCF - D of each year"), _o("taxes", "t (BTCF - D) of each year (negative = a tax credit)"),
+              _o("after_tax_cash_flows", "BTCF - taxes of each year (without the sale)"), _o("total_tax", "sum of the yearly taxes"),
+              _o("book_value_end", "first cost minus all depreciation"), _o("gain_on_sale", "sale price - book value (recapture; negative = loss)"),
+              _o("tax_on_sale", "t x gain on the sale"), _o("cash_flows_with_investment", "after-tax series from year 0, the sale in year n")],
+     primary="after_tax_cash_flows", conditions=["0 <= tax rate < 1", "one depreciation value per year, each >= 0",
+                                                 "sale price <= first cost (no capital gain)", "a negative taxable income gives a tax credit",
+                                                 "the gain or loss on the sale is taxed at the same rate"],
+     method="TI = BTCF - D; taxes = t TI; ATCF = BTCF - taxes; at the sale: + S - t (S - BV)",
+     latex=r"ATCF_k = BTCF_k - t\,(BTCF_k - D_k),\quad ATCF_n \mathrel{+}= S - t\,(S - BV_n)",
+     run=after_tax_cash_flow, reference=_ref_atcf,
+     wrong=lambda before_tax_cash_flows, depreciation, tax_rate, investment=None, sale_price=None: {
+         "after_tax_cash_flows": [b * (1 - tax_rate) for b in before_tax_cash_flows]},
+     rand=_rand_atcf,
+     triggers=["after tax cash flow", "after-tax cash flow", "after-tax cash flows", "after tax cash flows", "atcf",
+               "depreciation recapture"], ask="after-tax cash flow",
+     examples=[{"before_tax_cash_flows": [5000, 5000, 5000], "depreciation": [3000, 3000, 3000], "tax_rate": 0.25, "investment": 9000, "sale_price": 1000},
+               {"before_tax_cash_flows": [4000, 6000], "depreciation": [5000, 3000], "tax_rate": 0.3}],
+     invalid=[{"before_tax_cash_flows": [4000, 6000], "depreciation": [5000, 3000], "tax_rate": 1.2},
+              {"before_tax_cash_flows": [5000, 5000], "depreciation": [3000, 3000], "tax_rate": 0.25, "investment": 9000, "sale_price": 12000}],
+     weak="the reference recomputes the cash flows exactly with fractions by the tax-shield form")
+
+
+def earned_value_analysis(planned_value, earned_value, actual_cost, budget_at_completion=None):
+    PV, EV, AC = _pos("planned_value", planned_value), _nonneg("earned_value", earned_value), _pos("actual_cost", actual_cost)
+    cpi, spi = EV / AC, EV / PV
+    out = {"cost_variance": EV - AC, "schedule_variance": EV - PV, "cpi": cpi, "spi": spi}
+    if budget_at_completion is not None:
+        BAC = _pos("budget_at_completion", budget_at_completion)
+        _need(EV <= BAC * (1 + 1e-12), "the earned value cannot exceed the budget at completion")
+        _need(EV > 0, "with no earned value the cost performance index is 0 and no estimate at completion exists")
+        eac = BAC / cpi
+        out["eac"] = eac
+        out["etc"] = eac - AC
+        out["vac"] = BAC - eac
+        out["eac_atypical"] = AC + BAC - EV
+        out["eac_cpi_spi"] = AC + (BAC - EV) / (cpi * spi)
+        out["percent_complete"] = EV / BAC
+        if BAC > AC:
+            out["tcpi"] = (BAC - EV) / (BAC - AC)
+    return _rd(out)
+
+
+def _ref_earned_value(planned_value, earned_value, actual_cost, budget_at_completion=None):
+    """Exact fractions; the estimate at completion by its forecast form AC + (BAC - EV)/CPI (the remaining work at the
+    cost efficiency so far), the TCPI as the efficiency x that solves (BAC - AC) x = BAC - EV."""
+    from fractions import Fraction
+    F = lambda v: Fraction(repr(float(v)))
+    PV, EV, AC = F(planned_value), F(earned_value), F(actual_cost)
+    cpi, spi = EV / AC, EV / PV
+    out = {"cost_variance": float(EV - AC), "schedule_variance": float(EV - PV), "cpi": float(cpi), "spi": float(spi)}
+    if budget_at_completion is not None:
+        BAC = F(budget_at_completion)
+        eac = AC + (BAC - EV) / cpi
+        out.update({"eac": float(eac), "etc": float((BAC - EV) / cpi), "vac": float(BAC - eac), "eac_atypical": float(AC + (BAC - EV)),
+                    "eac_cpi_spi": float(AC + (BAC - EV) / (cpi * spi)), "percent_complete": float(EV / BAC)})
+        if BAC > AC:
+            out["tcpi"] = float((BAC - EV) / (BAC - AC))
+    return out
+
+
+def _rand_ev(rng):
+    bac = _u(rng, 1e4, 1e7, 0)
+    ev = round(bac * rng.uniform(0.05, 0.95), 0)
+    x = {"planned_value": round(bac * rng.uniform(0.1, 0.95), 0), "earned_value": ev, "actual_cost": round(ev * rng.choice([rng.uniform(0.7, 0.95), rng.uniform(1.05, 1.4)]), 0)}
+    if rng.random() < 0.7:
+        x["budget_at_completion"] = bac
+    return x
+
+
+_add("ie_earned_value", name="Earned value analysis (CV, SV, CPI, SPI, EAC)", topic="project management / earned value",
+     level="beginner",
+     purpose="Cost and schedule variances and performance indices of a project from planned value, earned value and "
+             "actual cost; with the budget at completion the estimates at completion (CPI method, atypical, CPI x SPI), "
+             "estimate to complete, variance at completion, TCPI and per cent complete.",
+     inputs=[_i("planned_value", "planned value (budgeted cost of work scheduled) to date", "planned value", "pv", "bcws"),
+             _i("earned_value", "earned value (budgeted cost of work performed) to date", "earned value", "ev", "bcwp"),
+             _i("actual_cost", "actual cost (of work performed) to date", "actual cost", "ac", "acwp"),
+             _i("budget_at_completion", "budget at completion (optional)", "budget at completion", "bac", "total budget", required=False)],
+     outputs=[_o("cost_variance", "CV = EV - AC (negative = over budget)"), _o("schedule_variance", "SV = EV - PV (negative = behind schedule)"),
+              _o("cpi", "CPI = EV/AC"), _o("spi", "SPI = EV/PV"), _o("eac", "EAC = BAC/CPI (current cost efficiency continues)"),
+              _o("etc", "ETC = EAC - AC"), _o("vac", "VAC = BAC - EAC"), _o("eac_atypical", "EAC = AC + BAC - EV (remaining work at budget)"),
+              _o("eac_cpi_spi", "EAC = AC + (BAC - EV)/(CPI SPI)"), _o("tcpi", "TCPI = (BAC - EV)/(BAC - AC), when BAC > AC"),
+              _o("percent_complete", "EV/BAC")],
+     primary="cpi", conditions=["PV, AC > 0", "0 <= EV <= BAC", "estimates at completion need EV > 0",
+                                "TCPI only while the budget is not used up (BAC > AC)"],
+     method="CV = EV - AC, SV = EV - PV, CPI = EV/AC, SPI = EV/PV, EAC = BAC/CPI, ETC = EAC - AC, VAC = BAC - EAC",
+     latex=r"CV = EV - AC,\ SV = EV - PV,\ CPI = \frac{EV}{AC},\ SPI = \frac{EV}{PV},\ EAC = \frac{BAC}{CPI},\ TCPI = \frac{BAC-EV}{BAC-AC}",
+     run=earned_value_analysis, reference=_ref_earned_value,
+     wrong=lambda planned_value, earned_value, actual_cost, budget_at_completion=None: {
+         "cost_variance": actual_cost - earned_value, "cpi": actual_cost / earned_value if earned_value else 0.0},
+     rand=_rand_ev,
+     triggers=["earned value analysis", "earned value management", "earned value", "cost performance index",
+               "schedule performance index", "estimate at completion"], ask="earned value analysis",
+     examples=[{"planned_value": 500, "earned_value": 400, "actual_cost": 450, "budget_at_completion": 1000},
+               {"planned_value": 200000, "earned_value": 220000, "actual_cost": 200000}],
+     invalid=[{"planned_value": 500, "earned_value": 1200, "actual_cost": 450, "budget_at_completion": 1000},
+              {"planned_value": 500, "earned_value": 400, "actual_cost": 0}],
+     weak="definitions: the reference recomputes them exactly with fractions, the EAC by its forecast form AC + (BAC - EV)/CPI")
+
+
+def productivity(output, input_amounts, previous_output=None, previous_inputs=None):
+    O = _pos("output", output)
+    x = _vec("input_amounts", input_amounts, 1, 50, positive=True)
+    part = [O / v for v in x]
+    mfp = O / math.fsum(x)
+    out = {"partial_productivities": part, "multifactor_productivity": mfp}
+    _need((previous_output is None) == (previous_inputs is None), "give both previous_output and previous_inputs for the change")
+    if previous_output is not None:
+        Op = _pos("previous_output", previous_output)
+        xp = _vec("previous_inputs", previous_inputs, 1, 50, positive=True)
+        _need(len(xp) == len(x), "previous_inputs must list the same inputs as input_amounts")
+        pm = Op / math.fsum(xp)
+        ch = (mfp - pm) / pm
+        if abs(ch) <= 1e-12:
+            ch = 0.0
+        out["previous_multifactor_productivity"] = pm
+        out["change_percent"] = 100 * ch
+        pch = []
+        for i in range(len(x)):
+            c = (O / x[i] - Op / xp[i]) / (Op / xp[i])
+            if abs(c) <= 1e-12:
+                c = 0.0
+            pch.append(100 * c)
+        out["partial_change_percent"] = pch
+    return _rd(out)
+
+
+def _ref_productivity(output, input_amounts, previous_output=None, previous_inputs=None):
+    """Exact fractions; the change as a ratio of ratios, (O/O_prev) (sum of previous inputs / sum of inputs) - 1."""
+    from fractions import Fraction
+    F = lambda v: Fraction(repr(float(v)))
+    O, xs = F(output), [F(v) for v in input_amounts]
+    out = {"partial_productivities": [float(O / v) for v in xs], "multifactor_productivity": float(O / sum(xs))}
+    if previous_output is not None:
+        Op, xp = F(previous_output), [F(v) for v in previous_inputs]
+        out["previous_multifactor_productivity"] = float(Op / sum(xp))
+        out["change_percent"] = float(100 * ((O / Op) * (sum(xp) / sum(xs)) - 1))
+        out["partial_change_percent"] = [float(100 * ((O / Op) * (b / a) - 1)) for a, b in zip(xs, xp)]
+    return out
+
+
+def _rand_productivity(rng):
+    k = rng.randint(2, 5)
+    x = {"output": _u(rng, 1000, 1e6, 0), "input_amounts": [_u(rng, 100, 1e5, 0) for _ in range(k)]}
+    if rng.random() < 0.5:
+        x["previous_output"] = round(x["output"] * rng.uniform(0.7, 0.97), 0)
+        x["previous_inputs"] = [round(v * rng.uniform(0.8, 1.2), 0) for v in x["input_amounts"]]
+    return x
+
+
+_add("ie_productivity", name="Single-factor and multifactor productivity", topic=f"{_WM} / productivity", level="beginner",
+     purpose="Partial (single-factor) productivity of output over each input, multifactor productivity over the sum of "
+             "the inputs (all in one unit, e.g. money), and with a previous period the change in per cent.",
+     inputs=[_i("output", "output of the period (units or value)", "output value", "units produced", "total output"),
+             _i("input_amounts", "amount of each input (labour, material, capital, energy ...; one unit, e.g. cost, for the multifactor ratio)",
+                "input amounts", "inputs", "input costs", "resources", type="vector"),
+             _i("previous_output", "output of the previous period (optional)", "previous output", "last period output", required=False),
+             _i("previous_inputs", "inputs of the previous period, in the same order (optional)", "previous inputs",
+                "last period inputs", "previous input amounts", type="vector", required=False)],
+     outputs=[_o("partial_productivities", "output / each input"), _o("multifactor_productivity", "output / sum of inputs"),
+              _o("previous_multifactor_productivity", "previous output / sum of previous inputs"),
+              _o("change_percent", "change in multifactor productivity, %"), _o("partial_change_percent", "change of each partial productivity, %")],
+     primary="multifactor_productivity", conditions=["output > 0", "every input > 0", "inputs in one unit for the multifactor ratio",
+                                                     "the previous period lists the same inputs"],
+     method="partial = O / I_k; multifactor = O / sum I_k; change = (P_now - P_prev)/P_prev x 100",
+     latex=r"P_k = \frac{O}{I_k},\quad MFP = \frac{O}{\sum_k I_k},\quad \Delta\% = 100\,\frac{MFP_{now}-MFP_{prev}}{MFP_{prev}}",
+     run=productivity, reference=_ref_productivity,
+     wrong=lambda output, input_amounts, previous_output=None, previous_inputs=None: {
+         "multifactor_productivity": sum(output / v for v in input_amounts)},
+     rand=_rand_productivity,
+     triggers=["multifactor productivity", "multi-factor productivity", "single factor productivity", "single-factor productivity",
+               "partial productivity", "productivity"], ask="productivity",
+     examples=[{"output": 10000, "input_amounts": [2000, 1500, 500]},
+               {"output": 12000, "input_amounts": [2500, 1500, 500], "previous_output": 10000, "previous_inputs": [2000, 1500, 500]}],
+     invalid=[{"output": 10000, "input_amounts": [2000, -5]},
+              {"output": 12000, "input_amounts": [2500, 1500], "previous_output": 10000, "previous_inputs": [2000, 1500, 500]}],
+     weak="definitions: the reference recomputes them exactly with fractions, the change as a ratio of ratios")
+
+
 # levels revised once the whole catalogue was in place (beginner / intermediate / advanced / expert ~ 30/35/23/12 %)
 LEVELS.update({
     "ie_abc_classification": "intermediate", "ie_rolled_throughput_yield": "intermediate", "ie_np_chart_limits": "intermediate",
