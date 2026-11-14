@@ -21,7 +21,6 @@ const KINDS: &[(&str, &[&str])] = &[
     ("ie_exponential_smoothing", &["forecasts-vs-k", "series"]),
     ("ie_factor_rating", &["matrix"]),
     ("ie_flow_shop_makespan", &["matrix", "series"]),
-    ("ie_forecast_errors", &["sensitivity"]),
     ("ie_inventory_turnover", &["field"]),
     ("ie_johnson_three_machine", &["series"]),
     ("ie_johnson_two_machine", &["sequence-vs-k", "series"]),
