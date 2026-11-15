@@ -3829,10 +3829,6 @@ $$
 - **Assumes:** equal lengths; error = actual - forecast; MAPE only if no actual value is 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![mad (mean absolute deviation) as value 4 of actual (actual values) moves from 85 to 145, the other values as given ([100, 110, 120, 130]); 41 runs of industrial-engineering-ai999x](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-forecast-errors-sensitivity)
-
-*mad (mean absolute deviation) as value 4 of actual (actual values) moves from 85 to 145, the other values as given ([100, 110, 120, 130]); 41 runs of industrial-engineering-ai999x. Other inputs: forecast = [105, 108, 125, 126]. Marked: the worked example, actual[4] = 130, mad = 4.*
-
 ```python
 industrial_engineering_ai999x.solve('ie_forecast_errors', actual=[100, 110, 120, 130], forecast=[105, 108, 125, 126])
 # -> mad = 4, mse = 17.5, rmse = 4.1833, bias = -1, running_sum_of_errors = -4, mape = 3.51544, tracking_signal = -1   (SOLVED)
