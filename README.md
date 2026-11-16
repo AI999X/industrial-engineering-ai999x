@@ -10,34 +10,149 @@ Industrial Engineering and Supply Chain covers inventory policies (EOQ, reorder 
 
 | | |
 |---|---|
-| **Desktop app** (Windows, Linux) | [Windows](https://downloads.ai999x.com/desktop/latest/ai999x-windows-x86_64.zip) · [Linux](https://downloads.ai999x.com/desktop/latest/ai999x-linux-x86_64.tar.gz) |
-| **Command line** `industrial-engineering` (Windows, Linux) | [Windows](https://downloads.ai999x.com/desktop/latest/ai999x-cli-windows-x86_64.zip) · [Linux](https://downloads.ai999x.com/desktop/latest/ai999x-cli-linux-x86_64.tar.gz) |
+| **Desktop app** (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-1.6.4-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-1.6.4-linux-x86_64.tar.gz) |
+| **Command line** `industrial-engineering` (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-linux-x86_64.tar.gz) |
 | **Browser** (any device) | [Try it on the model page](https://www.ai999x.com/models/industrial-engineering-ai999x/#try) |
 | **Python** 3.10+ | `pip install industrial-engineering-ai999x`: on Windows and Linux (x86-64) `pip` installs the same compiled engine; on other systems (macOS, ARM) it installs a pure-Python build that gives the same answers |
 
-## Example
+## Ask in words: 15 examples
+
+Each question below was asked on this release; the comment under it is the line it printed.
 
 ```python
 import industrial_engineering_ai999x as industrial_engineering
-a = industrial_engineering.ask("Economic order quantity with annual demand = 1200, ordering cost = 100, holding cost = 6.")
-print(a.outcome, a.value)
+
+a = industrial_engineering.ask(
+    "Centre-of-gravity location with x coordinates = [30, 90, 130, "
+    "60], y coordinates = [120, 110, 130, 40], loads = [2000, 1000, "
+    "1000, 2000]."
+)
+print(a.outcome, a.values)
+# SOLVED {'x': 66.6666666667, 'y': 93.3333333333, 'total_weight': 6000.0}
+
+a = industrial_engineering.ask(
+    "Optimal number of servers with lambda = 20, service rate = 6, "
+    "server cost = 25, waiting cost = 40."
+)
+print(a.outcome, a.values)
+# SOLVED {'servers': 5, 'total_cost': 284.466875735, 'L': 3.98667189338}
+
+a = industrial_engineering.ask(
+    "Cold standby redundancy with lambda = 0.001, mission time = 1000."
+)
+print(a.outcome, a.values)
+# SOLVED {'reliability': 0.735758882343, 'mttf': 2000.0}
+
+a = industrial_engineering.ask(
+    "C chart limits with average number of defects = 9."
+)
+print(a.outcome, a.values)
+# SOLVED {'ucl': 18.0, 'lcl': 0.0, 'center': 9.0, 'sigma_c': 3.0}
+
+a = industrial_engineering.ask(
+    "Time study sample size with sample mean = 3, standard deviation = "
+    "0.5, desired accuracy = 0.05, confidence level = 0.95."
+)
+print(a.outcome, a.values)
+# SOLVED {'sample_size': 43, 'exact': 42.6828757855, 'z': 1.95996398454}
+
+a = industrial_engineering.ask(
+    "Learning curve unit time with first unit time = 100, learning "
+    "curve rate = 0.8, unit number = 8."
+)
+print(a.outcome, a.values)
+# SOLVED {'unit_time': 51.2, 'exponent': -0.321928094887}
+
+a = industrial_engineering.ask(
+    "Johnson's rule for three machines with machine 1 times = [8, 10, "
+    "6, 7, 11], machine 2 times = [5, 6, 2, 3, 4], machine 3 times = "
+    "[4, 9, 8, 6, 5]."
+)
+print(a.outcome, a.values)
+# SOLVED {'sequence': [3, 2, 1, 4, 5], 'makespan': 51.0}
+
+a = industrial_engineering.ask(
+    "Rectilinear distance location with x coordinates = [3, 8, 5, 1], "
+    "y coordinates = [2, 6, 9, 4], loads = [5, 2, 3, 1]."
+)
+print(a.outcome, a.values)
+# SOLVED {'x': 3.0, 'y': 4.0, 'total_weighted_distance': 47.0}
+
+a = industrial_engineering.ask(
+    "K-out-of-n system reliability with component reliability = 0.9, "
+    "required components = 2, total components = 3."
+)
+print(a.outcome, a.values)
+# SOLVED {'reliability': 0.972, 'unreliability': 0.028}
+
+a = industrial_engineering.ask(
+    "Work sampling sample size with estimated proportion = 0.2, "
+    "desired accuracy = 0.05, confidence level = 0.95."
+)
+print(a.outcome, a.values)
+# SOLVED {'sample_size': 246, 'exact': 245.853364524, 'z': 1.95996398454}
+
+a = industrial_engineering.ask(
+    "Parallel components needed with required reliability = 0.999, "
+    "component reliability = 0.9."
+)
+print(a.outcome, a.values)
+# SOLVED {'components': 3, 'achieved_reliability': 0.999}
+
+a = industrial_engineering.ask(
+    "Weighted moving average forecast with demand = [100, 110, 105, "
+    "120], weights = [1, 2, 3]."
+)
+print(a.outcome, a.values)
+# SOLVED {'forecast': 113.333333333, 'weight_sum': 6.0}
+
+a = industrial_engineering.ask(
+    "Parallel system reliability with component reliabilities = [0.9, "
+    "0.8]."
+)
+print(a.outcome, a.values)
+# SOLVED {'reliability': 0.98, 'unreliability': 0.02}
+
+a = industrial_engineering.ask(
+    "Series system reliability with component reliabilities = [0.95, "
+    "0.98, 0.99]."
+)
+print(a.outcome, a.values)
+# SOLVED {'reliability': 0.92169, 'unreliability': 0.07831}
+
+a = industrial_engineering.ask(
+    "Series-parallel system reliability with stages = [[0.9, 0.9], "
+    "[0.8, 0.8], [0.95, 0.95]]."
+)
+print(a.outcome, a.values)
+# SOLVED {'reliability': 0.948024, 'unreliability': 0.051976}
 ```
 
-Output:
+## Screenshots
 
-```text
-SOLVED 200.0
-```
+[![The Industrial Engineering and Supply Chain desktop app: Annual inventory cost of an order quantity, with its worked example and live scene](https://www.ai999x.com/?ax_shot=industrial-engineering-ai999x/hero-dark.webp)](https://www.ai999x.com/models/industrial-engineering-ai999x/)
+
+[![c chart control limits: the live scene in the Industrial Engineering and Supply Chain desktop app](https://www.ai999x.com/?ax_shot=industrial-engineering-ai999x/see-1.webp)](https://www.ai999x.com/models/industrial-engineering-ai999x/)
+
+*c chart control limits*
+
+[![Cold standby redundancy: the live scene in the Industrial Engineering and Supply Chain desktop app](https://www.ai999x.com/?ax_shot=industrial-engineering-ai999x/see-2.webp)](https://www.ai999x.com/models/industrial-engineering-ai999x/)
+
+*Cold standby redundancy*
+
+[![Holt's linear trend (double exponential smoothing): the live scene in the Industrial Engineering and Supply Chain desktop app](https://www.ai999x.com/?ax_shot=industrial-engineering-ai999x/see-3.webp)](https://www.ai999x.com/models/industrial-engineering-ai999x/)
+
+*Holt's linear trend (double exponential smoothing)*
 
 Every calculation, with its formula, a worked example and its figures: **[Industrial Engineering and Supply Chain on ai999x.com](https://www.ai999x.com/models/industrial-engineering-ai999x/)**. Install guides for the app and the command line: [https://www.ai999x.com/desktop-cli/](https://www.ai999x.com/desktop-cli/).
 
-Version 1.6.3 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
+Version 1.6.4 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
 
 *The Future Is Self-Improving.*
 
 ## Source and releases
 
-This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/industrial-engineering-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.3`; the [GitHub release](https://github.com/AI999X/industrial-engineering-ai999x/releases/tag/v1.6.3) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
+This repository holds the installable source of each release, exactly as published on [PyPI](https://pypi.org/project/industrial-engineering-ai999x/) (`pip install .` builds it). Releases are tagged `v1.6.4`; the [GitHub release](https://github.com/AI999X/industrial-engineering-ai999x/releases/tag/v1.6.4) carries the wheel, the desktop app and the command-line program for Windows and Linux, and their checksums.
 
 ## Build the program from source
 
