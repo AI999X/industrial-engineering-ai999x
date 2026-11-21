@@ -230,13 +230,17 @@ $$
 - **Assumes:** demand > 0; order_cost > 0; holding_cost > 0 (per unit per year)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Q (economic order quantity Q*) against demand (demand per year (units)), with holding_cost = 6, order_cost = 100](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-eoq-q-vs-demand.svg)
+![economic order quantity Q* (Q) against demand per year (units) (demand) from 300 to 2400, with order_cost = 100, holding_cost = 6: 31 points computed by the model (inputs it refuses are left out); marked: demand = 1200, Q = 200](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-eoq-q-vs-demand.svg)
 
-*Q (economic order quantity Q*) against demand (demand per year (units)), with holding_cost = 6, order_cost = 100. 31 points computed by industrial-engineering-ai999x; marked: demand = 1200, Q = 200.*
+*economic order quantity Q* (Q) against demand per year (units) (demand) from 300 to 2400, with order_cost = 100, holding_cost = 6: 31 points computed by the model (inputs it refuses are left out); marked: demand = 1200, Q = 200. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6.*
 
-![Q (economic order quantity Q*) against holding_cost (holding cost per unit per year) from 3 to 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-curve)
+![Q as demand runs from 300 to 2100, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-live-1)
 
-*Q (economic order quantity Q*) against holding_cost (holding cost per unit per year) from 3 to 9. One curve for each value of demand (demand per year (units)): 1200, 600, 2400. Other inputs as in the worked example: order_cost = 100.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, holding_cost = 6, Q = 200.*
+*Q as demand runs from 300 to 2100, every other input as you entered it (41 solutions). Marked: your demand = 1200 gives Q = 200. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6.*
+
+![Q as order_cost runs from 25 to 175, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-live-2)
+
+*Q as order_cost runs from 25 to 175, every other input as you entered it (29 solutions). Marked: your order_cost = 100 gives Q = 200. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_eoq', demand=1200, order_cost=100, holding_cost=6)
@@ -288,9 +292,13 @@ $$
 - **Assumes:** demand, order_cost, holding_cost, order_quantity > 0; unit_cost >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![total_cost (annual total cost DS/Q + HQ/2 + Dc) against order_quantity (quantity ordered each time) from 30 to 3000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-total-cost-curve)
+![Annual total cost DS/Q + HQ/2 + Dc as order_quantity runs from 75 to 525, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-total-cost-live-1)
 
-*total_cost (annual total cost DS/Q + HQ/2 + Dc) against order_quantity (quantity ordered each time) from 30 to 3000 on a logarithmic axis. One curve for each value of holding_cost (holding cost per unit per year): 6, 3, 12. Other inputs as in the worked example: demand = 1200.0, order_cost = 100.0. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, order_quantity = 300, total_cost = 1300.*
+*Annual total cost DS/Q + HQ/2 + Dc as order_quantity runs from 75 to 525, every other input as you entered it (41 solutions). Marked: your order_quantity = 300 gives total_cost = 1300. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6, order_quantity = 300.*
+
+![Annual total cost DS/Q + HQ/2 + Dc as demand runs from 300 to 2100, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-total-cost-live-2)
+
+*Annual total cost DS/Q + HQ/2 + Dc as demand runs from 300 to 2100, every other input as you entered it (29 solutions). Marked: your demand = 1200 gives total_cost = 1300. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6, order_quantity = 300.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_inventory_total_cost', demand=1200, order_cost=100, holding_cost=6, order_quantity=300)
@@ -342,9 +350,13 @@ $$
 - **Assumes:** all inputs > 0; every shortage is backordered
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Q (optimal order quantity) against holding_cost (holding cost per unit per year) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-backorders-curve)
+![Optimal order quantity as backorder_cost runs from 4](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-backorders-live-1)
 
-*Q (optimal order quantity) against holding_cost (holding cost per unit per year) from 0.6 to 60 on a logarithmic axis. One curve for each value of demand (demand per year (units)): 1200, 600, 2400. Other inputs as in the worked example: order_cost = 100.0, backorder_cost = 18.0. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, holding_cost = 6, Q = 230.94.*
+*Optimal order quantity as backorder_cost runs from 4.5 to 31.5, every other input as you entered it (41 solutions). Marked: your backorder_cost = 18 gives Q = 230.9. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6, backorder_cost = 18.*
+
+![Optimal order quantity as holding_cost runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-backorders-live-2)
+
+*Optimal order quantity as holding_cost runs from 1.5 to 10.5, every other input as you entered it (29 solutions). Marked: your holding_cost = 6 gives Q = 230.9. Your inputs: demand = 1200, order_cost = 100, holding_cost = 6, backorder_cost = 18.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_eoq_backorders', demand=1200, order_cost=100, holding_cost=6, backorder_cost=18)
@@ -398,9 +410,13 @@ $$
 - **Assumes:** break_quantities start at 0 and increase; unit_prices fall tier by tier; 0 < holding_rate < 10
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![total_cost (annual ordering + holding + purchase cost) against demand (demand per year (units)) from 2500 to 7500](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-quantity-discount-curve)
+![Annual ordering + holding + purchase cost as demand runs from 1250 to 8750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-quantity-discount-live-1)
 
-*total_cost (annual ordering + holding + purchase cost) against demand (demand per year (units)) from 2500 to 7500. One curve for each value of holding_rate (annual holding cost as a fraction of the unit price (decimal; 20% = 0.2)): 0.2, 0.74. Other inputs as in the worked example: order_cost = 49.0, break_quantities = [0, 1000, 2000], unit_prices = [5.0, 4.8, 4.75]. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, demand = 5000, total_cost = 24725.*
+*Annual ordering + holding + purchase cost as demand runs from 1250 to 8750, every other input as you entered it (41 solutions). Marked: your demand = 5000 gives total_cost = 2.472e+04. Your inputs: demand = 5000, order_cost = 49, holding_rate = 0.2, break_quantities = 0, 1000, 2000, unit_prices = 5, 4.8, 4.75.*
+
+![Annual ordering + holding + purchase cost as holding_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-eoq-quantity-discount-live-2)
+
+*Annual ordering + holding + purchase cost as holding_rate runs from 0.05 to 0.35, every other input as you entered it (29 solutions). Marked: your holding_rate = 0.2 gives total_cost = 2.472e+04. Your inputs: demand = 5000, order_cost = 49, holding_rate = 0.2, break_quantities = 0, 1000, 2000, unit_prices = 5, 4.8, 4.75.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_eoq_quantity_discount', demand=5000, order_cost=49, holding_rate=0.2, break_quantities=[0, 1000, 2000], unit_prices=[5.0, 4.8, 4.75])
@@ -452,9 +468,13 @@ $$
 - **Assumes:** all inputs > 0; production_rate > demand
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Q (economic production quantity) against demand (demand per year (units)) from 1200 to 120000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-epq-curve)
+![Economic production quantity as production_rate runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-epq-live-1)
 
-*Q (economic production quantity) against demand (demand per year (units)) from 1200 to 120000 on a logarithmic axis. One curve for each value of order_cost (fixed cost per order or setup): 400, 800. Other inputs as in the worked example: production_rate = 48000.0, holding_cost = 3.0. 33 points per curve computed by industrial-engineering-ai999x; marked: the worked example, demand = 12000, Q = 2065.59.*
+*Economic production quantity as production_rate runs from 1.38e+04 to 8.4e+04, every other input as you entered it (40 solutions). Marked: your production_rate = 4.8e+04 gives Q = 2066. Your inputs: demand = 12000, production_rate = 48000, order_cost = 400, holding_cost = 3.*
+
+![Economic production quantity as demand runs from 3000 to 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-epq-live-2)
+
+*Economic production quantity as demand runs from 3000 to 2.1e+04, every other input as you entered it (29 solutions). Marked: your demand = 1.2e+04 gives Q = 2066. Your inputs: demand = 12000, production_rate = 48000, order_cost = 400, holding_cost = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_epq', demand=12000, production_rate=48000, order_cost=400, holding_cost=3)
@@ -501,13 +521,17 @@ $$
 - **Assumes:** demand_rate > 0; lead_time >= 0; safety_stock >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reorder_point (reorder point d L + SS) against demand_rate (demand per period (per day, say)) from 20 to 60](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-reorder-point-curve)
+![reorder point d L + SS (reorder_point) over demand_rate (demand per period (per day, say)) from 20 to 60 and lead_time (lead time in the same periods) from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-reorder-point-field)
 
-*reorder_point (reorder point d L + SS) against demand_rate (demand per period (per day, say)) from 20 to 60. One curve for each value of lead_time (lead time in the same periods): 5, 2.5, 10. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, demand_rate = 40, reorder_point = 200.*
+*reorder point d L + SS (reorder_point) over demand_rate (demand per period (per day, say)) from 20 to 60 and lead_time (lead time in the same periods) from 2.5 to 7.5: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, reorder_point = 200. Your inputs: demand_rate = 40, lead_time = 5.*
 
-![reorder_point (reorder point d L + SS) over demand_rate (demand per period (per day, say)) from 20 to 60 and lead_time (lead time in the same periods) from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-reorder-point-field)
+![Reorder point d L + SS as demand_rate runs from 10 to 70, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-reorder-point-live-1)
 
-*reorder_point (reorder point d L + SS) over demand_rate (demand per period (per day, say)) from 20 to 60 and lead_time (lead time in the same periods) from 2.5 to 7.5: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 50 to dark 450); iso-lines at reorder_point = 100, 200, 300, 400. Marked: the worked example, demand_rate = 40, lead_time = 5, reorder_point = 200.*
+*Reorder point d L + SS as demand_rate runs from 10 to 70, every other input as you entered it (41 solutions). Marked: your demand_rate = 40 gives reorder_point = 200. Your inputs: demand_rate = 40, lead_time = 5.*
+
+![Reorder point d L + SS as lead_time runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-reorder-point-live-2)
+
+*Reorder point d L + SS as lead_time runs from 1.25 to 8.75, every other input as you entered it (29 solutions). Marked: your lead_time = 5 gives reorder_point = 200. Your inputs: demand_rate = 40, lead_time = 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_reorder_point', demand_rate=40, lead_time=5)
@@ -558,9 +582,13 @@ $$
 - **Assumes:** mean_demand, sd_demand, lead_time > 0; 0.5 < service_level < 1; demand per period independent and normal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![safety_stock (safety stock z sigma sqrt(L)) against service_level (cycle service level: probability of no stock-out per cycle (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-safety-stock-curve)
+![Safety stock as service_level runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-safety-stock-live-1)
 
-*safety_stock (safety stock z sigma sqrt(L)) against service_level (cycle service level: probability of no stock-out per cycle (decimal)) from 0.475 to 0.999. One curve for each value of sd_demand (standard deviation of demand per period): 12, 6, 24. Other inputs as in the worked example: mean_demand = 50.0, lead_time = 9.0. 29 points per curve computed by industrial-engineering-ai999x; marked: the worked example, service_level = 0.95, safety_stock = 59.2147.*
+*Safety stock as service_level runs from 0.5082 to 0.9999, every other input as you entered it (37 solutions). Marked: your service_level = 0.95 gives safety_stock = 59.21. Your inputs: mean_demand = 50, sd_demand = 12, lead_time = 9, service_level = 0.95.*
+
+![Mean lead-time demand as mean_demand runs from 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-safety-stock-live-2)
+
+*Mean lead-time demand as mean_demand runs from 12.5 to 87.5, every other input as you entered it (27 solutions). Marked: your mean_demand = 50 gives lead_time_demand = 450. Your inputs: mean_demand = 50, sd_demand = 12, lead_time = 9, service_level = 0.95.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_safety_stock', mean_demand=50, sd_demand=12, lead_time=9, service_level=0.95)
@@ -611,9 +639,13 @@ $$
 - **Assumes:** mean_demand, mean_lead_time > 0; standard deviations >= 0, not both 0; 0.5 < service_level < 1; demand and lead time independent; lead-time demand treated as normal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![safety_stock (safety stock z sigma_DL) against sd_demand (standard deviation of demand per period) from 2 to 200 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-safety-stock-variable-lead-time-curve)
+![Safety stock z sigma_DL as service_level runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-safety-stock-variable-lead-time-live-1)
 
-*safety_stock (safety stock z sigma_DL) against sd_demand (standard deviation of demand per period) from 2 to 200 on a logarithmic axis. One curve for each value of mean_demand (mean demand per period (per day, say)): 100, 50, 200. Other inputs as in the worked example: mean_lead_time = 6.0, sd_lead_time = 2.0, service_level = 0.95. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, sd_demand = 20, safety_stock = 338.696.*
+*Safety stock z sigma_DL as service_level runs from 0.5082 to 0.9999, every other input as you entered it (37 solutions). Marked: your service_level = 0.95 gives safety_stock = 338.7. Your inputs: mean_demand = 100, sd_demand = 20, mean_lead_time = 6, sd_lead_time = 2, service_level = 0.95.*
+
+![Safety stock z sigma_DL as mean_demand runs from 25 to 175, every other input as you entered it (27 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-safety-stock-variable-lead-time-live-2)
+
+*Safety stock z sigma_DL as mean_demand runs from 25 to 175, every other input as you entered it (27 solutions). Marked: your mean_demand = 100 gives safety_stock = 338.7. Your inputs: mean_demand = 100, sd_demand = 20, mean_lead_time = 6, sd_lead_time = 2, service_level = 0.95.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_safety_stock_variable_lead_time', mean_demand=100, sd_demand=20, mean_lead_time=6, sd_lead_time=2, service_level=0.95)
@@ -667,9 +699,13 @@ $$
 - **Assumes:** salvage < cost < price; sd_demand > 0; demand normal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Q (optimal order quantity mu + z sigma) against price (selling price per unit) from 5 to 15](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-normal-curve)
+![Optimal order quantity mu + z sigma as price runs from 6](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-newsvendor-normal-live-1.svg)
 
-*Q (optimal order quantity mu + z sigma) against price (selling price per unit) from 5 to 15. One curve for each value of mean_demand (mean demand per period (per day, say)): 500, 250, 1000. Other inputs as in the worked example: cost = 6.0, sd_demand = 100.0, salvage = 2.0. 27 points per curve computed by industrial-engineering-ai999x; marked: the worked example, price = 10, Q = 500.*
+*Optimal order quantity mu + z sigma as price runs from 6.25 to 17.5, every other input as you entered it (31 solutions). Marked: your price = 10 gives Q = 500. Your inputs: price = 10, cost = 6, mean_demand = 500, sd_demand = 100, salvage = 2.*
+
+![Optimal order quantity mu + z sigma as cost runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-normal-live-2)
+
+*Optimal order quantity mu + z sigma as cost runs from 2.143 to 9.857, every other input as you entered it (25 solutions). Marked: your cost = 6 gives Q = 500. Your inputs: price = 10, cost = 6, mean_demand = 500, sd_demand = 100, salvage = 2.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_newsvendor_normal', price=10, cost=6, mean_demand=500, sd_demand=100, salvage=2)
@@ -721,9 +757,13 @@ $$
 - **Assumes:** salvage < cost < price; high > low; demand uniform on [low, high]
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Q (optimal order quantity a + CR (b - a)) against price (selling price per unit) from 6 to 18](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-uniform-curve)
+![Optimal order quantity a + CR as price runs from 7](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-uniform-live-1)
 
-*Q (optimal order quantity a + CR (b - a)) against price (selling price per unit) from 6 to 18. One curve for each value of high (highest possible demand): 300, 150, 600. Other inputs as in the worked example: cost = 7.0, low = 100.0, salvage = 3.0. 28 points per curve computed by industrial-engineering-ai999x; marked: the worked example, price = 12, Q = 211.111.*
+*Optimal order quantity a + CR as price runs from 7.05 to 21, every other input as you entered it (32 solutions). Marked: your price = 12 gives Q = 211.1. Your inputs: price = 12, cost = 7, low = 100, high = 300, salvage = 3.*
+
+![Optimal order quantity a + CR as cost runs from 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-uniform-live-2)
+
+*Optimal order quantity a + CR as cost runs from 3.25 to 11.88, every other input as you entered it (24 solutions). Marked: your cost = 7 gives Q = 211.1. Your inputs: price = 12, cost = 7, low = 100, high = 300, salvage = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_newsvendor_uniform', price=12, cost=7, low=100, high=300, salvage=3)
@@ -775,9 +815,13 @@ $$
 - **Assumes:** salvage < cost < price; 0 < mean_demand <= 500; demand Poisson
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![expected_profit (expected profit) against price (selling price per unit) from 10 to 30](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-poisson-curve)
+![Expected profit as price runs from 8](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-poisson-live-1)
 
-*expected_profit (expected profit) against price (selling price per unit) from 10 to 30. One curve for each value of mean_demand (mean (Poisson) demand): 12, 6, 24. Other inputs as in the worked example: cost = 8.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, price = 20, expected_profit = 117.032.*
+*Expected profit as price runs from 8.75 to 35, every other input as you entered it (36 solutions). Marked: your price = 20 gives expected_profit = 117. Your inputs: price = 20, cost = 8, mean_demand = 12.*
+
+![Expected profit as cost runs from 2 to 14, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-poisson-live-2)
+
+*Expected profit as cost runs from 2 to 14, every other input as you entered it (29 solutions). Marked: your cost = 8 gives expected_profit = 117. Your inputs: price = 20, cost = 8, mean_demand = 12.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_newsvendor_poisson', price=20, cost=8, mean_demand=12)
@@ -828,13 +872,17 @@ $$
 - **Assumes:** salvage < cost < price; demands increasing; probabilities add to 1; refused when two quantities are equally good
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![expected_profit (expected profit) against price (selling price per unit) from 5 to 15](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-discrete-curve)
+![expected profit (expected_profit) over price (selling price per unit) from 5 to 15 and cost (purchase cost per unit) from 2 to 6: each of the 209 cells is one computation of the model, shaded by its value (darker is larger) (a blank cell: inputs the model refuses)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-discrete-field)
 
-*expected_profit (expected profit) against price (selling price per unit) from 5 to 15. One curve for each value of cost (purchase cost per unit): 4, 2, 8. Other inputs as in the worked example: demands = [20, 30, 40, 50], probabilities = [0.2, 0.3, 0.3, 0.2]. 29 points per curve computed by industrial-engineering-ai999x; marked: the worked example, price = 10, expected_profit = 170.*
+*expected profit (expected_profit) over price (selling price per unit) from 5 to 15 and cost (purchase cost per unit) from 2 to 6: each of the 209 cells is one computation of the model, shaded by its value (darker is larger) (a blank cell: inputs the model refuses). Marked: the inputs given, expected_profit = 170. Your inputs: price = 10, cost = 4, demands = 20, 30, 40, 50, probabilities = 0.2, 0.3, 0.3, 0.2.*
 
-![expected_profit (expected profit) over price (selling price per unit) from 5 to 15 and cost (purchase cost per unit) from 2 to 6: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-discrete-field)
+![Expected profit as price runs from 4](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-discrete-live-1)
 
-*expected_profit (expected profit) over price (selling price per unit) from 5 to 15 and cost (purchase cost per unit) from 2 to 6: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 1.42857 to dark 425); iso-lines at expected_profit = 100, 200, 300, 400; blank cells: inputs the capability refuses. Other inputs as in the worked example: demands = [20, 30, 40, 50], probabilities = [0.2, 0.3, 0.3, 0.2]. Marked: the worked example, price = 10, cost = 4, expected_profit = 170.*
+*Expected profit as price runs from 4.375 to 17.5, every other input as you entered it (36 solutions). Marked: your price = 10 gives expected_profit = 170. Your inputs: price = 10, cost = 4, demands = 20, 30, 40, 50, probabilities = 0.2, 0.3, 0.3, 0.2.*
+
+![Expected profit as cost runs from 1 to 7, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-newsvendor-discrete-live-2)
+
+*Expected profit as cost runs from 1 to 7, every other input as you entered it (29 solutions). Marked: your cost = 4 gives expected_profit = 170. Your inputs: price = 10, cost = 4, demands = 20, 30, 40, 50, probabilities = 0.2, 0.3, 0.3, 0.2.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_newsvendor_discrete', price=10, cost=4, demands=[20, 30, 40, 50], probabilities=[0.2, 0.3, 0.3, 0.2])
@@ -885,9 +933,13 @@ $$
 - **Assumes:** sd_ltd, order_quantity > 0; 0 < fill_rate < 1; lead-time demand normal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reorder_point (reorder point R) against sd_ltd (standard deviation of lead-time demand) from 10 to 1000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rq-fill-rate-curve)
+![Reorder point R as fill_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rq-fill-rate-live-1)
 
-*reorder_point (reorder point R) against sd_ltd (standard deviation of lead-time demand) from 10 to 1000 on a logarithmic axis. One curve for each value of mean_ltd (mean demand during the lead time): 500, 250, 1000. Other inputs as in the worked example: order_quantity = 1000.0, fill_rate = 0.99. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, sd_ltd = 100, reorder_point = 590.235.*
+*Reorder point R as fill_rate runs from 0.2475 to 0.99, every other input as you entered it (21 solutions). Marked: your fill_rate = 0.99 gives reorder_point = 590.2. Your inputs: mean_ltd = 500, sd_ltd = 100, order_quantity = 1000, fill_rate = 0.99.*
+
+![Reorder point R as sd_ltd runs from 25 to 175, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rq-fill-rate-live-2)
+
+*Reorder point R as sd_ltd runs from 25 to 175, every other input as you entered it (29 solutions). Marked: your sd_ltd = 100 gives reorder_point = 590.2. Your inputs: mean_ltd = 500, sd_ltd = 100, order_quantity = 1000, fill_rate = 0.99.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_rq_fill_rate', mean_ltd=500, sd_ltd=100, order_quantity=1000, fill_rate=0.99)
@@ -938,9 +990,13 @@ $$
 - **Assumes:** sd_ltd > 0; order_quantity > 0 when given
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![expected_shortage_per_cycle (sigma L(z)) against reorder_point (reorder point R) from 65 to 6500 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-service-level-from-reorder-point-curve)
+![Sigma L(z) as mean_ltd runs from 125 to 875, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-service-level-from-reorder-point-live-1)
 
-*expected_shortage_per_cycle (sigma L(z)) against reorder_point (reorder point R) from 65 to 6500 on a logarithmic axis. One curve for each value of mean_ltd (mean demand during the lead time): 500, 250, 1000. Other inputs as in the worked example: sd_ltd = 100.0, order_quantity = 1000.0. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, reorder_point = 650, expected_shortage_per_cycle = 2.93068.*
+*Sigma L(z) as mean_ltd runs from 125 to 875, every other input as you entered it (41 solutions). Marked: your mean_ltd = 500 gives expected_shortage_per_cycle = 2.931. Your inputs: mean_ltd = 500, sd_ltd = 100, reorder_point = 650, order_quantity = 1000.*
+
+![Sigma L(z) as reorder_point runs from 162](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-service-level-from-reorder-point-live-2)
+
+*Sigma L(z) as reorder_point runs from 162.5 to 1138, every other input as you entered it (29 solutions). Marked: your reorder_point = 650 gives expected_shortage_per_cycle = 2.931. Your inputs: mean_ltd = 500, sd_ltd = 100, reorder_point = 650, order_quantity = 1000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_service_level_from_reorder_point', mean_ltd=500, sd_ltd=100, reorder_point=650, order_quantity=1000)
@@ -993,9 +1049,13 @@ $$
 - **Assumes:** mean_demand, sd_demand, review_period > 0; lead_time >= 0; 0.5 < service_level < 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![order_up_to_level (order-up-to level S = d(T+L) + z sigma sqrt(T+L)) against mean_demand (mean demand per period (per day, say)) from 10 to 30](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-order-up-to-level-curve)
+![Order up to level as service_level runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-order-up-to-level-live-1)
 
-*order_up_to_level (order-up-to level S = d(T+L) + z sigma sqrt(T+L)) against mean_demand (mean demand per period (per day, say)) from 10 to 30. One curve for each value of review_period (periods between reviews): 14, 7, 28. Other inputs as in the worked example: sd_demand = 4.0, lead_time = 7.0, service_level = 0.95, inventory_position = 150.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, mean_demand = 20, order_up_to_level = 450.151.*
+*Order up to level as service_level runs from 0.5082 to 0.9999, every other input as you entered it (37 solutions). Marked: your service_level = 0.95 gives order_up_to_level = 450.2. Your inputs: mean_demand = 20, sd_demand = 4, review_period = 14, lead_time = 7, service_level = 0.95, inventory_position = 150.*
+
+![Order up to level as mean_demand runs from 5 to 35, every other input as you entered it (25 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-order-up-to-level-live-2)
+
+*Order up to level as mean_demand runs from 5 to 35, every other input as you entered it (25 solutions). Marked: your mean_demand = 20 gives order_up_to_level = 450.2. Your inputs: mean_demand = 20, sd_demand = 4, review_period = 14, lead_time = 7, service_level = 0.95, inventory_position = 150.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_order_up_to_level', mean_demand=20, sd_demand=4, review_period=14, lead_time=7, service_level=0.95, inventory_position=150)
@@ -1046,9 +1106,13 @@ $$
 - **Assumes:** values >= 0, not all 0; 0 < a_share < b_share < 1; items ranked by value (ties by item number); an item belongs to A while the value ranked above it is below a_share of the total (so the item crossing the threshold is still A), likewise B
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![share_a (share of total value in class A) as value 10 of annual_values (annual usage value of each item (annual demand x unit cost)) moves from 0 to 134600, the other values as given ([90000, 15000, 4000, 60000, 2500, 12000, 1500, 800, 30000, 6000]); 41 runs of industrial-engineering-ai999x](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-abc-classification-sensitivity)
+![Share of total value in class A as annual_values[2] runs from 7500 to 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-abc-classification-live-1)
 
-*share_a (share of total value in class A) as value 10 of annual_values (annual usage value of each item (annual demand x unit cost)) moves from 0 to 134600, the other values as given ([90000, 15000, 4000, 60000, 2500, 12000, 1500, 800, 30000, 6000]); 41 runs of industrial-engineering-ai999x. Marked: the worked example, annual_values[10] = 6000, share_a = 0.811542.*
+*Share of total value in class A as annual_values[2] runs from 7500 to 2.214e+04, every other input as you entered it (42 solutions). Marked: your annual_values[2] = 1.5e+04 gives share_a = 0.8115. Your inputs: annual_values = 90000, 15000, 4000....*
+
+![Share of total value in class A as annual_values[4] runs from 3e+04 to 8](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-abc-classification-live-2)
+
+*Share of total value in class A as annual_values[4] runs from 3e+04 to 8.793e+04, every other input as you entered it (30 solutions). Marked: your annual_values[4] = 6e+04 gives share_a = 0.8115. Your inputs: annual_values = 90000, 15000, 4000....*
 
 ```python
 industrial_engineering_ai999x.solve('ie_abc_classification', annual_values=[90000, 15000, 4000, 60000, 2500, 12000, 1500, 800, 30000, 6000])
@@ -1095,13 +1159,17 @@ $$
 - **Assumes:** all inputs > 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![turnover (inventory turns per year COGS / average inventory) against average_inventory (average inventory value (at cost)) from 75000 to 225000](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-turnover-curve)
+![inventory turns per year COGS / average inventory (turnover) over cost_of_goods_sold (annual cost of goods sold) from 6e+05 to 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-turnover-field)
 
-*turnover (inventory turns per year COGS / average inventory) against average_inventory (average inventory value (at cost)) from 75000 to 225000. One curve for each value of cost_of_goods_sold (annual cost of goods sold): 1.2e+06, 600000, 2.4e+06. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, average_inventory = 150000, turnover = 8.*
+*inventory turns per year COGS / average inventory (turnover) over cost_of_goods_sold (annual cost of goods sold) from 6e+05 to 1.8e+06 and average_inventory (average inventory value (at cost)) from 7.5e+04 to 2.25e+05: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, turnover = 8. Your inputs: cost_of_goods_sold = 1200000, average_inventory = 150000.*
 
-![turnover (inventory turns per year COGS / average inventory) over cost_of_goods_sold (annual cost of goods sold) from 600000 to 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-turnover-field)
+![Turnover as cost_of_goods_sold runs from 3e+05 to 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-turnover-live-1)
 
-*turnover (inventory turns per year COGS / average inventory) over cost_of_goods_sold (annual cost of goods sold) from 600000 to 1.8e+06 and average_inventory (average inventory value (at cost)) from 75000 to 225000: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 2.66667 to dark 24); iso-lines at turnover = 5, 10, 15, 20. Marked: the worked example, cost_of_goods_sold = 1.2e+06, average_inventory = 150000, turnover = 8.*
+*Turnover as cost_of_goods_sold runs from 3e+05 to 2.1e+06, every other input as you entered it (41 solutions). Marked: your cost_of_goods_sold = 1.2e+06 gives turnover = 8. Your inputs: cost_of_goods_sold = 1200000, average_inventory = 150000.*
+
+![Turnover as average_inventory runs from 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-inventory-turnover-live-2)
+
+*Turnover as average_inventory runs from 3.75e+04 to 2.625e+05, every other input as you entered it (29 solutions). Marked: your average_inventory = 1.5e+05 gives turnover = 8. Your inputs: cost_of_goods_sold = 1200000, average_inventory = 150000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_inventory_turnover', cost_of_goods_sold=1200000, average_inventory=150000)
@@ -1150,9 +1218,13 @@ $$
 - **Assumes:** demand_rate, lead_time, container_size > 0; safety_factor >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![exact (d L (1 + alpha) / C before rounding) against container_size (parts per container) from 10 to 30](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-kanban-count-curve)
+![Exact as container_size runs from 5 to 35, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-kanban-count-live-1)
 
-*exact (d L (1 + alpha) / C before rounding) against container_size (parts per container) from 10 to 30. One curve for each value of demand_rate (demand per time unit (per hour, say)): 100, 50, 200. Other inputs as in the worked example: lead_time = 2.0, safety_factor = 0.1. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, container_size = 20, exact = 11.*
+*Exact as container_size runs from 5 to 35, every other input as you entered it (41 solutions). Marked: your container_size = 20 gives exact = 11. Your inputs: demand_rate = 100, lead_time = 2, container_size = 20, safety_factor = 0.1.*
+
+![Exact as demand_rate runs from 25 to 175, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-kanban-count-live-2)
+
+*Exact as demand_rate runs from 25 to 175, every other input as you entered it (29 solutions). Marked: your demand_rate = 100 gives exact = 11. Your inputs: demand_rate = 100, lead_time = 2, container_size = 20, safety_factor = 0.1.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_kanban_count', demand_rate=100, lead_time=2, container_size=20, safety_factor=0.1)
@@ -1205,9 +1277,13 @@ $$
 - **Assumes:** mean_range > 0; subgroup size 2 to 10; standard 3-decimal constants
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![xbar_ucl (X-bar chart UCL) against subgroup_size (observations per subgroup (2 to 10)) from 1 to 13](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-r-limits-curve)
+![X-bar chart UCL as subgroup_size runs from 2 to 9, every other input as you entered it (8 solutions)](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-xbar-r-limits-live-1.svg)
 
-*xbar_ucl (X-bar chart UCL) against subgroup_size (observations per subgroup (2 to 10)) from 1 to 13. One curve for each value of grand_mean (grand mean of the subgroup means (x-double-bar)): 50, 25, 100. Other inputs as in the worked example: mean_range = 2.0. 9 points per curve computed by industrial-engineering-ai999x; marked: the worked example, subgroup_size = 5, xbar_ucl = 51.154.*
+*X-bar chart UCL as subgroup_size runs from 2 to 9, every other input as you entered it (8 solutions). Marked: your subgroup_size = 5 gives xbar_ucl = 51.15. Your inputs: grand_mean = 50, mean_range = 2, subgroup_size = 5.*
+
+![X-bar chart UCL as grand_mean runs from 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-r-limits-live-2)
+
+*X-bar chart UCL as grand_mean runs from 12.5 to 87.5, every other input as you entered it (29 solutions). Marked: your grand_mean = 50 gives xbar_ucl = 51.15. Your inputs: grand_mean = 50, mean_range = 2, subgroup_size = 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_xbar_r_limits', grand_mean=50, mean_range=2, subgroup_size=5)
@@ -1260,13 +1336,17 @@ $$
 - **Assumes:** mean_sd > 0; subgroup size 2 to 10; standard 3-decimal constants
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![xbar_ucl (X-bar chart UCL) against grand_mean (grand mean of the subgroup means) from 25 to 75](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-s-limits-curve)
+![X-bar chart UCL (xbar_ucl) over grand_mean (grand mean of the subgroup means) from 25 to 75 and mean_sd (average subgroup standard deviation (s-bar)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-s-limits-field)
 
-*xbar_ucl (X-bar chart UCL) against grand_mean (grand mean of the subgroup means) from 25 to 75. Other inputs as in the worked example: mean_sd = 0.9, subgroup_size = 5. 31 points computed by industrial-engineering-ai999x; marked: the worked example, grand_mean = 50, xbar_ucl = 51.2843.*
+*X-bar chart UCL (xbar_ucl) over grand_mean (grand mean of the subgroup means) from 25 to 75 and mean_sd (average subgroup standard deviation (s-bar)) from 0.45 to 1.35: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, xbar_ucl = 51.28. Your inputs: grand_mean = 50, mean_sd = 0.9, subgroup_size = 5.*
 
-![xbar_ucl (X-bar chart UCL) over grand_mean (grand mean of the subgroup means) from 25 to 75 and mean_sd (average subgroup standard deviation (s-bar)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-s-limits-field)
+![X-bar chart UCL as subgroup_size runs from 2 to 9, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-s-limits-live-1)
 
-*xbar_ucl (X-bar chart UCL) over grand_mean (grand mean of the subgroup means) from 25 to 75 and mean_sd (average subgroup standard deviation (s-bar)) from 0.45 to 1.35: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 25.6422 to dark 76.9265); iso-lines at xbar_ucl = 30, 40, 50, 60, 70. Other inputs as in the worked example: subgroup_size = 5. Marked: the worked example, grand_mean = 50, mean_sd = 0.9, xbar_ucl = 51.2843.*
+*X-bar chart UCL as subgroup_size runs from 2 to 9, every other input as you entered it (8 solutions). Marked: your subgroup_size = 5 gives xbar_ucl = 51.28. Your inputs: grand_mean = 50, mean_sd = 0.9, subgroup_size = 5.*
+
+![X-bar chart UCL as grand_mean runs from 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-xbar-s-limits-live-2)
+
+*X-bar chart UCL as grand_mean runs from 12.5 to 87.5, every other input as you entered it (29 solutions). Marked: your grand_mean = 50 gives xbar_ucl = 51.28. Your inputs: grand_mean = 50, mean_sd = 0.9, subgroup_size = 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_xbar_s_limits', grand_mean=50, mean_sd=0.9, subgroup_size=5)
@@ -1313,13 +1393,17 @@ $$
 - **Assumes:** mean_range > 0; subgroup size 2 to 10
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![sigma (estimated process standard deviation R-bar/d2) against subgroup_size (observations per subgroup (2 to 10)) from 1 to 13](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-sigma-from-range-curve)
+![estimated process standard deviation R-bar/d2 (sigma) over mean_range (average subgroup range (R-bar)) from 1 to 3 and subgroup_size (observations per subgroup (2 to 10)) from 2 to 10: each of the 153 cells is one computation of the model, shaded by its value (darker is larger)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-sigma-from-range-field)
 
-*sigma (estimated process standard deviation R-bar/d2) against subgroup_size (observations per subgroup (2 to 10)) from 1 to 13. One curve for each value of mean_range (average subgroup range (R-bar)): 2, 1, 4. 9 points per curve computed by industrial-engineering-ai999x; marked: the worked example, subgroup_size = 5, sigma = 0.859845.*
+*estimated process standard deviation R-bar/d2 (sigma) over mean_range (average subgroup range (R-bar)) from 1 to 3 and subgroup_size (observations per subgroup (2 to 10)) from 2 to 10: each of the 153 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, sigma = 0.8598. Your inputs: mean_range = 2, subgroup_size = 5.*
 
-![sigma (estimated process standard deviation R-bar/d2) over mean_range (average subgroup range (R-bar)) from 1 to 3 and subgroup_size (observations per subgroup (2 to 10)) from 1 to 13: each of the 21 × 13 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-sigma-from-range-field)
+![Estimated process standard deviation R-bar/d2 as mean_range runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-sigma-from-range-live-1)
 
-*sigma (estimated process standard deviation R-bar/d2) over mean_range (average subgroup range (R-bar)) from 1 to 3 and subgroup_size (observations per subgroup (2 to 10)) from 1 to 13: each of the 21 × 13 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.324886 to dark 2.65957); iso-lines at sigma = 0.5, 1, 1.5, 2, 2.5; blank cells: inputs the capability refuses. Marked: the worked example, mean_range = 2, subgroup_size = 5, sigma = 0.859845.*
+*Estimated process standard deviation R-bar/d2 as mean_range runs from 0.5 to 3.5, every other input as you entered it (41 solutions). Marked: your mean_range = 2 gives σ = 0.8598. Your inputs: mean_range = 2, subgroup_size = 5.*
+
+![Estimated process standard deviation R-bar/d2 as subgroup_size runs from 2 to 9, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-sigma-from-range-live-2)
+
+*Estimated process standard deviation R-bar/d2 as subgroup_size runs from 2 to 9, every other input as you entered it (8 solutions). Marked: your subgroup_size = 5 gives σ = 0.8598. Your inputs: mean_range = 2, subgroup_size = 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_sigma_from_range', mean_range=2, subgroup_size=5)
@@ -1367,13 +1451,17 @@ $$
 - **Assumes:** 0 < p_bar < 1; sample_size > 0 (whole number of items)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ucl (upper control limit) against p_bar (average fraction defective (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-limits-curve)
+![upper control limit (ucl) over p_bar (average fraction defective (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-limits-field)
 
-*ucl (upper control limit) against p_bar (average fraction defective (decimal)) from 0.02 to 0.98. One curve for each value of sample_size (items per sample): 100, 50, 200. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, p_bar = 0.04, ucl = 0.0987878.*
+*upper control limit (ucl) over p_bar (average fraction defective (decimal)) from 0.01 to 0.904 and sample_size (items per sample) from 1 to 200 (logarithmic vertical axis): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, ucl = 0.09879. Your inputs: p_bar = 0.04, sample_size = 100.*
 
-![ucl (upper control limit) over p_bar (average fraction defective (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-limits-field)
+![Upper control limit as p_bar runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-limits-live-1)
 
-*ucl (upper control limit) over p_bar (average fraction defective (decimal)) from 0.02 to 0.98 and sample_size (items per sample) from 1 to 200 (logarithmic vertical axis): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.0496985 to dark 1); iso-lines at ucl = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, p_bar = 0.04, sample_size = 100, ucl = 0.0987878.*
+*Upper control limit as p_bar runs from 0.01 to 0.07, every other input as you entered it (41 solutions). Marked: your p_bar = 0.04 gives ucl = 0.09879. Your inputs: p_bar = 0.04, sample_size = 100.*
+
+![Upper control limit as sample_size runs from 80 to 120, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-limits-live-2)
+
+*Upper control limit as sample_size runs from 80 to 120, every other input as you entered it (21 solutions). Marked: your sample_size = 100 gives ucl = 0.09879. Your inputs: p_bar = 0.04, sample_size = 100.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_p_chart_limits', p_bar=0.04, sample_size=100)
@@ -1421,13 +1509,17 @@ $$
 - **Assumes:** 0 < p_bar < 1; constant sample size
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ucl (upper control limit) against p_bar (average fraction defective (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-np-chart-limits-curve)
+![upper control limit (ucl) over p_bar (average fraction defective (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-np-chart-limits-field)
 
-*ucl (upper control limit) against p_bar (average fraction defective (decimal)) from 0.02 to 0.98. One curve for each value of sample_size (items per sample): 100, 50, 200. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, p_bar = 0.04, ucl = 9.87878.*
+*upper control limit (ucl) over p_bar (average fraction defective (decimal)) from 0.01 to 0.904 and sample_size (items per sample) from 1 to 200 (logarithmic vertical axis): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, ucl = 9.879. Your inputs: p_bar = 0.04, sample_size = 100.*
 
-![ucl (upper control limit) over p_bar (average fraction defective (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-np-chart-limits-field)
+![Upper control limit as p_bar runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-np-chart-limits-live-1)
 
-*ucl (upper control limit) over p_bar (average fraction defective (decimal)) from 0.02 to 0.98 and sample_size (items per sample) from 1 to 200 (logarithmic vertical axis): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.44 to dark 200); iso-lines at ucl = 50, 100, 150. Marked: the worked example, p_bar = 0.04, sample_size = 100, ucl = 9.87878.*
+*Upper control limit as p_bar runs from 0.01 to 0.07, every other input as you entered it (41 solutions). Marked: your p_bar = 0.04 gives ucl = 9.879. Your inputs: p_bar = 0.04, sample_size = 100.*
+
+![Upper control limit as sample_size runs from 80 to 120, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-np-chart-limits-live-2)
+
+*Upper control limit as sample_size runs from 80 to 120, every other input as you entered it (21 solutions). Marked: your sample_size = 100 gives ucl = 9.879. Your inputs: p_bar = 0.04, sample_size = 100.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_np_chart_limits', p_bar=0.04, sample_size=100)
@@ -1474,9 +1566,9 @@ $$
 - **Assumes:** c_bar > 0; defects Poisson, constant inspection unit
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ucl (upper control limit) against c_bar (average number of defects per unit (inspection unit of constant size)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-c-chart-limits-curve)
+![Upper control limit as c_bar runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-c-chart-limits-live-1)
 
-*ucl (upper control limit) against c_bar (average number of defects per unit (inspection unit of constant size)) from 0.9 to 90 on a logarithmic axis. 41 points computed by industrial-engineering-ai999x; marked: the worked example, c_bar = 9, ucl = 18.*
+*Upper control limit as c_bar runs from 2.25 to 15.75, every other input as you entered it (41 solutions). Marked: your c_bar = 9 gives ucl = 18. Your inputs: c_bar = 9.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_c_chart_limits', c_bar=9)
@@ -1523,13 +1615,17 @@ $$
 - **Assumes:** u_bar > 0; units > 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ucl (upper control limit) against u_bar (average defects per unit) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-u-chart-limits-curve)
+![upper control limit (ucl) over u_bar (average defects per unit) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-u-chart-limits-field)
 
-*ucl (upper control limit) against u_bar (average defects per unit) from 0.15 to 15 on a logarithmic axis. One curve for each value of units (inspection units in the sample): 10, 5. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, u_bar = 1.5, ucl = 2.6619.*
+*upper control limit (ucl) over u_bar (average defects per unit) from 0.15 to 15 and units (inspection units in the sample) from 1 to 100 (logarithmic axes): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, ucl = 2.662. Your inputs: u_bar = 1.5, units = 10.*
 
-![ucl (upper control limit) over u_bar (average defects per unit) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-u-chart-limits-field)
+![Upper control limit as u_bar runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-u-chart-limits-live-1)
 
-*ucl (upper control limit) over u_bar (average defects per unit) from 0.15 to 15 and units (inspection units in the sample) from 1 to 100 (logarithmic axes): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.26619 to dark 26.619); iso-lines at ucl = 5, 10, 15, 20. Marked: the worked example, u_bar = 1.5, units = 10, ucl = 2.6619.*
+*Upper control limit as u_bar runs from 0.375 to 2.625, every other input as you entered it (41 solutions). Marked: your u_bar = 1.5 gives ucl = 2.662. Your inputs: u_bar = 1.5, units = 10.*
+
+![Upper control limit as units runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-u-chart-limits-live-2)
+
+*Upper control limit as units runs from 2.5 to 17.5, every other input as you entered it (29 solutions). Marked: your units = 10 gives ucl = 2.662. Your inputs: u_bar = 1.5, units = 10.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_u_chart_limits', u_bar=1.5, units=10)
@@ -1578,9 +1674,13 @@ $$
 - **Assumes:** counts are whole numbers <= sample size; 0 < p-bar < 1; constant sample size
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![p_bar (average fraction defective) against sample_size (items in every sample) from 1 to 200 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-from-samples-curve)
+![Average fraction defective as defectives[4] runs from 0 to 32, every other input as you entered it (33 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-from-samples-live-1)
 
-*p_bar (average fraction defective) against sample_size (items in every sample) from 1 to 200 on a logarithmic axis. Other inputs as in the worked example: defectives = [3, 5, 2, 4, 12, 3, 4, 2, 5, 3]. 23 points computed by industrial-engineering-ai999x; marked: the worked example, sample_size = 100, p_bar = 0.043.*
+*Average fraction defective as defectives[4] runs from 0 to 32, every other input as you entered it (33 solutions). Marked: your defectives[4] = 12 gives p_bar = 0.043. Your inputs: defectives = 3, 5, 2, 4, 12, 3, 4, 2..., sample_size = 100.*
+
+![Average fraction defective as defectives[1] runs from 1 to 9, every other input as you entered it (9 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-p-chart-from-samples-live-2)
+
+*Average fraction defective as defectives[1] runs from 1 to 9, every other input as you entered it (9 solutions). Marked: your defectives[1] = 5 gives p_bar = 0.043. Your inputs: defectives = 3, 5, 2, 4, 12, 3, 4, 2..., sample_size = 100.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_p_chart_from_samples', defectives=[3, 5, 2, 4, 12, 3, 4, 2, 5, 3], sample_size=100)
@@ -1630,9 +1730,13 @@ $$
 - **Assumes:** usl > lsl; $sd > 0$; process normal and in control
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![cpk (Cpk = min(Cpu, Cpl)) against mean (process mean) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-capability-curve)
+![Cpk as mean runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-capability-live-1)
 
-*cpk (Cpk = min(Cpu, Cpl)) against mean (process mean) from 1.01 to 101 on a logarithmic axis. One curve for each value of sd (process standard deviation): 0.12, 0.06, 0.24. Other inputs as in the worked example: usl = 10.5, lsl = 9.5. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, mean = 10.1, cpk = 1.11111.*
+*Cpk as mean runs from 2.525 to 17.68, every other input as you entered it (41 solutions). Marked: your mean = 10.1 gives cpk = 1.111. Your inputs: usl = 10.5, lsl = 9.5, mean = 10.1, sd = 0.12.*
+
+![Cpk as usl runs from 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-capability-live-2)
+
+*Cpk as usl runs from 9.938 to 18.38, every other input as you entered it (16 solutions). Marked: your usl = 10.5 gives cpk = 1.111. Your inputs: usl = 10.5, lsl = 9.5, mean = 10.1, sd = 0.12.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_process_capability', usl=10.5, lsl=9.5, mean=10.1, sd=0.12)
@@ -1681,13 +1785,17 @@ $$
 - **Assumes:** at least 2 measurements that vary; usl > lsl
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ppk (Ppk) against usl (upper specification limit) from 5](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-performance-curve)
+![Ppk (ppk) over usl (upper specification limit) from 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-performance-field)
 
-*ppk (Ppk) against usl (upper specification limit) from 5.3 to 15.9. One curve for each value of lsl (lower specification limit): 9.4, 4.7. Other inputs as in the worked example: data = [10.1, 9.9, 10.2, 10.0, 10.3, 9.8, 10.1, 10.0]. 19 points per curve computed by industrial-engineering-ai999x; marked: the worked example, usl = 10.6, ppk = 1.14328.*
+*Ppk (ppk) over usl (upper specification limit) from 9.4 to 11.8 and lsl (lower specification limit) from 8.2 to 10.6: each of the 188 cells is one computation of the model, shaded by its value (darker is larger) (a blank cell: inputs the model refuses). Marked: the inputs given, ppk = 1.143. Your inputs: data = 10.1, 9.9, 10.2, 10..., usl = 10.6, lsl = 9.4.*
 
-![ppk (Ppk) over usl (upper specification limit) from 5](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-performance-field)
+![Ppk as data[5] runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-performance-live-1)
 
-*ppk (Ppk) over usl (upper specification limit) from 5.3 to 15.9 and lsl (lower specification limit) from 4.7 to 14.1: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its sign and magnitude (second colour negative); iso-lines at ppk = -5, 0, 5, 10; blank cells: inputs the capability refuses. Other inputs as in the worked example: data = [10.1, 9.9, 10.2, 10.0, 10.3, 9.8, 10.1, 10.0]. Marked: the worked example, usl = 10.6, lsl = 9.4, ppk = 1.14328.*
+*Ppk as data[5] runs from 2.575 to 18.03, every other input as you entered it (41 solutions). Marked: your data[5] = 10.3 gives ppk = 1.143. Your inputs: data = 10.1, 9.9, 10.2, 10..., usl = 10.6, lsl = 9.4.*
+
+![Ppk as data[3] runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-process-performance-live-2)
+
+*Ppk as data[3] runs from 2.55 to 17.85, every other input as you entered it (29 solutions). Marked: your data[3] = 10.2 gives ppk = 1.143. Your inputs: data = 10.1, 9.9, 10.2, 10..., usl = 10.6, lsl = 9.4.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_process_performance', data=[10.1, 9.9, 10.2, 10.0, 10.3, 9.8, 10.1, 10.0], usl=10.6, lsl=9.4)
@@ -1737,9 +1845,13 @@ $$
 - **Assumes:** usl > lsl; lsl < target < usl; $sd > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![cpm (Cpm) against mean (process mean) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-cpm-taguchi-curve)
+![Cpm as mean runs from 8](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-cpm-taguchi-live-1)
 
-*cpm (Cpm) against mean (process mean) from 1.01 to 101 on a logarithmic axis. One curve for each value of usl (upper specification limit): 10.6, 21.2. Other inputs as in the worked example: lsl = 9.4, sd = 0.1, target = 10.0. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, mean = 10.1, cpm = 1.41421.*
+*Cpm as mean runs from 8.206 to 11.62, every other input as you entered it (34 solutions). Marked: your mean = 10.1 gives cpm = 1.414. Your inputs: usl = 10.6, lsl = 9.4, mean = 10.1, sd = 0.1, target = 10.*
+
+![Cpm as usl runs from 10](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-cpm-taguchi-live-2)
+
+*Cpm as usl runs from 10.22 to 18.55, every other input as you entered it (13 solutions). Marked: your usl = 10.6 gives cpm = 1.414. Your inputs: usl = 10.6, lsl = 9.4, mean = 10.1, sd = 0.1, target = 10.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_cpm_taguchi', usl=10.6, lsl=9.4, mean=10.1, sd=0.1, target=10.0)
@@ -1790,9 +1902,13 @@ $$
 - **Assumes:** $sd > 0$; at least one limit; usl > lsl; process normal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![fraction_out (fraction outside the limits) against mean (process mean) from 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-fraction-nonconforming-curve)
+![Fraction outside the limits as mean runs from 8](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-fraction-nonconforming-live-1)
 
-*fraction_out (fraction outside the limits) against mean (process mean) from 9.09 to 11.11. One curve for each value of sd (process standard deviation): 0.12, 0.06, 0.24. Other inputs as in the worked example: lsl = 9.7, usl = 10.5. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, mean = 10.1, fraction_out = 0.000858121.*
+*Fraction outside the limits as mean runs from 8.964 to 11.24, every other input as you entered it (31 solutions). Marked: your mean = 10.1 gives fraction_out = 0.0008581. Your inputs: mean = 10.1, sd = 0.12, lsl = 9.7, usl = 10.5.*
+
+![Fraction outside the limits as lsl runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-fraction-nonconforming-live-2)
+
+*Fraction outside the limits as lsl runs from 2.425 to 10.31, every other input as you entered it (14 solutions). Marked: your lsl = 9.7 gives fraction_out = 0.0008581. Your inputs: mean = 10.1, sd = 0.12, lsl = 9.7, usl = 10.5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_fraction_nonconforming', mean=10.1, sd=0.12, lsl=9.7, usl=10.5)
@@ -1841,13 +1957,17 @@ $$
 - **Assumes:** shift >= 0; 1 <= subgroup_size <= 1000; 0 < limit_sigma <= 6
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![arl (average run length after the shift 1/(1 - beta)) against shift (mean shift in units of the process standard deviation (k)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-arl-shewhart-curve)
+![average run length after the shift 1/(1 - beta) (arl) over shift (mean shift in units of the process standard deviation (k)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-arl-shewhart-field)
 
-*arl (average run length after the shift 1/(1 - beta)) against shift (mean shift in units of the process standard deviation (k)) from 0.1 to 10 on a logarithmic axis. One curve for each value of subgroup_size (observations per subgroup (default 1)): 5, 2, 10. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, shift = 1, arl = 4.49531.*
+*average run length after the shift 1/(1 - beta) (arl) over shift (mean shift in units of the process standard deviation (k)) from 0.1 to 10 and subgroup_size (observations per subgroup (default 1)) from 1 to 13 (logarithmic horizontal axis): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, arl = 4.495. Your inputs: shift = 1, subgroup_size = 5.*
 
-![arl (average run length after the shift 1/(1 - beta)) over shift (mean shift in units of the process standard deviation (k)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-arl-shewhart-field)
+![Average run length after the shift 1/(1 - beta) as shift runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-arl-shewhart-live-1)
 
-*arl (average run length after the shift 1/(1 - beta)) over shift (mean shift in units of the process standard deviation (k)) from 0.1 to 10 and subgroup_size (observations per subgroup (default 1)) from 1 to 13 (logarithmic horizontal axis): each of the 21 × 13 cells is one run of industrial-engineering-ai999x, shaded by its value (light 1 to dark 352.931); iso-lines at arl = 100, 200, 300. Marked: the worked example, shift = 1, subgroup_size = 5, arl = 4.49531.*
+*Average run length after the shift 1/(1 - beta) as shift runs from 0.25 to 1.75, every other input as you entered it (41 solutions). Marked: your shift = 1 gives arl = 4.495. Your inputs: shift = 1, subgroup_size = 5.*
+
+![Average run length after the shift 1/(1 - beta) as subgroup_size runs from 1 to 9, every other input as you entered it (9 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-arl-shewhart-live-2)
+
+*Average run length after the shift 1/(1 - beta) as subgroup_size runs from 1 to 9, every other input as you entered it (9 solutions). Marked: your subgroup_size = 5 gives arl = 4.495. Your inputs: shift = 1, subgroup_size = 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_arl_shewhart', shift=1, subgroup_size=5)
@@ -1898,13 +2018,17 @@ $$
 - **Assumes:** $\sigma > 0$; $0 < \lambda  \leq  1$; $L > 0$; sample_number >= 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![ucl (UCL at sample i) against target (in-control mean mu0) from 5 to 15](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ewma-limits-curve)
+![UCL at sample i (ucl) over target (in-control mean mu0) from 5 to 15 and sigma (standard deviation of the plotted observations) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ewma-limits-field)
 
-*ucl (UCL at sample i) against target (in-control mean mu0) from 5 to 15. Other inputs as in the worked example: sigma = 1.0, smoothing = 0.1, limit_sigma = 2.7, sample_number = 1. 31 points computed by industrial-engineering-ai999x; marked: the worked example, target = 10, ucl = 10.27.*
+*UCL at sample i (ucl) over target (in-control mean mu0) from 5 to 15 and sigma (standard deviation of the plotted observations) from 0.5 to 1.5: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, ucl = 10.27. Your inputs: target = 10, sigma = 1, smoothing = 0.1, limit_sigma = 2.7, sample_number = 1.*
 
-![ucl (UCL at sample i) over target (in-control mean mu0) from 5 to 15 and sigma (standard deviation of the plotted observations) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ewma-limits-field)
+![UCL at sample i as target runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ewma-limits-live-1)
 
-*ucl (UCL at sample i) over target (in-control mean mu0) from 5 to 15 and sigma (standard deviation of the plotted observations) from 0.5 to 1.5: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 5.135 to dark 15.405); iso-lines at ucl = 6, 8, 10, 12, 14. Other inputs as in the worked example: smoothing = 0.1, limit_sigma = 2.7, sample_number = 1. Marked: the worked example, target = 10, sigma = 1, ucl = 10.27.*
+*UCL at sample i as target runs from 2.5 to 17.5, every other input as you entered it (41 solutions). Marked: your target = 10 gives ucl = 10.27. Your inputs: target = 10, sigma = 1, smoothing = 0.1, limit_sigma = 2.7, sample_number = 1.*
+
+![UCL at sample i as σ runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ewma-limits-live-2)
+
+*UCL at sample i as σ runs from 0.25 to 1.75, every other input as you entered it (29 solutions). Marked: your σ = 1 gives ucl = 10.27. Your inputs: target = 10, sigma = 1, smoothing = 0.1, limit_sigma = 2.7, sample_number = 1.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_ewma_limits', target=10, sigma=1, smoothing=0.1, limit_sigma=2.7, sample_number=1)
@@ -1955,13 +2079,17 @@ $$
 - **Assumes:** $k  \geq  0$; $h > 0$; C+ and C- start at 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![C+ after each sample (c_plus) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (14 values, first 0, last 6](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tabular-cusum-series)
+![Final c plus as target runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tabular-cusum-live-1)
 
-*C+ after each sample (c_plus) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (14 values, first 0, last 6.4, largest 6.4); with c_minus (C- after each sample). Inputs: data = [9.45, 7.99, 9.29, 11.66, 12.16, 10.18, 8.04…, target = 10.0, k = 0.5, h = 5.0.*
+*Final c plus as target runs from 2.5 to 17.5, every other input as you entered it (39 solutions). Marked: your target = 10 gives final_c_plus = 6.4. Your inputs: data = 9.45, 7.99, 9.29, 11.66..., target = 10, k = 0.5, h = 5.*
 
-![final_c_plus (last C+) against target (target mean mu0) from 1 to 100 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tabular-cusum-curve)
+![Every entry of c_plus as computed for your inputs (14 entries: 0, 0, 0, 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tabular-cusum-live-2)
 
-*final_c_plus (last C+) against target (target mean mu0) from 1 to 100 on a logarithmic axis. Other inputs as in the worked example: data = [9.45, 7.99, 9.29, 11.66, 12.16, 10.18, 8.04…, k = 0.5, h = 5.0. 41 points computed by industrial-engineering-ai999x; marked: the worked example, target = 10, final_c_plus = 6.4.*
+*Every entry of c_plus as computed for your inputs (14 entries: 0, 0, 0, 1.16, 2.82, 2.5, 0.04, 1, ...). Your inputs: data = 9.45, 7.99, 9.29, 11.66..., target = 10, k = 0.5, h = 5.*
+
+![First sample number with C+ or C- above H (0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tabular-cusum-live-3)
+
+*First sample number with C+ or C- above H (0... as h runs from 1.25 to 8.75, every other input as you entered it (29 solutions). Marked: your h = 5 gives first_signal = 14. Your inputs: data = 9.45, 7.99, 9.29, 11.66..., target = 10, k = 0.5, h = 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_tabular_cusum', data=[9.45, 7.99, 9.29, 11.66, 12.16, 10.18, 8.04, 11.46, 9.2, 10.34, 11.8, 12.2, 11.9, 12.5], target=10, k=0.5, h=5)
@@ -2011,9 +2139,13 @@ $$
 - **Assumes:** defects >= 0; units, opportunities > 0; 0 < DPO < 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![dpmo (defects per million opportunities) against units (number of units inspected) from 250 to 750](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-dpmo-sigma-level-curve)
+![Defects per million opportunities as opportunities runs from 2 to 14, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-dpmo-sigma-level-live-1)
 
-*dpmo (defects per million opportunities) against units (number of units inspected) from 250 to 750. One curve for each value of defects (number of defects found): 21, 10.5, 42. Other inputs as in the worked example: opportunities = 8.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, units = 500, dpmo = 5250.*
+*Defects per million opportunities as opportunities runs from 2 to 14, every other input as you entered it (41 solutions). Marked: your opportunities = 8 gives dpmo = 5250. Your inputs: defects = 21, units = 500, opportunities = 8.*
+
+![Defects per million opportunities as defects runs from 1 to 41, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-dpmo-sigma-level-live-2)
+
+*Defects per million opportunities as defects runs from 1 to 41, every other input as you entered it (21 solutions). Marked: your defects = 21 gives dpmo = 5250. Your inputs: defects = 21, units = 500, opportunities = 8.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_dpmo_sigma_level', defects=21, units=500, opportunities=8)
@@ -2059,9 +2191,13 @@ $$
 - **Assumes:** each yield in (0, 1]
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![rty (rolled throughput yield) as value 4 of yields (first-pass yield of each step (decimals)) moves from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rolled-throughput-yield-sensitivity)
+![Rolled throughput yield as yields[1] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rolled-throughput-yield-live-1)
 
-*rty (rolled throughput yield) as value 4 of yields (first-pass yield of each step (decimals)) moves from 0.855 to 1.035, the other values as given ([0.95, 0.98, 0.9, 0.99]); 33 runs of industrial-engineering-ai999x. Marked: the worked example, yields[4] = 0.99, rty = 0.829521.*
+*Rolled throughput yield as yields[1] runs from 0.2375 to 0.9856, every other input as you entered it (22 solutions). Marked: your yields[1] = 0.95 gives rty = 0.8295. Your inputs: yields = 0.95, 0.98, 0.9, 0.99.*
+
+![Rolled throughput yield as yields[2] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rolled-throughput-yield-live-2)
+
+*Rolled throughput yield as yields[2] runs from 0.245 to 0.98, every other input as you entered it (15 solutions). Marked: your yields[2] = 0.98 gives rty = 0.8295. Your inputs: yields = 0.95, 0.98, 0.9, 0.99.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_rolled_throughput_yield', yields=[0.95, 0.98, 0.9, 0.99])
@@ -2110,9 +2246,13 @@ $$
 - **Assumes:** $0  \leq  c < n  \leq  N$; $0 < p < 1$; binomial sampling; $n  \leq  2000$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![probability_accept (P(accept) = P(X <= c), X ~ Binomial(n, p)) against acceptance_number (acceptance number c) from 1 to 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-acceptance-sampling-curve)
+![Probability accept as acceptance_number runs from 0 to 5, every other input as you entered it (6 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-acceptance-sampling-live-1)
 
-*probability_accept (P(accept) = P(X <= c), X ~ Binomial(n, p)) against acceptance_number (acceptance number c) from 1 to 9. One curve for each value of fraction_defective (lot fraction defective p (decimal)): 0.02, 0.26, 0.74. Other inputs as in the worked example: sample_size = 50, lot_size = 2000. 9 points per curve computed by industrial-engineering-ai999x; marked: the worked example, acceptance_number = 1, probability_accept = 0.735771.*
+*Probability accept as acceptance_number runs from 0 to 5, every other input as you entered it (6 solutions). Marked: your acceptance_number = 1 gives probability_accept = 0.7358. Your inputs: sample_size = 50, acceptance_number = 1, fraction_defective = 0.02, lot_size = 2000.*
+
+![Probability accept as sample_size runs from 30 to 70, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-acceptance-sampling-live-2)
+
+*Probability accept as sample_size runs from 30 to 70, every other input as you entered it (21 solutions). Marked: your sample_size = 50 gives probability_accept = 0.7358. Your inputs: sample_size = 50, acceptance_number = 1, fraction_defective = 0.02, lot_size = 2000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_acceptance_sampling', sample_size=50, acceptance_number=1, fraction_defective=0.02, lot_size=2000)
@@ -2157,9 +2297,13 @@ $$
 - **Assumes:** each reliability in [0, 1]; independent failures
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reliability (system reliability product of R_i) as value 3 of reliabilities (reliability of each component (decimals)) moves from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-reliability-sensitivity)
+![System reliability product of R_i as reliabilities[1] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-reliability-live-1)
 
-*reliability (system reliability product of R_i) as value 3 of reliabilities (reliability of each component (decimals)) moves from 0.93 to 1.01, the other values as given ([0.95, 0.98, 0.99]); 36 runs of industrial-engineering-ai999x. Marked: the worked example, reliabilities[3] = 0.99, reliability = 0.92169.*
+*System reliability product of R_i as reliabilities[1] runs from 0.2375 to 0.9856, every other input as you entered it (22 solutions). Marked: your reliabilities[1] = 0.95 gives reliability = 0.9217. Your inputs: reliabilities = 0.95, 0.98, 0.99.*
+
+![System reliability product of R_i as reliabilities[2] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-reliability-live-2)
+
+*System reliability product of R_i as reliabilities[2] runs from 0.245 to 0.98, every other input as you entered it (15 solutions). Marked: your reliabilities[2] = 0.98 gives reliability = 0.9217. Your inputs: reliabilities = 0.95, 0.98, 0.99.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_series_reliability', reliabilities=[0.95, 0.98, 0.99])
@@ -2203,9 +2347,13 @@ $$
 - **Assumes:** each reliability in [0, 1]; independent failures; active redundancy
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![unreliability (product (1 - R_i)) as value 2 of reliabilities (reliability of each component (decimals)) moves from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-reliability-sensitivity)
+![Product as reliabilities[1] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-reliability-live-1)
 
-*unreliability (product (1 - R_i)) as value 2 of reliabilities (reliability of each component (decimals)) moves from 0.75 to 0.95, the other values as given ([0.9, 0.8]); 41 runs of industrial-engineering-ai999x. Marked: the worked example, reliabilities[2] = 0.8, unreliability = 0.02.*
+*Product as reliabilities[1] runs from 0.225 to 0.9675, every other input as you entered it (23 solutions). Marked: your reliabilities[1] = 0.9 gives unreliability = 0.02. Your inputs: reliabilities = 0.9, 0.8.*
+
+![Product as reliabilities[2] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-reliability-live-2)
+
+*Product as reliabilities[2] runs from 0.2 to 0.9714, every other input as you entered it (19 solutions). Marked: your reliabilities[2] = 0.8 gives unreliability = 0.02. Your inputs: reliabilities = 0.9, 0.8.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_parallel_reliability', reliabilities=[0.9, 0.8])
@@ -2251,9 +2399,13 @@ $$
 - **Assumes:** $0  \leq  r  \leq  1$; $1  \leq  k  \leq  n  \leq  1000$; identical independent components
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reliability (P(at least k of n work)) against n (components installed) from 1 to 11](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-k-out-of-n-reliability-curve)
+![P(at least k of n work) as k runs from 1 to 3, every other input as you entered it (3 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-k-out-of-n-reliability-live-1)
 
-*reliability (P(at least k of n work)) against n (components installed) from 1 to 11. One curve for each value of component_reliability (reliability of each component): 0.9, 0.26, 0.74. Other inputs as in the worked example: k = 2. 10 points per curve computed by industrial-engineering-ai999x; marked: the worked example, n = 3, reliability = 0.972.*
+*P(at least k of n work) as k runs from 1 to 3, every other input as you entered it (3 solutions). Marked: your k = 2 gives reliability = 0.972. Your inputs: component_reliability = 0.9, k = 2, n = 3.*
+
+![P(at least k of n work) as component_reliability runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-k-out-of-n-reliability-live-2)
+
+*P(at least k of n work) as component_reliability runs from 0.225 to 0.9964, every other input as you entered it (17 solutions). Marked: your component_reliability = 0.9 gives reliability = 0.972. Your inputs: component_reliability = 0.9, k = 2, n = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_k_out_of_n_reliability', component_reliability=0.9, k=2, n=3)
@@ -2298,9 +2450,21 @@ $$
 - **Assumes:** every value in [0, 1]; independent components; rows of equal length
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): stage_reliabilities (input)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-parallel-reliability-matrix)
+![The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-parallel-reliability-matrix)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): stage_reliabilities (input). Returned with them by industrial-engineering-ai999x: reliability = 0.948024, unreliability = 0.051976.*
+*The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them. Also returned: reliability = 0.948,  unreliability = 0.05198. Your inputs: stage_reliabilities = 0.9 0.9; 0.8 0.8; 0.95 0.95.*
+
+![Product over stages of 1 - product as stage_reliabilities[2,1] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-parallel-reliability-live-1)
+
+*Product over stages of 1 - product as stage_reliabilities[2,1] runs from 0.2 to 0.98, every other input as you entered it (27 solutions). Marked: your stage_reliabilities[2,1] = 0.8 gives reliability = 0.948. Your inputs: stage_reliabilities = 0.9 0.9; 0.8 0.8; 0.95 0.95.*
+
+![The 3 rows of stage_reliabilities as points (first column across, second up)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-parallel-reliability-live-2)
+
+*The 3 rows of stage_reliabilities as points (first column across, second up). Your inputs: stage_reliabilities = 0.9 0.9; 0.8 0.8; 0.95 0.95.*
+
+![Product over stages of 1 - product as stage_reliabilities[2,2] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-series-parallel-reliability-live-3)
+
+*Product over stages of 1 - product as stage_reliabilities[2,2] runs from 0.2 to 0.9714, every other input as you entered it (19 solutions). Marked: your stage_reliabilities[2,2] = 0.8 gives reliability = 0.948. Your inputs: stage_reliabilities = 0.9 0.9; 0.8 0.8; 0.95 0.95.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_series_parallel_reliability', stage_reliabilities=[[0.9, 0.9], [0.8, 0.8], [0.95, 0.95]])
@@ -2347,13 +2511,17 @@ $$
 - **Assumes:** failure_rate > 0; time >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reliability (R(t) = exp(-lambda t)) against failure_rate (constant failure rate lambda (failures per time unit)) from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-reliability-curve)
+![R(t) = exp(-lambda t) (reliability) over failure_rate (constant failure rate lambda (failures per time unit)) from 2e-05 to 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-reliability-field)
 
-*reliability (R(t) = exp(-lambda t)) against failure_rate (constant failure rate lambda (failures per time unit)) from 2.0000e-05 to 0.002 on a logarithmic axis. One curve for each value of time (mission time in the same time unit): 1000, 500, 2000. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, failure_rate = 0.0002, reliability = 0.818731.*
+*R(t) = exp(-lambda t) (reliability) over failure_rate (constant failure rate lambda (failures per time unit)) from 2e-05 to 0.002 and time (mission time in the same time unit) from 100 to 1e+04 (logarithmic axes): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, reliability = 0.8187. Your inputs: failure_rate = 0.0002, time = 1000.*
 
-![reliability (R(t) = exp(-lambda t)) over failure_rate (constant failure rate lambda (failures per time unit)) from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-reliability-field)
+![Reliability as failure_rate runs from 5e-05 to 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-reliability-live-1)
 
-*reliability (R(t) = exp(-lambda t)) over failure_rate (constant failure rate lambda (failures per time unit)) from 2.0000e-05 to 0.002 and time (mission time in the same time unit) from 100 to 10000 (logarithmic axes): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 2.0612e-09 to dark 0.998002); iso-lines at reliability = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, failure_rate = 0.0002, time = 1000, reliability = 0.818731.*
+*Reliability as failure_rate runs from 5e-05 to 0.00035, every other input as you entered it (41 solutions). Marked: your failure_rate = 0.0002 gives reliability = 0.8187. Your inputs: failure_rate = 0.0002, time = 1000.*
+
+![Reliability as time runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-reliability-live-2)
+
+*Reliability as time runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your time = 1000 gives reliability = 0.8187. Your inputs: failure_rate = 0.0002, time = 1000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_exponential_reliability', failure_rate=0.0002, time=1000)
@@ -2403,13 +2571,17 @@ $$
 - **Assumes:** mtbf, mttr > 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![availability (MTBF/(MTBF + MTTR)) against mtbf (mean time between failures (hours)) from 50 to 5000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-availability-curve)
+![MTBF/(MTBF + MTTR) (availability) over mtbf (mean time between failures (hours)) from 50 to 5000 and mttr (mean time to repair (hours)) from 2 to 200 (logarithmic axes): each of the 221 cells is one computation of the model, shaded by its value (darker is larger)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-availability-field)
 
-*availability (MTBF/(MTBF + MTTR)) against mtbf (mean time between failures (hours)) from 50 to 5000 on a logarithmic axis. One curve for each value of mttr (mean time to repair (hours)): 20, 10, 40. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, mtbf = 500, availability = 0.961538.*
+*MTBF/(MTBF + MTTR) (availability) over mtbf (mean time between failures (hours)) from 50 to 5000 and mttr (mean time to repair (hours)) from 2 to 200 (logarithmic axes): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, availability = 0.9615. Your inputs: mtbf = 500, mttr = 20.*
 
-![availability (MTBF/(MTBF + MTTR)) over mtbf (mean time between failures (hours)) from 50 to 5000 and mttr (mean time to repair (hours)) from 2 to 200 (logarithmic axes): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-availability-field)
+![MTBF/(MTBF + MTTR) as mttr runs from 5 to 35, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-availability-live-1)
 
-*availability (MTBF/(MTBF + MTTR)) over mtbf (mean time between failures (hours)) from 50 to 5000 and mttr (mean time to repair (hours)) from 2 to 200 (logarithmic axes): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.2 to dark 0.9996); iso-lines at availability = 0.4, 0.6, 0.8. Marked: the worked example, mtbf = 500, mttr = 20, availability = 0.961538.*
+*MTBF/(MTBF + MTTR) as mttr runs from 5 to 35, every other input as you entered it (41 solutions). Marked: your mttr = 20 gives availability = 0.9615. Your inputs: mtbf = 500, mttr = 20.*
+
+![MTBF/(MTBF + MTTR) as mtbf runs from 125 to 875, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-availability-live-2)
+
+*MTBF/(MTBF + MTTR) as mtbf runs from 125 to 875, every other input as you entered it (29 solutions). Marked: your mtbf = 500 gives availability = 0.9615. Your inputs: mtbf = 500, mttr = 20.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_availability', mtbf=500, mttr=20)
@@ -2460,9 +2632,13 @@ $$
 - **Assumes:** shape, scale > 0; location >= 0; time >= location
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reliability (R(t) = exp(-((t - gamma)/eta)^beta)) against scale (scale parameter eta (characteristic life)) from 100 to 10000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weibull-reliability-curve)
+![Reliability as scale runs from 250 to 1750, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weibull-reliability-live-1)
 
-*reliability (R(t) = exp(-((t - gamma)/eta)^beta)) against scale (scale parameter eta (characteristic life)) from 100 to 10000 on a logarithmic axis. One curve for each value of time (time t): 500, 250, 1000. Other inputs as in the worked example: shape = 2.0. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, scale = 1000, reliability = 0.778801.*
+*Reliability as scale runs from 250 to 1750, every other input as you entered it (41 solutions). Marked: your scale = 1000 gives reliability = 0.7788. Your inputs: shape = 2, scale = 1000, time = 500.*
+
+![Reliability as time runs from 125 to 875, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weibull-reliability-live-2)
+
+*Reliability as time runs from 125 to 875, every other input as you entered it (29 solutions). Marked: your time = 500 gives reliability = 0.7788. Your inputs: shape = 2, scale = 1000, time = 500.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_weibull_reliability', shape=2, scale=1000, time=500)
@@ -2508,9 +2684,13 @@ $$
 - **Assumes:** at least 3 positive failure times, not all equal; complete (uncensored) data
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![shape (shape beta (slope of ln ln(1/(1-F)) on ln t)) as value 6 of failure_times (failure times (complete data, any order)) moves from 0 to 172, the other values as given ([16, 34, 53, 75, 93, 120]); 40 runs of industrial-engineering-ai999x](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weibull-median-rank-regression-sensitivity)
+![Shape beta as failure_times[1] runs from 1 to 36, every other input as you entered it (36 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weibull-median-rank-regression-live-1)
 
-*shape (shape beta (slope of ln ln(1/(1-F)) on ln t)) as value 6 of failure_times (failure times (complete data, any order)) moves from 0 to 172, the other values as given ([16, 34, 53, 75, 93, 120]); 40 runs of industrial-engineering-ai999x. Marked: the worked example, failure_times[6] = 120, shape = 1.42697.*
+*Shape beta as failure_times[1] runs from 1 to 36, every other input as you entered it (36 solutions). Marked: your failure_times[1] = 16 gives shape = 1.427. Your inputs: failure_times = 16, 34, 53, 75, 93, 120.*
+
+![Shape beta as failure_times[2] runs from 14 to 54, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weibull-median-rank-regression-live-2)
+
+*Shape beta as failure_times[2] runs from 14 to 54, every other input as you entered it (21 solutions). Marked: your failure_times[2] = 34 gives shape = 1.427. Your inputs: failure_times = 16, 34, 53, 75, 93, 120.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_weibull_median_rank_regression', failure_times=[16, 34, 53, 75, 93, 120])
@@ -2555,13 +2735,17 @@ $$
 - **Assumes:** 0 < target < 1; $0 < r < 1$; active parallel redundancy
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![achieved_reliability (reliability with m components) against target_reliability (required system reliability) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-redundancy-needed-curve)
+![reliability with m components (achieved_reliability) over target_reliability (required system reliability) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-redundancy-needed-field)
 
-*achieved_reliability (reliability with m components) against target_reliability (required system reliability) from 0.4995 to 0.999. One curve for each value of component_reliability (reliability of one component): 0.9, 0.26, 0.74. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, target_reliability = 0.999, achieved_reliability = 0.999.*
+*reliability with m components (achieved_reliability) over target_reliability (required system reliability) from 0.549 to 0.9999 and component_reliability (reliability of one component) from 0.45 to 0.99: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, achieved_reliability = 0.999. Your inputs: target_reliability = 0.999, component_reliability = 0.9.*
 
-![achieved_reliability (reliability with m components) over target_reliability (required system reliability) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-redundancy-needed-field)
+![Reliability with m components as target_reliability runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-redundancy-needed-live-1)
 
-*achieved_reliability (reliability with m components) over target_reliability (required system reliability) from 0.02 to 0.98 and component_reliability (reliability of one component) from 0.02 to 0.98: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.02 to dark 0.99612); iso-lines at achieved_reliability = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, target_reliability = 0.999, component_reliability = 0.9, achieved_reliability = 0.999.*
+*Reliability with m components as target_reliability runs from 0.2497 to 0.999, every other input as you entered it (21 solutions). Marked: your target_reliability = 0.999 gives achieved_reliability = 0.999. Your inputs: target_reliability = 0.999, component_reliability = 0.9.*
+
+![Reliability with m components as component_reliability runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-redundancy-needed-live-2)
+
+*Reliability with m components as component_reliability runs from 0.225 to 0.9964, every other input as you entered it (17 solutions). Marked: your component_reliability = 0.9 gives achieved_reliability = 0.999. Your inputs: target_reliability = 0.999, component_reliability = 0.9.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_redundancy_needed', target_reliability=0.999, component_reliability=0.9)
@@ -2608,9 +2792,13 @@ $$
 - **Assumes:** failure rates > 0; time >= 0; series system, constant failure rates
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![mtbf (1 / sum lambda_i) as value 3 of failure_rates (constant failure rate of each component (per hour, say)) moves from 0 to 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-system-failure-rate-sensitivity)
+![Mtbf as failure_rates[2] runs from 5e-05 to 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-system-failure-rate-live-1)
 
-*mtbf (1 / sum lambda_i) as value 3 of failure_rates (constant failure rate of each component (per hour, say)) moves from 0 to 0.000275, the other values as given ([0.0001, 0.0002, 5e-05]); 40 runs of industrial-engineering-ai999x. Other inputs: time = 1000.0. Marked: the worked example, failure_rates[3] = 5.0000e-05, mtbf = 2857.14.*
+*Mtbf as failure_rates[2] runs from 5e-05 to 0.00035, every other input as you entered it (41 solutions). Marked: your failure_rates[2] = 0.0002 gives mtbf = 2857. Your inputs: failure_rates = 0.0001, 0.0002, 5e-05, time = 1000.*
+
+![Exp(-sum lambda_i t) as time runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-system-failure-rate-live-2)
+
+*Exp(-sum lambda_i t) as time runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your time = 1000 gives reliability = 0.7047. Your inputs: failure_rates = 0.0001, 0.0002, 5e-05, time = 1000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_system_failure_rate', failure_rates=[0.0001, 0.0002, 5e-05], time=1000)
@@ -2656,13 +2844,17 @@ $$
 - **Assumes:** failure_rate > 0; $1  \leq  n  \leq  1000$; active redundancy, constant failure rate
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![mttf (system MTTF (1/lambda) sum_{i=1}^{n} 1/i) against failure_rate (failure rate lambda of each component) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-mttf-curve)
+![system MTTF (1/lambda) sum_{i=1}^{n} 1/i (mttf) over failure_rate (failure rate lambda of each component) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-mttf-field)
 
-*mttf (system MTTF (1/lambda) sum_{i=1}^{n} 1/i) against failure_rate (failure rate lambda of each component) from 0.0005 to 0.0015. One curve for each value of n (number of components in parallel): 2, 3, 4. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, failure_rate = 0.001, mttf = 1500.*
+*system MTTF (1/lambda) sum_{i=1}^{n} 1/i (mttf) over failure_rate (failure rate lambda of each component) from 0.0005 to 0.0015 and n (number of components in parallel) from 1 to 10: each of the 170 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, mttf = 1500. Your inputs: failure_rate = 0.001, n = 2.*
 
-![mttf (system MTTF (1/lambda) sum_{i=1}^{n} 1/i) over failure_rate (failure rate lambda of each component) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-mttf-field)
+![System MTTF (1/lambda) sum_{i=1}^{n} 1/i as failure_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-mttf-live-1)
 
-*mttf (system MTTF (1/lambda) sum_{i=1}^{n} 1/i) over failure_rate (failure rate lambda of each component) from 0.0005 to 0.0015 and n (number of components in parallel) from 1 to 10: each of the 21 × 10 cells is one run of industrial-engineering-ai999x, shaded by its value (light 666.667 to dark 5857.94); iso-lines at mttf = 1000, 2000, 3000, 4000, 5000. Marked: the worked example, failure_rate = 0.001, n = 2, mttf = 1500.*
+*System MTTF (1/lambda) sum_{i=1}^{n} 1/i as failure_rate runs from 0.00025 to 0.00175, every other input as you entered it (41 solutions). Marked: your failure_rate = 0.001 gives mttf = 1500. Your inputs: failure_rate = 0.001, n = 2.*
+
+![System MTTF (1/lambda) sum_{i=1}^{n} 1/i as n runs from 1 to 6, every other input as you entered it (6 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-parallel-mttf-live-2)
+
+*System MTTF (1/lambda) sum_{i=1}^{n} 1/i as n runs from 1 to 6, every other input as you entered it (6 solutions). Marked: your n = 2 gives mttf = 1500. Your inputs: failure_rate = 0.001, n = 2.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_parallel_mttf', failure_rate=0.001, n=2)
@@ -2709,13 +2901,17 @@ $$
 - **Assumes:** failure_rate > 0; time >= 0; 1 <= units <= 200; standby units do not fail, switching is perfect
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![reliability (exp(-lambda t) sum_{k<n} (lambda t)^k / k!) against failure_rate (failure rate lambda of each unit) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standby-redundancy-curve)
+![exp(-lambda t) sum_{k<n} (lambda t)^k / k! (reliability) over failure_rate (failure rate lambda of each unit) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standby-redundancy-field)
 
-*reliability (exp(-lambda t) sum_{k<n} (lambda t)^k / k!) against failure_rate (failure rate lambda of each unit) from 0.0001 to 0.01 on a logarithmic axis. One curve for each value of time (mission time): 1000, 500, 2000. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, failure_rate = 0.001, reliability = 0.735759.*
+*exp(-lambda t) sum_{k<n} (lambda t)^k / k! (reliability) over failure_rate (failure rate lambda of each unit) from 0.0001 to 0.01 and time (mission time) from 100 to 1e+04 (logarithmic axes): each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, reliability = 0.7358. Your inputs: failure_rate = 0.001, time = 1000.*
 
-![reliability (exp(-lambda t) sum_{k<n} (lambda t)^k / k!) over failure_rate (failure rate lambda of each unit) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standby-redundancy-field)
+![Exp(-lambda t) sum_{k<n} (lambda t)^k / k! as failure_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standby-redundancy-live-1)
 
-*reliability (exp(-lambda t) sum_{k<n} (lambda t)^k / k!) over failure_rate (failure rate lambda of each unit) from 0.0001 to 0.01 and time (mission time) from 100 to 10000 (logarithmic axes): each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 3.7573e-42 to dark 0.99995); iso-lines at reliability = 0.2, 0.4, 0.6, 0.8. Marked: the worked example, failure_rate = 0.001, time = 1000, reliability = 0.735759.*
+*Exp(-lambda t) sum_{k<n} (lambda t)^k / k! as failure_rate runs from 0.00025 to 0.00175, every other input as you entered it (41 solutions). Marked: your failure_rate = 0.001 gives reliability = 0.7358. Your inputs: failure_rate = 0.001, time = 1000.*
+
+![Exp(-lambda t) sum_{k<n} (lambda t)^k / k! as time runs from 250 to 1750, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standby-redundancy-live-2)
+
+*Exp(-lambda t) sum_{k<n} (lambda t)^k / k! as time runs from 250 to 1750, every other input as you entered it (29 solutions). Marked: your time = 1000 gives reliability = 0.7358. Your inputs: failure_rate = 0.001, time = 1000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_standby_redundancy', failure_rate=0.001, time=1000)
@@ -2765,9 +2961,17 @@ $$
 - **Assumes:** total_time > 0; failures >= 1; 0 < confidence < 1; $d = 2r + 2$ for a time-terminated test, 2r for a failure-terminated test
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![lower_one_sided (one-sided lower bound 2T/chi2(C; d)) against failures (number of failures observed) from 1 to 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mtbf-confidence-curve)
+![One-sided lower bound 2T/chi2(C; d) as failures runs from 1 to 8, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mtbf-confidence-live-1)
 
-*lower_one_sided (one-sided lower bound 2T/chi2(C; d)) against failures (number of failures observed) from 1 to 12. One curve for each value of total_time (total accumulated test time (all units)): 10000, 5000, 20000. Other inputs as in the worked example: confidence = 0.9, test = time. 12 points per curve computed by industrial-engineering-ai999x; marked: the worked example, failures = 4, lower_one_sided = 1251.*
+*One-sided lower bound 2T/chi2(C; d) as failures runs from 1 to 8, every other input as you entered it (8 solutions). Marked: your failures = 4 gives lower_one_sided = 1251. Your inputs: total_time = 10000, failures = 4, confidence = 0.9, test = time.*
+
+![One-sided lower bound 2T/chi2(C; d) for every choice of test, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mtbf-confidence-live-2)
+
+*One-sided lower bound 2T/chi2(C; d) for every choice of test, every other input as you entered it (highlighted: your choice). time: 1251; failure: 1497. Your inputs: total_time = 10000, failures = 4, confidence = 0.9, test = time.*
+
+![One-sided lower bound 2T/chi2(C; d) as confidence runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mtbf-confidence-live-3)
+
+*One-sided lower bound 2T/chi2(C; d) as confidence runs from 0.225 to 0.9964, every other input as you entered it (17 solutions). Marked: your confidence = 0.9 gives lower_one_sided = 1251. Your inputs: total_time = 10000, failures = 4, confidence = 0.9, test = time.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_mtbf_confidence', total_time=10000, failures=4, confidence=0.9, test='time')
@@ -2817,13 +3021,17 @@ $$
 - **Assumes:** arrival_rate < service_rate; Poisson arrivals, exponential service, FCFS, infinite queue
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![L (mean number in system rho/(1 - rho)) against arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1-queue-curve)
+![mean number in system rho/(1 - rho) (L) over service_rate (mean service rate mu of one server (per time unit)) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1-queue-field)
 
-*L (mean number in system rho/(1 - rho)) against arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3. One curve for each value of service_rate (mean service rate mu of one server (per time unit)): 3, 1.5, 6. 30 points per curve computed by industrial-engineering-ai999x; marked: the worked example, arrival_rate = 2, L = 2.*
+*mean number in system rho/(1 - rho) (L) over service_rate (mean service rate mu of one server (per time unit)) from 1.5 to 4.5 and arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3: each of the 175 cells is one computation of the model, shaded by its value (darker is larger) (a blank cell: inputs the model refuses). Marked: the inputs given, L = 2. Your inputs: arrival_rate = 2, service_rate = 3.*
 
-![L (mean number in system rho/(1 - rho)) over service_rate (mean service rate mu of one server (per time unit)) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1-queue-field)
+![Mean number in system rho/(1 - rho) as arrival_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1-queue-live-1)
 
-*L (mean number in system rho/(1 - rho)) over service_rate (mean service rate mu of one server (per time unit)) from 1.5 to 4.5 and arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.285714 to dark 20); iso-lines at L = 5; blank cells: inputs the capability refuses. Marked: the worked example, service_rate = 3, arrival_rate = 2, L = 2.*
+*Mean number in system rho/(1 - rho) as arrival_rate runs from 0.5 to 2.975, every other input as you entered it (34 solutions). Marked: your arrival_rate = 2 gives L = 2. Your inputs: arrival_rate = 2, service_rate = 3.*
+
+![Mean number in system rho/(1 - rho) as service_rate runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1-queue-live-2)
+
+*Mean number in system rho/(1 - rho) as service_rate runs from 2.036 to 5.25, every other input as you entered it (21 solutions). Marked: your service_rate = 3 gives L = 2. Your inputs: arrival_rate = 2, service_rate = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_mm1_queue', arrival_rate=2, service_rate=3)
@@ -2875,13 +3083,17 @@ $$
 - **Assumes:** arrival_rate < servers x service_rate; 1 <= servers <= 500
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Lq (mean number waiting) against arrival_rate (mean arrival rate lambda (per time unit)), with servers = 3, service_rate = 4](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-mmc-queue-lq-vs-arrival-rate.svg)
+![mean number waiting (Lq) against mean arrival rate lambda (per time unit) (arrival_rate) from 2 to 16, with service_rate = 4, servers = 3: 20 points computed by the model (inputs it refuses are left out); marked: arrival_rate = 10, Lq = 3](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-mmc-queue-lq-vs-arrival-rate.svg)
 
-*Lq (mean number waiting) against arrival_rate (mean arrival rate lambda (per time unit)), with servers = 3, service_rate = 4. 21 points computed by industrial-engineering-ai999x; marked: arrival_rate = 10, Lq = 3.51124.*
+*mean number waiting (Lq) against mean arrival rate lambda (per time unit) (arrival_rate) from 2 to 16, with service_rate = 4, servers = 3: 20 points computed by the model (inputs it refuses are left out); marked: arrival_rate = 10, Lq = 3.511. Your inputs: arrival_rate = 10, service_rate = 4, servers = 3.*
 
-![Lq (mean number waiting) against arrival_rate (mean arrival rate lambda (per time unit)) from 5 to 15](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mmc-queue-curve)
+![Mean number waiting as arrival_rate runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mmc-queue-live-1)
 
-*Lq (mean number waiting) against arrival_rate (mean arrival rate lambda (per time unit)) from 5 to 15. One curve for each value of service_rate (mean service rate mu of one server (per time unit)): 4, 8. Other inputs as in the worked example: servers = 3. 21 points per curve computed by industrial-engineering-ai999x; marked: the worked example, arrival_rate = 10, Lq = 3.51124.*
+*Mean number waiting as arrival_rate runs from 2.5 to 11.88, every other input as you entered it (26 solutions). Marked: your arrival_rate = 10 gives Lq = 3.511. Your inputs: arrival_rate = 10, service_rate = 4, servers = 3.*
+
+![Mean number waiting as service_rate runs from 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mmc-queue-live-2)
+
+*Mean number waiting as service_rate runs from 3.357 to 7, every other input as you entered it (18 solutions). Marked: your service_rate = 4 gives Lq = 3.511. Your inputs: arrival_rate = 10, service_rate = 4, servers = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_mmc_queue', arrival_rate=10, service_rate=4, servers=3)
@@ -2930,13 +3142,17 @@ $$
 - **Assumes:** arrival_rate < service_rate; constant service time $1/mu$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Lq (mean number waiting rho^2/(2(1 - rho))) against arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-md1-queue-curve)
+![mean number waiting rho^2/(2(1 - rho)) (Lq) over service_rate (mean service rate mu of one server (per time unit)) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-md1-queue-field)
 
-*Lq (mean number waiting rho^2/(2(1 - rho))) against arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3. One curve for each value of service_rate (mean service rate mu of one server (per time unit)): 3, 1.5, 6. 30 points per curve computed by industrial-engineering-ai999x; marked: the worked example, arrival_rate = 2, Lq = 0.666667.*
+*mean number waiting rho^2/(2(1 - rho)) (Lq) over service_rate (mean service rate mu of one server (per time unit)) from 1.5 to 4.5 and arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3: each of the 175 cells is one computation of the model, shaded by its value (darker is larger) (a blank cell: inputs the model refuses). Marked: the inputs given, Lq = 0.6667. Your inputs: arrival_rate = 2, service_rate = 3.*
 
-![Lq (mean number waiting rho^2/(2(1 - rho))) over service_rate (mean service rate mu of one server (per time unit)) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-md1-queue-field)
+![Lq as arrival_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-md1-queue-live-1)
 
-*Lq (mean number waiting rho^2/(2(1 - rho))) over service_rate (mean service rate mu of one server (per time unit)) from 1.5 to 4.5 and arrival_rate (mean arrival rate lambda (per time unit)) from 1 to 3: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 0.031746 to dark 9.52381); iso-lines at Lq = 2, 4; blank cells: inputs the capability refuses. Marked: the worked example, service_rate = 3, arrival_rate = 2, Lq = 0.666667.*
+*Lq as arrival_rate runs from 0.5 to 2.975, every other input as you entered it (34 solutions). Marked: your arrival_rate = 2 gives Lq = 0.6667. Your inputs: arrival_rate = 2, service_rate = 3.*
+
+![Lq as service_rate runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-md1-queue-live-2)
+
+*Lq as service_rate runs from 2.036 to 5.25, every other input as you entered it (21 solutions). Marked: your service_rate = 3 gives Lq = 0.6667. Your inputs: arrival_rate = 2, service_rate = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_md1_queue', arrival_rate=2, service_rate=3)
@@ -2986,9 +3202,13 @@ $$
 - **Assumes:** lambda E[S] < 1; sd_service_time >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Lq (Lq = lambda^2 (sigma^2 + E[S]^2)/(2(1 - rho))) against sd_service_time (standard deviation of the service time) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mg1-queue-curve)
+![Lq as arrival_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mg1-queue-live-1)
 
-*Lq (Lq = lambda^2 (sigma^2 + E[S]^2)/(2(1 - rho))) against sd_service_time (standard deviation of the service time) from 0.1 to 10 on a logarithmic axis. One curve for each value of arrival_rate (mean arrival rate lambda (per time unit)): 0.5, 0.25. Other inputs as in the worked example: mean_service_time = 1.5. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, sd_service_time = 1, Lq = 1.625.*
+*Lq as arrival_rate runs from 0.125 to 0.65, every other input as you entered it (29 solutions). Marked: your arrival_rate = 0.5 gives Lq = 1.625. Your inputs: arrival_rate = 0.5, mean_service_time = 1.5, sd_service_time = 1.*
+
+![Lq as mean_service_time runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mg1-queue-live-2)
+
+*Lq as mean_service_time runs from 0.375 to 1.982, every other input as you entered it (21 solutions). Marked: your mean_service_time = 1.5 gives Lq = 1.625. Your inputs: arrival_rate = 0.5, mean_service_time = 1.5, sd_service_time = 1.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_mg1_queue', arrival_rate=0.5, mean_service_time=1.5, sd_service_time=1)
@@ -3041,9 +3261,13 @@ $$
 - **Assumes:** arrival_rate, service_rate > 0 (rho may exceed 1); 1 <= capacity <= 1000
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![L (mean number in system) against arrival_rate (mean arrival rate lambda (per time unit)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1k-queue-curve)
+![Mean number in system as arrival_rate runs from 1 to 7, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1k-queue-live-1)
 
-*L (mean number in system) against arrival_rate (mean arrival rate lambda (per time unit)) from 0.4 to 40 on a logarithmic axis. One curve for each value of service_rate (mean service rate mu of one server (per time unit)): 5, 2.5, 10. Other inputs as in the worked example: capacity = 3. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, arrival_rate = 4, L = 1.22493.*
+*Mean number in system as arrival_rate runs from 1 to 7, every other input as you entered it (41 solutions). Marked: your arrival_rate = 4 gives L = 1.225. Your inputs: arrival_rate = 4, service_rate = 5, capacity = 3.*
+
+![Mean number in system as service_rate runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-mm1k-queue-live-2)
+
+*Mean number in system as service_rate runs from 1.25 to 8.75, every other input as you entered it (29 solutions). Marked: your service_rate = 5 gives L = 1.225. Your inputs: arrival_rate = 4, service_rate = 5, capacity = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_mm1k_queue', arrival_rate=4, service_rate=5, capacity=3)
@@ -3094,9 +3318,13 @@ $$
 - **Assumes:** arrival_rate, service_rate > 0; target_time >= 0; 0 < target_level < 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![service_level (P(wait <= t) achieved) against service_rate (mean service rate mu of one server (per time unit)) from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-erlang-c-staffing-curve)
+![Service level as target_time runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-erlang-c-staffing-live-1)
 
-*service_level (P(wait <= t) achieved) against service_rate (mean service rate mu of one server (per time unit)) from 1.2 to 120 on a logarithmic axis. One curve for each value of target_level (required fraction answered within the target time (decimal)): 0.8, 0.26, 0.74. Other inputs as in the worked example: arrival_rate = 100.0, target_time = 0.0333. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, service_rate = 12, service_level = 0.896775.*
+*Service level as target_time runs from 0.008325 to 0.05828, every other input as you entered it (41 solutions). Marked: your target_time = 0.0333 gives service_level = 0.8968. Your inputs: arrival_rate = 100, service_rate = 12, target_time = 0.0333, target_level = 0.8.*
+
+![Service level as target_level runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-erlang-c-staffing-live-2)
+
+*Service level as target_level runs from 0.2 to 0.9714, every other input as you entered it (19 solutions). Marked: your target_level = 0.8 gives service_level = 0.8968. Your inputs: arrival_rate = 100, service_rate = 12, target_time = 0.0333, target_level = 0.8.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_erlang_c_staffing', arrival_rate=100, service_rate=12, target_time=0.0333, target_level=0.8)
@@ -3146,9 +3374,13 @@ $$
 - **Assumes:** arrival_rate, service_rate > 0; costs >= 0; ties go to fewer servers
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![total_cost (c C_s + C_w L at that number) against waiting_cost_rate (cost of one customer in the system per time unit) from 4 to 400 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-queue-server-cost-curve)
+![C C_s + C_w L at that number as arrival_rate runs from 5 to 35, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-queue-server-cost-live-1)
 
-*total_cost (c C_s + C_w L at that number) against waiting_cost_rate (cost of one customer in the system per time unit) from 4 to 400 on a logarithmic axis. One curve for each value of arrival_rate (mean arrival rate lambda (per time unit)): 20, 10, 40. Other inputs as in the worked example: service_rate = 6.0, server_cost_rate = 25.0. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, waiting_cost_rate = 40, total_cost = 284.467.*
+*C C_s + C_w L at that number as arrival_rate runs from 5 to 35, every other input as you entered it (41 solutions). Marked: your arrival_rate = 20 gives total_cost = 284.5. Your inputs: arrival_rate = 20, service_rate = 6, server_cost_rate = 25, waiting_cost_rate = 40.*
+
+![C C_s + C_w L at that number as service_rate runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-queue-server-cost-live-2)
+
+*C C_s + C_w L at that number as service_rate runs from 1.5 to 10.5, every other input as you entered it (29 solutions). Marked: your service_rate = 6 gives total_cost = 284.5. Your inputs: arrival_rate = 20, service_rate = 6, server_cost_rate = 25, waiting_cost_rate = 40.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_queue_server_cost', arrival_rate=20, service_rate=6, server_cost_rate=25, waiting_cost_rate=40)
@@ -3196,13 +3428,17 @@ $$
 - **Assumes:** exactly two of the three given; consistent time units; steady state
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![number_in_system (L = lambda W) against arrival_rate (average arrival (throughput) rate) from 6 to 18](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-littles-law-curve)
+![L = lambda W (number_in_system) over arrival_rate (average arrival (throughput) rate) from 6 to 18 and time_in_system (average time in the system (flow time)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-littles-law-field)
 
-*number_in_system (L = lambda W) against arrival_rate (average arrival (throughput) rate) from 6 to 18. One curve for each value of time_in_system (average time in the system (flow time)): 0.5, 0.25, 1. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, arrival_rate = 12, number_in_system = 6.*
+*L = lambda W (number_in_system) over arrival_rate (average arrival (throughput) rate) from 6 to 18 and time_in_system (average time in the system (flow time)) from 0.25 to 0.75: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, number_in_system = 6. Your inputs: arrival_rate = 12, time_in_system = 0.5.*
 
-![number_in_system (L = lambda W) over arrival_rate (average arrival (throughput) rate) from 6 to 18 and time_in_system (average time in the system (flow time)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-littles-law-field)
+![Number in system as arrival_rate runs from 3 to 21, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-littles-law-live-1)
 
-*number_in_system (L = lambda W) over arrival_rate (average arrival (throughput) rate) from 6 to 18 and time_in_system (average time in the system (flow time)) from 0.25 to 0.75: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 1.5 to dark 13.5); iso-lines at number_in_system = 2, 4, 6, 8, 10, 12. Marked: the worked example, arrival_rate = 12, time_in_system = 0.5, number_in_system = 6.*
+*Number in system as arrival_rate runs from 3 to 21, every other input as you entered it (41 solutions). Marked: your arrival_rate = 12 gives number_in_system = 6. Your inputs: arrival_rate = 12, time_in_system = 0.5.*
+
+![Number in system as time_in_system runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-littles-law-live-2)
+
+*Number in system as time_in_system runs from 0.125 to 0.875, every other input as you entered it (29 solutions). Marked: your time_in_system = 0.5 gives number_in_system = 6. Your inputs: arrival_rate = 12, time_in_system = 0.5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_littles_law', arrival_rate=12, time_in_system=0.5)
@@ -3255,9 +3491,17 @@ $$
 - **Assumes:** processing times > 0; all jobs available at time 0; ties go to the lower job number; tardiness measures only when due dates are given
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![job numbers in processing order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 2, last 5, largest 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-spt-sequence-series)
+![Average completion (flow) time as processing_times[5] runs from 2 to 16, every other input as you entered it (15 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-spt-sequence-live-1)
 
-*job numbers in processing order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 2, last 5, largest 5). Inputs: processing_times = [6, 2, 8, 3, 9].*
+*Average completion (flow) time as processing_times[5] runs from 2 to 16, every other input as you entered it (15 solutions). Marked: your processing_times[5] = 9 gives mean_flow_time = 13. Your inputs: processing_times = 6, 2, 8, 3, 9.*
+
+![Every entry of sequence as computed for your inputs (5 entries: 2, 4, 1, 3, 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-spt-sequence-live-2)
+
+*Every entry of sequence as computed for your inputs (5 entries: 2, 4, 1, 3, 5). Your inputs: processing_times = 6, 2, 8, 3, 9.*
+
+![Average completion (flow) time as processing_times[3] runs from 2 to 14, every other input as you entered it (13 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-spt-sequence-live-3)
+
+*Average completion (flow) time as processing_times[3] runs from 2 to 14, every other input as you entered it (13 solutions). Marked: your processing_times[3] = 8 gives mean_flow_time = 13. Your inputs: processing_times = 6, 2, 8, 3, 9.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_spt_sequence', processing_times=[6, 2, 8, 3, 9])
@@ -3310,9 +3554,9 @@ $$
 - **Assumes:** processing times > 0; due dates >= 0; ties go to the lower job number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![job numbers in processing order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 3, last 2, largest 4)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-edd-sequence-series)
+![Every entry of sequence as computed for your inputs (4 entries: 3, 1, 4, 2)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-edd-sequence-live-1)
 
-*job numbers in processing order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 3, last 2, largest 4). Inputs: processing_times = [4, 7, 2, 5], due_dates = [10, 15, 5, 12].*
+*Every entry of sequence as computed for your inputs (4 entries: 3, 1, 4, 2). Your inputs: processing_times = 4, 7, 2, 5, due_dates = 10, 15, 5, 12.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_edd_sequence', processing_times=[4, 7, 2, 5], due_dates=[10, 15, 5, 12])
@@ -3367,9 +3611,13 @@ $$
 - **Assumes:** processing times > 0; due dates >= 0; ties go to the lower job number; jobs available at time 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![job numbers in processing order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 1, last 5, largest 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-dispatching-rule-series)
+![Average completion (flow) time for every choice of rule, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-dispatching-rule-live-1)
 
-*job numbers in processing order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 1, last 5, largest 5). Inputs: processing_times = [6, 2, 8, 3, 9], due_dates = [8, 6, 18, 15, 23], rule = fcfs.*
+*Average completion (flow) time for every choice of rule, every other input as you entered it (highlighted: your choice). fcfs: 15.4; spt: 13; lpt: 20.6; edd: 13.6; cr: 19.2. Your inputs: processing_times = 6, 2, 8, 3, 9, due_dates = 8, 6, 18, 15, 23, rule = fcfs.*
+
+![Every entry of sequence as computed for your inputs (5 entries: 1, 2, 3, 4, 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-dispatching-rule-live-2)
+
+*Every entry of sequence as computed for your inputs (5 entries: 1, 2, 3, 4, 5). Your inputs: processing_times = 6, 2, 8, 3, 9, due_dates = 8, 6, 18, 15, 23, rule = fcfs.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_dispatching_rule', processing_times=[6, 2, 8, 3, 9], due_dates=[8, 6, 18, 15, 23], rule='fcfs')
@@ -3416,13 +3664,13 @@ $$
 - **Assumes:** times >= 0; jobs with $a_{1}  \leq  a_{2}$ go first by increasing a1, the others last by decreasing a2; ties by the lower job number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![sequence (job order) for each index, as returned by industrial-engineering-ai999x for its example (5 values)](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-johnson-two-machine-sequence-vs-k.svg)
+![The job order the model returned, 3, 2, 4, 5, 1, as the job number at each position; makespan 23, idle time of machine 2 5](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-johnson-two-machine-sequence-vs-k.svg)
 
-*sequence (job order) for each index, as returned by industrial-engineering-ai999x for its example (5 values).*
+*The job order the model returned, 3, 2, 4, 5, 1, as the job number at each position; makespan 23, idle time of machine 2 5. Your inputs: machine1_times = 5, 2, 1, 7, 6, machine2_times = 2, 6, 2, 5, 3.*
 
-![job order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 3, last 1, largest 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-johnson-two-machine-series)
+![Every entry of sequence as computed for your inputs (5 entries: 3, 2, 4, 5, 1)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-johnson-two-machine-live-1)
 
-*job order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 3, last 1, largest 5). Inputs: machine1_times = [5, 2, 1, 7, 6], machine2_times = [2, 6, 2, 5, 3].*
+*Every entry of sequence as computed for your inputs (5 entries: 3, 2, 4, 5, 1). Your inputs: machine1_times = 5, 2, 1, 7, 6, machine2_times = 2, 6, 2, 5, 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_johnson_two_machine', machine1_times=[5, 2, 1, 7, 6], machine2_times=[2, 6, 2, 5, 3])
@@ -3469,9 +3717,9 @@ $$
 - **Assumes:** min(machine 1) >= max(machine 2) or min(machine 3) >= max(machine 2) (else refused); ties by the lower job number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![job order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 3, last 5, largest 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-johnson-three-machine-series)
+![Every entry of sequence as computed for your inputs (5 entries: 3, 2, 1, 4, 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-johnson-three-machine-live-1)
 
-*job order (sequence) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 3, last 5, largest 5). Inputs: machine1_times = [8, 10, 6, 7, 11], machine2_times = [5, 6, 2, 3, 4], machine3_times = [4, 9, 8, 6, 5].*
+*Every entry of sequence as computed for your inputs (5 entries: 3, 2, 1, 4, 5). Your inputs: machine1_times = 8, 10, 6, 7, 11, machine2_times = 5, 6, 2, 3, 4, machine3_times = 4, 9, 8, 6, 5.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_johnson_three_machine', machine1_times=[8, 10, 6, 7, 11], machine2_times=[5, 6, 2, 3, 4], machine3_times=[4, 9, 8, 6, 5])
@@ -3519,9 +3767,9 @@ $$
 - **Assumes:** processing times > 0; due dates >= 0; when a job is late, the longest scheduled job is removed (ties: the lower job number)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![the on-time jobs in processing (EDD) order (on_time_jobs) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 2, last 4, largest 4)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moore-hodgson-series)
+![Every entry of late_jobs as computed for your inputs (2 entries: 1, 5)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moore-hodgson-live-1)
 
-*the on-time jobs in processing (EDD) order (on_time_jobs) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 2, last 4, largest 4). Inputs: processing_times = [4, 3, 2, 5, 6], due_dates = [5, 6, 8, 10, 12].*
+*Every entry of late_jobs as computed for your inputs (2 entries: 1, 5). Your inputs: processing_times = 4, 3, 2, 5, 6, due_dates = 5, 6, 8, 10, 12.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_moore_hodgson', processing_times=[4, 3, 2, 5, 6], due_dates=[5, 6, 8, 10, 12])
@@ -3567,13 +3815,21 @@ $$
 - **Assumes:** times >= 0; the same job order on every machine, no passing
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![completion time of each job on the last machine (completion_times) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 14, last 27, largest 27)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-flow-shop-makespan-series)
+![The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: completion_times (returned): 14, 19, 24, 27](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-flow-shop-makespan-matrix)
 
-*completion time of each job on the last machine (completion_times) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 14, last 27, largest 27). Inputs: times = [[5, 3, 6], [2, 7, 4], [4, 2, 5], [6, 4, 3]].*
+*The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: completion_times (returned): 14, 19, 24, 27. Also returned: makespan = 27,  idle_time_last_machine = 9. Your inputs: times = 5 3 6; 2 7 4; 4 2 5; 6 4 3.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): times (input); completion_times (returned)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-flow-shop-makespan-matrix)
+![Completion time of the last job on the last](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-flow-shop-makespan-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): times (input); completion_times (returned). Returned with them by industrial-engineering-ai999x: makespan = 27, idle_time_last_machine = 9.*
+*Completion time of the last job on the last... as times[2,1] runs from 0 to 6, every other input as you entered it (31 solutions). Marked: your times[2,1] = 2 gives makespan = 27. Your inputs: times = 5 3 6; 2 7 4; 4 2 5; 6 4 3.*
+
+![Every entry of completion_times as computed for your inputs (4 entries: 14, 19, 24, 27)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-flow-shop-makespan-live-2)
+
+*Every entry of completion_times as computed for your inputs (4 entries: 14, 19, 24, 27). Your inputs: times = 5 3 6; 2 7 4; 4 2 5; 6 4 3.*
+
+![Completion time of the last job on the last](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-flow-shop-makespan-live-3)
+
+*Completion time of the last job on the last... as times[1,1] runs from 1.25 to 8.75, every other input as you entered it (29 solutions). Marked: your times[1,1] = 5 gives makespan = 27. Your inputs: times = 5 3 6; 2 7 4; 4 2 5; 6 4 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_flow_shop_makespan', times=[[5, 3, 6], [2, 7, 4], [4, 2, 5], [6, 4, 3]])
@@ -3618,13 +3874,17 @@ $$
 - **Assumes:** 1 <= periods <= number of observations
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![moving averages: forecast for periods n+1, ](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moving-average-forecast-series)
+![Forecast for the next period as data[5] runs from 75 to 225, every other input as you entered it (27 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moving-average-forecast-live-1)
 
-*moving averages: forecast for periods n+1, ..., (last period + 1) (forecasts) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 127.667, last 146.333, largest 146.333). Inputs: data = [120, 135, 128, 142, 150, 147], periods = 3.*
+*Forecast for the next period as data[5] runs from 75 to 225, every other input as you entered it (27 solutions). Marked: your data[5] = 150 gives forecast = 146.3. Your inputs: data = 120, 135, 128, 142, 150, 147, periods = 3.*
 
-![forecast (forecast for the next period) against periods (number of periods averaged n) from 1 to 11](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moving-average-forecast-curve)
+![Every entry of forecasts as computed for your inputs (4 entries: 127](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moving-average-forecast-live-2)
 
-*forecast (forecast for the next period) against periods (number of periods averaged n) from 1 to 11. Other inputs as in the worked example: data = [120, 135, 128, 142, 150, 147]. 6 points computed by industrial-engineering-ai999x; marked: the worked example, periods = 3, forecast = 146.333.*
+*Every entry of forecasts as computed for your inputs (4 entries: 127.7, 135, 140, 146.3). Your inputs: data = 120, 135, 128, 142, 150, 147, periods = 3.*
+
+![Forecast for the next period as data[6] runs from 73 to 217, every other input as you entered it (26 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-moving-average-forecast-live-3)
+
+*Forecast for the next period as data[6] runs from 73 to 217, every other input as you entered it (26 solutions). Marked: your data[6] = 147 gives forecast = 146.3. Your inputs: data = 120, 135, 128, 142, 150, 147, periods = 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_moving_average_forecast', data=[120, 135, 128, 142, 150, 147], periods=3)
@@ -3670,9 +3930,17 @@ $$
 - **Assumes:** weights >= 0, not all 0; at least as many observations as weights; the last weight applies to the most recent observation
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The input data (observations in time order (oldest first)) as given in the worked example, one value per position (4 values); marked from what industrial-engineering-ai999x returned: forecast = 113](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weighted-moving-average-data)
+![The 4 observations as given, one bar per period (the weighted periods in the second colour, their weights written under them), and the forecast the model returned for period 5: 113](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weighted-moving-average-data)
 
-*The input data (observations in time order (oldest first)) as given in the worked example, one value per position (4 values); marked from what industrial-engineering-ai999x returned: forecast = 113.333. Also returned: weight_sum = 6. Other inputs: weights = [1, 2, 3].*
+*The 4 observations as given, one bar per period (the weighted periods in the second colour, their weights written under them), and the forecast the model returned for period 5: 113.3. Your inputs: data = 100, 110, 105, 120, weights = 1, 2, 3.*
+
+![Forecast as data[4] runs from 60 to 180, every other input as you entered it (31 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weighted-moving-average-live-1)
+
+*Forecast as data[4] runs from 60 to 180, every other input as you entered it (31 solutions). Marked: your data[4] = 120 gives forecast = 113.3. Your inputs: data = 100, 110, 105, 120, weights = 1, 2, 3.*
+
+![Forecast as weights[1] runs from 0 to 5, every other input as you entered it (6 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weighted-moving-average-live-2)
+
+*Forecast as weights[1] runs from 0 to 5, every other input as you entered it (6 solutions). Marked: your weights[1] = 1 gives forecast = 113.3. Your inputs: data = 100, 110, 105, 120, weights = 1, 2, 3.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_weighted_moving_average', data=[100, 110, 105, 120], weights=[1, 2, 3])
@@ -3719,13 +3987,21 @@ $$
 - **Assumes:** $0 < \alpha  \leq  1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![forecasts for periods 1, ](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-series)
+![The forecasts the model returned for periods 1 to 5 (140, 140](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-forecasts-vs-k)
 
-*forecasts for periods 1, ..., n + 1 (forecasts) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 140, last 143.229, largest 143.229). Inputs: data = [142, 153, 136, 150], alpha = 0.2, initial_forecast = 140.0.*
+*The forecasts the model returned for periods 1 to 5 (140, 140.4, 142.9, 141.5, 143.2) beside the 4 observations as given; marked: the forecast for the next period, 143.2. Your inputs: data = 142, 153, 136, 150, alpha = 0.2, initial_forecast = 140.*
 
-![forecast (forecast for the next period) against initial_forecast (forecast for period 1 (default: the first observation)) from 70 to 210](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-curve)
+![Forecast for the next period as initial_forecast runs from 35 to 245, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-live-1)
 
-*forecast (forecast for the next period) against initial_forecast (forecast for period 1 (default: the first observation)) from 70 to 210. One curve for each value of alpha (smoothing constant (0 < alpha <= 1)): 0.2, 0.1, 0.4. Other inputs as in the worked example: data = [142, 153, 136, 150]. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, initial_forecast = 140, forecast = 143.229.*
+*Forecast for the next period as initial_forecast runs from 35 to 245, every other input as you entered it (41 solutions). Marked: your initial_forecast = 140 gives forecast = 143.2. Your inputs: data = 142, 153, 136, 150, alpha = 0.2, initial_forecast = 140.*
+
+![Every entry of forecasts as computed for your inputs (5 entries: 140, 140](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-live-2)
+
+*Every entry of forecasts as computed for your inputs (5 entries: 140, 140.4, 142.9, 141.5, 143.2). Your inputs: data = 142, 153, 136, 150, alpha = 0.2, initial_forecast = 140.*
+
+![Forecast for the next period as data[4] runs from 75 to 225, every other input as you entered it (27 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-exponential-smoothing-live-3)
+
+*Forecast for the next period as data[4] runs from 75 to 225, every other input as you entered it (27 solutions). Marked: your data[4] = 150 gives forecast = 143.2. Your inputs: data = 142, 153, 136, 150, alpha = 0.2, initial_forecast = 140.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_exponential_smoothing', data=[142, 153, 136, 150], alpha=0.2, initial_forecast=140)
@@ -3776,9 +4052,13 @@ $$
 - **Assumes:** $0 < \alpha$, $\beta  \leq  1$; 1 <= horizon <= 1000
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![forecast (level + horizon x trend) against initial_level (level before the first observation) from 5](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-holt-trend-curve)
+![Level + horizon x trend as data[6] runs from 7 to 47, every other input as you entered it (21 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-holt-trend-live-1)
 
-*forecast (level + horizon x trend) against initial_level (level before the first observation) from 5.5 to 16.5. One curve for each value of initial_trend (trend before the first observation): 2, 1, 4. Other inputs as in the worked example: data = [12, 17, 20, 19, 24, 27], alpha = 0.2, beta = 0.4. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, initial_level = 11, forecast = 27.8592.*
+*Level + horizon x trend as data[6] runs from 7 to 47, every other input as you entered it (21 solutions). Marked: your data[6] = 27 gives forecast = 27.86. Your inputs: data = 12, 17, 20, 19, 24, 27, alpha = 0.2, beta = 0.4, initial_level = 11, initial_trend = 2.*
+
+![Level + horizon x trend as initial_level runs from 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-holt-trend-live-2)
+
+*Level + horizon x trend as initial_level runs from 2.75 to 19.25, every other input as you entered it (29 solutions). Marked: your initial_level = 11 gives forecast = 27.86. Your inputs: data = 12, 17, 20, 19, 24, 27, alpha = 0.2, beta = 0.4, initial_level = 11, initial_trend = 2.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_holt_trend', data=[12, 17, 20, 19, 24, 27], alpha=0.2, beta=0.4, initial_level=11, initial_trend=2)
@@ -3829,6 +4109,10 @@ $$
 - **Assumes:** equal lengths; error = actual - forecast; MAPE only if no actual value is 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The answer for your inputs: mad (mean absolute deviation) = 4](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-forecast-errors-live-1)
+
+*The answer for your inputs: mad (mean absolute deviation) = 4. Your inputs: actual = 100, 110, 120, 130, forecast = 105, 108, 125, 126.*
+
 ```python
 industrial_engineering_ai999x.solve('ie_forecast_errors', actual=[100, 110, 120, 130], forecast=[105, 108, 125, 126])
 # -> mad = 4, mse = 17.5, rmse = 4.1833, bias = -1, running_sum_of_errors = -4, mape = 3.51544, tracking_signal = -1   (SOLVED)
@@ -3875,9 +4159,9 @@ $$
 - **Assumes:** equal lengths; running MAD uses all periods so far
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![tracking signal of each period (signals) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (6 values, first -1, last 2](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tracking-signal-series)
+![Every entry of signals as computed for your inputs (6 entries: -1, -2, 0, -1, 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-tracking-signal-live-1)
 
-*tracking signal of each period (signals) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (6 values, first -1, last 2.47059, largest 2.47059). Inputs: actual = [90, 95, 115, 100, 125, 140], forecast = [100, 100, 100, 110, 110, 110].*
+*Every entry of signals as computed for your inputs (6 entries: -1, -2, 0, -1, 0.4545, 2.471). Your inputs: actual = 90, 95, 115, 100, 125, 140, forecast = 100, 100, 100, 110, 110, 110.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_tracking_signal', actual=[90, 95, 115, 100, 125, 140], forecast=[100, 100, 100, 110, 110, 110])
@@ -3924,9 +4208,17 @@ $$
 - **Assumes:** at least 2 observations; periods numbered 1, 2, ..., n
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The input data (observations in time order (oldest first)) as given in the worked example, one value per position (7 values); marked from what industrial-engineering-ai999x returned: forecast = 141](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-linear-trend-forecast-data)
+![The 7 observations as given, one bar per period, and the forecast the model returned for period 8: 141](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-linear-trend-forecast-data)
 
-*The input data (observations in time order (oldest first)) as given in the worked example, one value per position (7 values); marked from what industrial-engineering-ai999x returned: forecast = 141. Also returned: intercept = 56.7143, slope = 10.5357.*
+*The 7 observations as given, one bar per period, and the forecast the model returned for period 8: 141. Also returned: intercept 56.71, slope 10.54. Your inputs: data = 74, 79, 80, 90, 105....*
+
+![Forecast as data[6] runs from 71 to 211, every other input as you entered it (37 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-linear-trend-forecast-live-1)
+
+*Forecast as data[6] runs from 71 to 211, every other input as you entered it (37 solutions). Marked: your data[6] = 142 gives forecast = 141. Your inputs: data = 74, 79, 80, 90, 105....*
+
+![Forecast as data[1] runs from 37 to 109, every other input as you entered it (26 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-linear-trend-forecast-live-2)
+
+*Forecast as data[1] runs from 37 to 109, every other input as you entered it (26 solutions). Marked: your data[1] = 74 gives forecast = 141. Your inputs: data = 74, 79, 80, 90, 105....*
 
 ```python
 industrial_engineering_ai999x.solve('ie_linear_trend_forecast', data=[74, 79, 80, 90, 105, 142, 122])
@@ -3973,13 +4265,13 @@ $$
 - **Assumes:** rows of equal length (at least 2 seasons); positive average
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![average of each season (season_averages) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 76](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-seasonal-index-series)
+![The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: indices (returned): 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-seasonal-index-matrix)
 
-*average of each season (season_averages) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (4 values, first 76.6667, last 109.333, largest 109.333). Inputs: data = [[80, 85, 105, 110], [70, 85, 85, 120], [80…, next_year_total = 1200.0.*
+*The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: indices (returned): 0.8417, 0.9625, 0.9954, 1.2. Also returned: overall_average = 91.08. Your inputs: data = 80 85 105 110; 70 85 85..., next_year_total = 1200.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): data (input)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-seasonal-index-matrix)
+![The computed season_averages and forecasts plotted against indices (4 points, from your inputs)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-seasonal-index-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): data (input). Returned with them by industrial-engineering-ai999x: overall_average = 91.0833. Other inputs: next_year_total = 1200.0.*
+*The computed season_averages and forecasts plotted against indices (4 points, from your inputs). Your inputs: data = 80 85 105 110; 70 85 85..., next_year_total = 1200.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_seasonal_index', data=[[80, 85, 105, 110], [70, 85, 85, 120], [80, 93, 82, 98]], next_year_total=1200)
@@ -4029,9 +4321,13 @@ $$
 - **Assumes:** at least 3 pairs; x and y vary
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data y (values of demand (dependent variable)) against x (values of the driver (independent variable)) as given in the worked example (6 points); drawn on it from what industrial-engineering-ai999x returned: the line y = 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-regression-forecast-xy)
+![The 6 data points as given and the regression line, each of its 21 points a forecast computed by the model (intercept 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-regression-forecast-xy)
 
-*The data y (values of demand (dependent variable)) against x (values of the driver (independent variable)) as given in the worked example (6 points); drawn on it from what industrial-engineering-ai999x returned: the line y = 1.75 + 0.25·x from the returned intercept and slope. Also returned: r_squared = 0.8125, standard_error = 0.306186, forecast = 3.25. Other inputs: x_new = 6.0.*
+*The 6 data points as given and the regression line, each of its 21 points a forecast computed by the model (intercept 1.75, slope 0.25); marked: the forecast at x_new = 6, 3.25. Your inputs: x = 1, 3, 4, 2, 1, 7, y = 2, 3, 2.5, 2, 2, 3.5, x_new = 6.*
+
+![A + b x_new as x_new runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-regression-forecast-live-1)
+
+*A + b x_new as x_new runs from 1.5 to 10.5, every other input as you entered it (41 solutions). Marked: your x_new = 6 gives forecast = 3.25. Your inputs: x = 1, 3, 4, 2, 1, 7, y = 2, 3, 2.5, 2, 2, 3.5, x_new = 6.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_regression_forecast', x=[1, 3, 4, 2, 1, 7], y=[2.0, 3.0, 2.5, 2.0, 2.0, 3.5], x_new=6)
@@ -4080,9 +4376,13 @@ $$
 - **Assumes:** inputs > 0; consistent time units
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![cycle_time (takt time = available time / demand) against demand (units required per period) from 30 to 90](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-takt-time-curve)
+![Cycle time as available_time runs from 120 to 840, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-takt-time-live-1)
 
-*cycle_time (takt time = available time / demand) against demand (units required per period) from 30 to 90. One curve for each value of available_time (production time available per period (minutes, say)): 480, 240, 960. Other inputs as in the worked example: total_task_time = 30.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, demand = 60, cycle_time = 8.*
+*Cycle time as available_time runs from 120 to 840, every other input as you entered it (41 solutions). Marked: your available_time = 480 gives cycle_time = 8. Your inputs: available_time = 480, demand = 60, total_task_time = 30.*
+
+![Cycle time as demand runs from 15 to 105, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-takt-time-live-2)
+
+*Cycle time as demand runs from 15 to 105, every other input as you entered it (29 solutions). Marked: your demand = 60 gives cycle_time = 8. Your inputs: available_time = 480, demand = 60, total_task_time = 30.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_takt_time', available_time=480, demand=60, total_task_time=30)
@@ -4132,9 +4432,13 @@ $$
 - **Assumes:** task times > 0; each task <= cycle time; sum $t  \leq  N$ C
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![efficiency (sum t / (N C)) against stations (number of workstations used) from 1 to 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-line-efficiency-curve)
+![Efficiency as stations runs from 3 to 8, every other input as you entered it (6 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-line-efficiency-live-1)
 
-*efficiency (sum t / (N C)) against stations (number of workstations used) from 1 to 12. One curve for each value of cycle_time (cycle time): 1.5, 3. Other inputs as in the worked example: task_times = [0.5, 1.2, 0.8, 0.4, 1.0, 0.6]. 10 points per curve computed by industrial-engineering-ai999x; marked: the worked example, stations = 4, efficiency = 0.75.*
+*Efficiency as stations runs from 3 to 8, every other input as you entered it (6 solutions). Marked: your stations = 4 gives efficiency = 0.75. Your inputs: task_times = 0.5, 1.2, 0.8, 0.4, 1, 0.6, cycle_time = 1.5, stations = 4.*
+
+![Efficiency as cycle_time runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-line-efficiency-live-2)
+
+*Efficiency as cycle_time runs from 1.259 to 2.625, every other input as you entered it (18 solutions). Marked: your cycle_time = 1.5 gives efficiency = 0.75. Your inputs: task_times = 0.5, 1.2, 0.8, 0.4, 1, 0.6, cycle_time = 1.5, stations = 4.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_line_efficiency', task_times=[0.5, 1.2, 0.8, 0.4, 1.0, 0.6], cycle_time=1.5, stations=4)
@@ -4185,13 +4489,21 @@ $$
 - **Assumes:** task times > 0 and <= cycle time; precedence acyclic; ties go to the lower task number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![station number of each task (assignment) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (8 values, first 1, last 3, largest 3)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-largest-candidate-rule-series)
+![The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: assignment (returned): 1, 1, 1, 2, 2, 3, 3, 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-largest-candidate-rule-matrix)
 
-*station number of each task (assignment) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (8 values, first 1, last 3, largest 3). Inputs: task_times = [2, 3, 4, 3, 6, 4, 2, 3], precedence = [[1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5…, cycle_time = 10.0.*
+*The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: assignment (returned): 1, 1, 1, 2, 2, 3, 3, 3. Also returned: stations = 3,  efficiency = 0.9,  idle_time = 3,  minimum_stations = 3. Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): precedence (input); assignment (returned)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-largest-candidate-rule-matrix)
+![Efficiency as cycle_time runs from 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-largest-candidate-rule-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): precedence (input); assignment (returned). Returned with them by industrial-engineering-ai999x: stations = 3, efficiency = 0.9, idle_time = 3, minimum_stations = 3. Other inputs: task_times = [2, 3, 4, 3, 6, 4, 2, 3], cycle_time = 10.0.*
+*Efficiency as cycle_time runs from 9.297 to 10.7, every other input as you entered it (31 solutions). Marked: your cycle_time = 10 gives efficiency = 0.9. Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
+
+![The 8 rows of precedence as points (first column across, second up), coloured by assignment](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-largest-candidate-rule-live-2)
+
+*The 8 rows of precedence as points (first column across, second up), coloured by assignment. Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
+
+![Every entry of assignment as computed for your inputs (8 entries: 1, 1, 1, 2, 2, 3, 3, 3)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-largest-candidate-rule-live-3)
+
+*Every entry of assignment as computed for your inputs (8 entries: 1, 1, 1, 2, 2, 3, 3, 3). Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_largest_candidate_rule', task_times=[2, 3, 4, 3, 6, 4, 2, 3], precedence=[[1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 6], [6, 7], [7, 8]], cycle_time=10)
@@ -4243,13 +4555,21 @@ $$
 - **Assumes:** task times > 0 and <= cycle time; precedence acyclic; ties go to the lower task number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![station number of each task (assignment) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (8 values, first 1, last 3, largest 3); with positional_weights (positional weight of each task)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ranked-positional-weight-series)
+![The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: assignment (returned): 1, 1, 1, 2, 2, 3, 3, 3; positional_weights (returned): 27, 15, 19, 12, 15, 9, 5, 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ranked-positional-weight-matrix)
 
-*station number of each task (assignment) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (8 values, first 1, last 3, largest 3); with positional_weights (positional weight of each task). Inputs: task_times = [2, 3, 4, 3, 6, 4, 2, 3], precedence = [[1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5…, cycle_time = 10.0.*
+*The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: assignment (returned): 1, 1, 1, 2, 2, 3, 3, 3; positional_weights (returned): 27, 15, 19, 12, 15, 9, 5, 3. Also returned: stations = 3,  efficiency = 0.9,  idle_time = 3,  minimum_stations = 3. Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): precedence (input); assignment (returned)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ranked-positional-weight-matrix)
+![Efficiency as cycle_time runs from 9](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ranked-positional-weight-live-1)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): precedence (input); assignment (returned). Returned with them by industrial-engineering-ai999x: stations = 3, efficiency = 0.9, idle_time = 3, minimum_stations = 3. Other inputs: task_times = [2, 3, 4, 3, 6, 4, 2, 3], cycle_time = 10.0.*
+*Efficiency as cycle_time runs from 9.297 to 10.7, every other input as you entered it (31 solutions). Marked: your cycle_time = 10 gives efficiency = 0.9. Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
+
+![The 8 rows of precedence as points (first column across, second up), coloured by assignment](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ranked-positional-weight-live-2)
+
+*The 8 rows of precedence as points (first column across, second up), coloured by assignment. Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
+
+![Every entry of assignment as computed for your inputs (8 entries: 1, 1, 1, 2, 2, 3, 3, 3)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-ranked-positional-weight-live-3)
+
+*Every entry of assignment as computed for your inputs (8 entries: 1, 1, 1, 2, 2, 3, 3, 3). Your inputs: task_times = 2, 3, 4, 3, 6, 4, 2, 3, precedence = 1 2; 1 3; 2 4; 3 5; 4 6..., cycle_time = 10.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_ranked_positional_weight', task_times=[2, 3, 4, 3, 6, 4, 2, 3], precedence=[[1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 6], [6, 7], [7, 8]], cycle_time=10)
@@ -4296,9 +4616,13 @@ $$
 - **Assumes:** first_unit_time > 0; 0 < learning_rate <= 1; unit >= 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![unit_time (T_1 n^b) against unit (unit number n) from 1 to 16](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-unit-curve)
+![Unit time as learning_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-unit-live-1)
 
-*unit_time (T_1 n^b) against unit (unit number n) from 1 to 16. One curve for each value of first_unit_time (time (or cost) of the first unit): 100, 50, 200. Other inputs as in the worked example: learning_rate = 0.8. 16 points per curve computed by industrial-engineering-ai999x; marked: the worked example, unit = 8, unit_time = 51.2.*
+*Unit time as learning_rate runs from 0.2 to 0.98, every other input as you entered it (27 solutions). Marked: your learning_rate = 0.8 gives unit_time = 51.2. Your inputs: first_unit_time = 100, learning_rate = 0.8, unit = 8.*
+
+![Unit time as first_unit_time runs from 25 to 175, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-unit-live-2)
+
+*Unit time as first_unit_time runs from 25 to 175, every other input as you entered it (29 solutions). Marked: your first_unit_time = 100 gives unit_time = 51.2. Your inputs: first_unit_time = 100, learning_rate = 0.8, unit = 8.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_learning_curve_unit', first_unit_time=100, learning_rate=0.8, unit=8)
@@ -4346,9 +4670,13 @@ $$
 - **Assumes:** first_unit_time > 0; 0 < learning_rate <= 1; 1 <= units <= 200000
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![total_time (sum_{i=1}^{N} T_1 i^b) against first_unit_time (time (or cost) of the first unit) from 50 to 150](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-total-curve)
+![Total time as learning_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-total-live-1)
 
-*total_time (sum_{i=1}^{N} T_1 i^b) against first_unit_time (time (or cost) of the first unit) from 50 to 150. One curve for each value of units (number of units N): 8, 4, 16. Other inputs as in the worked example: learning_rate = 0.8. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, first_unit_time = 100, total_time = 534.591.*
+*Total time as learning_rate runs from 0.2 to 0.98, every other input as you entered it (27 solutions). Marked: your learning_rate = 0.8 gives total_time = 534.6. Your inputs: first_unit_time = 100, learning_rate = 0.8, units = 8.*
+
+![Total time as first_unit_time runs from 25 to 175, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-total-live-2)
+
+*Total time as first_unit_time runs from 25 to 175, every other input as you entered it (29 solutions). Marked: your first_unit_time = 100 gives total_time = 534.6. Your inputs: first_unit_time = 100, learning_rate = 0.8, units = 8.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_learning_curve_total', first_unit_time=100, learning_rate=0.8, units=8)
@@ -4397,9 +4725,13 @@ $$
 - **Assumes:** units and times > 0; unit numbers differ
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![learning_rate (2^b) against unit2 (second unit number) from 4 to 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-rate-from-two-units-curve)
+![Learning rate as time1 runs from 25 to 175, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-rate-from-two-units-live-1)
 
-*learning_rate (2^b) against unit2 (second unit number) from 4 to 12. One curve for each value of unit1 (first unit number): 1, 0.5, 2. Other inputs as in the worked example: time1 = 100.0, time2 = 51.2. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, unit2 = 8, learning_rate = 0.8.*
+*Learning rate as time1 runs from 25 to 175, every other input as you entered it (41 solutions). Marked: your time1 = 100 gives learning_rate = 0.8. Your inputs: unit1 = 1, time1 = 100, unit2 = 8, time2 = 51.2.*
+
+![Learning rate as time2 runs from 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-rate-from-two-units-live-2)
+
+*Learning rate as time2 runs from 12.8 to 89.6, every other input as you entered it (29 solutions). Marked: your time2 = 51.2 gives learning_rate = 0.8. Your inputs: unit1 = 1, time1 = 100, unit2 = 8, time2 = 51.2.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_learning_rate_from_two_units', unit1=1, time1=100, unit2=8, time2=51.2)
@@ -4447,9 +4779,9 @@ $$
 - **Assumes:** positive values; at least 2 different unit numbers
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data units (unit numbers observed) against times (time of each observed unit) as given in the worked example (5 points)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-fit-xy)
+![The 5 observed unit times as given and the fitted curve: each point a unit time computed by the model for the returned first-unit time 101](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-fit-xy)
 
-*The data units (unit numbers observed) against times (time of each observed unit) as given in the worked example (5 points). Also returned: learning_rate = 0.795483, exponent = -0.330097, first_unit_time = 101.154, r_squared = 0.997447.*
+*The 5 observed unit times as given and the fitted curve: each point a unit time computed by the model for the returned first-unit time 101.2 and learning rate 0.7955 (r² = 0.9974); logarithmic unit axis. Your inputs: units = 1, 2, 4, 8, 16, times = 100, 82, 63, 52, 40.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_learning_curve_fit', units=[1, 2, 4, 8, 16], times=[100, 82, 63, 52, 40])
@@ -4497,9 +4829,13 @@ $$
 - **Assumes:** first_unit_time > 0; 0 < learning_rate <= 1; units >= 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![cumulative_average_time (T_1 N^b) against units (cumulative units N) from 1 to 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-cumulative-average-curve)
+![Cumulative average time as learning_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-cumulative-average-live-1)
 
-*cumulative_average_time (T_1 N^b) against units (cumulative units N) from 1 to 12. One curve for each value of first_unit_time (time (or cost) of the first unit): 100, 50, 200. Other inputs as in the worked example: learning_rate = 0.8. 12 points per curve computed by industrial-engineering-ai999x; marked: the worked example, units = 4, cumulative_average_time = 64.*
+*Cumulative average time as learning_rate runs from 0.2 to 0.98, every other input as you entered it (27 solutions). Marked: your learning_rate = 0.8 gives cumulative_average_time = 64. Your inputs: first_unit_time = 100, learning_rate = 0.8, units = 4.*
+
+![Cumulative average time as first_unit_time runs from 25 to 175, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-learning-curve-cumulative-average-live-2)
+
+*Cumulative average time as first_unit_time runs from 25 to 175, every other input as you entered it (29 solutions). Marked: your first_unit_time = 100 gives cumulative_average_time = 64. Your inputs: first_unit_time = 100, learning_rate = 0.8, units = 4.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_learning_curve_cumulative_average', first_unit_time=100, learning_rate=0.8, units=4)
@@ -4547,9 +4883,17 @@ $$
 - **Assumes:** equal lengths; weights >= 0, not all 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data y (y coordinate of each demand point) against x (x coordinate of each demand point) as given in the worked example (4 points)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-center-of-gravity-xy)
+![The 4 demand points as given (dot area grows with the weight) and the centre of gravity the model returned, x = 66](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-center-of-gravity-xy)
 
-*The data y (y coordinate of each demand point) against x (x coordinate of each demand point) as given in the worked example (4 points). Also returned: x = 66.6667, y = 93.3333, total_weight = 6000. Other inputs: weights = [2000, 1000, 1000, 2000].*
+*The 4 demand points as given (dot area grows with the weight) and the centre of gravity the model returned, x = 66.67, y = 93.33, with a dashed line to each point. Total weight 6000. Your inputs: x = 30, 90, 130, 60, y = 120, 110, 130, 40, weights = 2000, 1000, 1000, 2000.*
+
+![Y as y[1] runs from 60 to 180, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-center-of-gravity-live-1)
+
+*Y as y[1] runs from 60 to 180, every other input as you entered it (41 solutions). Marked: your y[1] = 120 gives y = 93.33. Your inputs: x = 30, 90, 130, 60, y = 120, 110, 130, 40, weights = 2000, 1000, 1000, 2000.*
+
+![X as x[3] runs from 65 to 195, every other input as you entered it (27 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-center-of-gravity-live-2)
+
+*X as x[3] runs from 65 to 195, every other input as you entered it (27 solutions). Marked: your x[3] = 130 gives x = 66.67. Your inputs: x = 30, 90, 130, 60, y = 120, 110, 130, 40, weights = 2000, 1000, 1000, 2000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_center_of_gravity', x=[30, 90, 130, 60], y=[120, 110, 130, 40], weights=[2000, 1000, 1000, 2000])
@@ -4597,9 +4941,17 @@ $$
 - **Assumes:** at least 2 distinct points; weights >= 0, not all 0; Euclidean distance
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data y (y coordinate of each demand point) against x (x coordinate of each demand point) as given in the worked example (4 points)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weber-location-xy)
+![The 4 demand points as given (dot area grows with the weight) and the minimum weighted distance (Weber point) the model returned, x = 3](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weber-location-xy)
 
-*The data y (y coordinate of each demand point) against x (x coordinate of each demand point) as given in the worked example (4 points). Also returned: x = 3.19149, y = 5.10638, total_weighted_distance = 19.434. Other inputs: weights = [1, 1, 1, 1].*
+*The 4 demand points as given (dot area grows with the weight) and the minimum weighted distance (Weber point) the model returned, x = 3.191, y = 5.106, with a dashed line to each point. Total weighted distance 19.43. Your inputs: x = 0, 10, 5, 2, y = 0, 0, 8, 6, weights = 1, 1, 1, 1.*
+
+![Sum w_i distance_i at the optimum as x[3] runs from 1 to 9, every other input as you entered it (9 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weber-location-live-1)
+
+*Sum w_i distance_i at the optimum as x[3] runs from 1 to 9, every other input as you entered it (9 solutions). Marked: your x[3] = 5 gives total_weighted_distance = 19.43. Your inputs: x = 0, 10, 5, 2, y = 0, 0, 8, 6, weights = 1, 1, 1, 1.*
+
+![Sum w_i distance_i at the optimum as y[3] runs from 2 to 14, every other input as you entered it (13 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-weber-location-live-2)
+
+*Sum w_i distance_i at the optimum as y[3] runs from 2 to 14, every other input as you entered it (13 solutions). Marked: your y[3] = 8 gives total_weighted_distance = 19.43. Your inputs: x = 0, 10, 5, 2, y = 0, 0, 8, 6, weights = 1, 1, 1, 1.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_weber_location', x=[0, 10, 5, 2], y=[0, 0, 8, 6], weights=[1, 1, 1, 1])
@@ -4647,9 +4999,17 @@ $$
 - **Assumes:** weights >= 0, not all 0; refused when the optimum is a whole interval (cumulative weight exactly half)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The data y (y coordinate of each demand point) against x (x coordinate of each demand point) as given in the worked example (4 points)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rectilinear-location-xy)
+![The 4 demand points as given (dot area grows with the weight) and the weighted median (rectilinear distance) the model returned, x = 3, y = 4, with a dashed line to each point](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rectilinear-location-xy)
 
-*The data y (y coordinate of each demand point) against x (x coordinate of each demand point) as given in the worked example (4 points). Also returned: x = 3, y = 4, total_weighted_distance = 47. Other inputs: weights = [5, 2, 3, 1].*
+*The 4 demand points as given (dot area grows with the weight) and the weighted median (rectilinear distance) the model returned, x = 3, y = 4, with a dashed line to each point. Total weighted distance 47. Your inputs: x = 3, 8, 5, 1, y = 2, 6, 9, 4, weights = 5, 2, 3, 1.*
+
+![Weighted median of y as y[4] runs from 0 to 8, every other input as you entered it (9 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rectilinear-location-live-1)
+
+*Weighted median of y as y[4] runs from 0 to 8, every other input as you entered it (9 solutions). Marked: your y[4] = 4 gives y = 4. Your inputs: x = 3, 8, 5, 1, y = 2, 6, 9, 4, weights = 5, 2, 3, 1.*
+
+![Sum w_i as x[1] runs from 0 to 7, every other input as you entered it (8 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-rectilinear-location-live-2)
+
+*Sum w_i as x[1] runs from 0 to 7, every other input as you entered it (8 solutions). Marked: your x[1] = 3 gives total_weighted_distance = 47. Your inputs: x = 3, 8, 5, 1, y = 2, 6, 9, 4, weights = 5, 2, 3, 1.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_rectilinear_location', x=[3, 8, 5, 1], y=[2, 6, 9, 4], weights=[5, 2, 3, 1])
@@ -4696,9 +5056,21 @@ $$
 - **Assumes:** weights >= 0; one score per factor in every row; ties go to the lower site number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): scores (input); weighted_scores (returned)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-factor-rating-matrix)
+![The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: weighted_scores (returned): 71](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-factor-rating-matrix)
 
-*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): scores (input); weighted_scores (returned). Returned with them by industrial-engineering-ai999x: best_site = 2, best_score = 75.25. Other inputs: weights = [0.25, 0.45, 0.3].*
+*The matrices of the inputs given, each cell shaded by its magnitude within its own panel, and what the model returned with them: weighted_scores (returned): 71.5, 75.25. Also returned: best_site = 2,  best_score = 75.25. Your inputs: weights = 0.25, 0.45, 0.3, scores = 70 60 90; 85 80 60.*
+
+![Highest weighted score as weights[2] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-factor-rating-live-1)
+
+*Highest weighted score as weights[2] runs from 0.1125 to 0.7875, every other input as you entered it (41 solutions). Marked: your weights[2] = 0.45 gives best_score = 75.25. Your inputs: weights = 0.25, 0.45, 0.3, scores = 70 60 90; 85 80 60.*
+
+![Every entry of weighted_scores as computed for your inputs (2 entries: 71](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-factor-rating-live-2)
+
+*Every entry of weighted_scores as computed for your inputs (2 entries: 71.5, 75.25). Your inputs: weights = 0.25, 0.45, 0.3, scores = 70 60 90; 85 80 60.*
+
+![Highest weighted score as weights[1] runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-factor-rating-live-3)
+
+*Highest weighted score as weights[1] runs from 0.0625 to 0.4375, every other input as you entered it (29 solutions). Marked: your weights[1] = 0.25 gives best_score = 75.25. Your inputs: weights = 0.25, 0.45, 0.3, scores = 70 60 90; 85 80 60.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_factor_rating', weights=[0.25, 0.45, 0.3], scores=[[70, 60, 90], [85, 80, 60]])
@@ -4746,13 +5118,13 @@ $$
 - **Assumes:** costs >= 0; volume >= 0; ties go to the lower site number
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![F_i + v_i Q for each site (total_costs) returned by industrial-engineering-ai999x for the worked example, one value for each fixed_costs (annual fixed cost of each site) (3 values, first 180000, last 160000, largest 180000)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-location-cost-volume-series)
+![Its total cost as volume runs from 500 to 3500, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-location-cost-volume-live-1)
 
-*F_i + v_i Q for each site (total_costs) returned by industrial-engineering-ai999x for the worked example, one value for each fixed_costs (annual fixed cost of each site) (3 values, first 180000, last 160000, largest 180000). Inputs: fixed_costs = [30000, 60000, 110000], variable_costs = [75, 45, 25], volume = 2000.0.*
+*Its total cost as volume runs from 500 to 3500, every other input as you entered it (41 solutions). Marked: your volume = 2000 gives best_cost = 1.5e+05. Your inputs: fixed_costs = 30000, 60000, 110000, variable_costs = 75, 45, 25, volume = 2000.*
 
-![best_cost (its total cost) against volume (expected annual volume) from 200 to 20000 on a logarithmic axis](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-location-cost-volume-curve)
+![Every entry of total_costs as computed for your inputs (3 entries: 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-location-cost-volume-live-2)
 
-*best_cost (its total cost) against volume (expected annual volume) from 200 to 20000 on a logarithmic axis. Other inputs as in the worked example: fixed_costs = [30000, 60000, 110000], variable_costs = [75, 45, 25]. 41 points computed by industrial-engineering-ai999x; marked: the worked example, volume = 2000, best_cost = 150000.*
+*Every entry of total_costs as computed for your inputs (3 entries: 1.8e+05, 1.5e+05, 1.6e+05). Your inputs: fixed_costs = 30000, 60000, 110000, variable_costs = 75, 45, 25, volume = 2000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_location_cost_volume', fixed_costs=[30000, 60000, 110000], variable_costs=[75, 45, 25], volume=2000)
@@ -4803,9 +5175,13 @@ $$
 - **Assumes:** fixed_cost >= 0; price > variable_cost >= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![break_even_units (F / (p - v)) against price (selling price per unit) from 12](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-break-even-curve)
+![Break even units as variable_cost runs from 3](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-break-even-live-1.svg)
 
-*break_even_units (F / (p - v)) against price (selling price per unit) from 12.5 to 37.5. One curve for each value of fixed_cost (fixed cost per period): 10000, 5000, 20000. Other inputs as in the worked example: variable_cost = 15.0. 27 points per curve computed by industrial-engineering-ai999x; marked: the worked example, price = 25, break_even_units = 1000.*
+*Break even units as variable_cost runs from 3.75 to 24.56, every other input as you entered it (38 solutions). Marked: your variable_cost = 15 gives break_even_units = 1000. Your inputs: fixed_cost = 10000, price = 25, variable_cost = 15.*
+
+![Break even units as price runs from 15](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-break-even-live-2)
+
+*Break even units as price runs from 15.62 to 43.75, every other input as you entered it (22 solutions). Marked: your price = 25 gives break_even_units = 1000. Your inputs: fixed_cost = 10000, price = 25, variable_cost = 15.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_break_even', fixed_cost=10000, price=25, variable_cost=15)
@@ -4855,13 +5231,13 @@ $$
 - **Assumes:** fixed_cost >= 0; prices > 0; mix fractions of revenue adding to 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![break-even revenue of each product (revenue_by_product) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 2251](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-multiproduct-break-even-series)
+![Break even revenue as fixed_cost runs from 750 to 5250, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-multiproduct-break-even-live-1)
 
-*break-even revenue of each product (revenue_by_product) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 2251.79, last 900.718, largest 2251.79); with units_by_product (break-even units of each product). Inputs: fixed_cost = 3000.0, prices = [2.95, 1.25, 0.8], variable_costs = [1.25, 0.3, 0.2], sales_mix = [0.5, 0.3, 0.2].*
+*Break even revenue as fixed_cost runs from 750 to 5250, every other input as you entered it (41 solutions). Marked: your fixed_cost = 3000 gives break_even_revenue = 4504. Your inputs: fixed_cost = 3000, prices = 2.95, 1.25, 0.8, variable_costs = 1.25, 0.3, 0.2, sales_mix = 0.5, 0.3, 0.2.*
 
-![break_even_revenue (F / sum (1 - v_i/p_i) w_i) against fixed_cost (fixed cost per period) from 1500 to 4500](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-multiproduct-break-even-curve)
+![Every entry of revenue_by_product, units_by_product as computed for your inputs (3 entries, revenue_by_product first: 2252, 1351, 900](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-multiproduct-break-even-live-2)
 
-*break_even_revenue (F / sum (1 - v_i/p_i) w_i) against fixed_cost (fixed cost per period) from 1500 to 4500. Other inputs as in the worked example: prices = [2.95, 1.25, 0.8], variable_costs = [1.25, 0.3, 0.2], sales_mix = [0.5, 0.3, 0.2]. 31 points computed by industrial-engineering-ai999x; marked: the worked example, fixed_cost = 3000, break_even_revenue = 4503.59.*
+*Every entry of revenue_by_product, units_by_product as computed for your inputs (3 entries, revenue_by_product first: 2252, 1351, 900.7). Your inputs: fixed_cost = 3000, prices = 2.95, 1.25, 0.8, variable_costs = 1.25, 0.3, 0.2, sales_mix = 0.5, 0.3, 0.2.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_multiproduct_break_even', fixed_cost=3000, prices=[2.95, 1.25, 0.8], variable_costs=[1.25, 0.3, 0.2], sales_mix=[0.5, 0.3, 0.2])
@@ -4910,13 +5286,21 @@ $$
 - **Assumes:** observed times > 0; rating > 0; 0 <= allowance < 1; the allowance basis must be stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![standard_time (standard time) against rating (performance rating (decimal; 110% = 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standard-time-curve)
+![standard time (standard_time) over rating (performance rating (decimal; 110% = 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standard-time-field)
 
-*standard_time (standard time) against rating (performance rating (decimal; 110% = 1.1)) from 0.55 to 1.65. One curve for each value of allowance (allowance fraction (decimal; 15% = 0.15)): 0.15, 0.26, 0.74. Other inputs as in the worked example: observed_times = [4.2, 4.5, 4.0, 4.3, 4.5], basis = job. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, rating = 1.1, standard_time = 5.4395.*
+*standard time (standard_time) over rating (performance rating (decimal; 110% = 1.1)) from 0.55 to 1.65 and allowance (allowance fraction (decimal; 15% = 0.15)) from 0.01 to 0.915: each of the 221 cells is one computation of the model, shaded by its value (darker is larger). Marked: the inputs given, standard_time = 5.439. Your inputs: observed_times = 4.2, 4.5, 4, 4.3, 4.5, rating = 1.1, allowance = 0.15, basis = job.*
 
-![standard_time (standard time) over rating (performance rating (decimal; 110% = 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standard-time-field)
+![Standard time as rating runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standard-time-live-1)
 
-*standard_time (standard time) over rating (performance rating (decimal; 110% = 1.1)) from 0.55 to 1.65 and allowance (allowance fraction (decimal; 15% = 0.15)) from 0.02 to 0.98: each of the 21 × 15 cells is one run of industrial-engineering-ai999x, shaded by its value (light 2.4123 to dark 14.0481); iso-lines at standard_time = 4, 6, 8, 10, 12. Other inputs as in the worked example: observed_times = [4.2, 4.5, 4.0, 4.3, 4.5], basis = job. Marked: the worked example, rating = 1.1, allowance = 0.15, standard_time = 5.4395.*
+*Standard time as rating runs from 0.275 to 1.925, every other input as you entered it (41 solutions). Marked: your rating = 1.1 gives standard_time = 5.439. Your inputs: observed_times = 4.2, 4.5, 4, 4.3, 4.5, rating = 1.1, allowance = 0.15, basis = job.*
+
+![Standard time for every choice of basis, every other input as you entered it (highlighted: your choice)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standard-time-live-2)
+
+*Standard time for every choice of basis, every other input as you entered it (highlighted: your choice). job: 5.439; shift: 5.565. Your inputs: observed_times = 4.2, 4.5, 4, 4.3, 4.5, rating = 1.1, allowance = 0.15, basis = job.*
+
+![Standard time as observed_times[2] runs from 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-standard-time-live-3)
+
+*Standard time as observed_times[2] runs from 1.125 to 7.875, every other input as you entered it (29 solutions). Marked: your observed_times[2] = 4.5 gives standard_time = 5.439. Your inputs: observed_times = 4.2, 4.5, 4, 4.3, 4.5, rating = 1.1, allowance = 0.15, basis = job.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_standard_time', observed_times=[4.2, 4.5, 4.0, 4.3, 4.5], rating=1.1, allowance=0.15, basis='job')
@@ -4965,9 +5349,13 @@ $$
 - **Assumes:** mean, $sd > 0$; 0 < accuracy < 1; 0 < confidence < 1; normal approximation
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![exact ((z s / (h x-bar))^2) against accuracy (desired accuracy as a fraction of the mean (decimal; 5% = 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-time-study-sample-size-curve)
+![Exact as confidence runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-time-study-sample-size-live-1)
 
-*exact ((z s / (h x-bar))^2) against accuracy (desired accuracy as a fraction of the mean (decimal; 5% = 0.05)) from 0.02 to 0.98, logarithmic output axis. One curve for each value of mean (mean of the pilot observations): 3, 1.5, 6. Other inputs as in the worked example: sd = 0.5, confidence = 0.95. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, accuracy = 0.05, exact = 42.6829.*
+*Exact as confidence runs from 0.2375 to 0.9856, every other input as you entered it (22 solutions). Marked: your confidence = 0.95 gives exact = 42.68. Your inputs: mean = 3, sd = 0.5, accuracy = 0.05, confidence = 0.95.*
+
+![Exact as mean runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-time-study-sample-size-live-2)
+
+*Exact as mean runs from 0.75 to 5.25, every other input as you entered it (29 solutions). Marked: your mean = 3 gives exact = 42.68. Your inputs: mean = 3, sd = 0.5, accuracy = 0.05, confidence = 0.95.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_time_study_sample_size', mean=3.0, sd=0.5, accuracy=0.05, confidence=0.95)
@@ -5015,9 +5403,13 @@ $$
 - **Assumes:** $0 < p < 1$; $0 < h < 1$; 0 < confidence < 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![exact (z^2 p (1 - p) / h^2) against proportion (estimated fraction of time in the activity (decimal)) from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-work-sampling-sample-size-curve)
+![Exact as confidence runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-work-sampling-sample-size-live-1)
 
-*exact (z^2 p (1 - p) / h^2) against proportion (estimated fraction of time in the activity (decimal)) from 0.02 to 0.98. One curve for each value of accuracy (absolute accuracy (decimal; 0.05 = +/- 5 points)): 0.05, 0.025, 0.1. Other inputs as in the worked example: confidence = 0.95. 41 points per curve computed by industrial-engineering-ai999x; marked: the worked example, proportion = 0.2, exact = 245.853.*
+*Exact as confidence runs from 0.2375 to 0.9856, every other input as you entered it (22 solutions). Marked: your confidence = 0.95 gives exact = 245.9. Your inputs: proportion = 0.2, accuracy = 0.05, confidence = 0.95.*
+
+![Exact as accuracy runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-work-sampling-sample-size-live-2)
+
+*Exact as accuracy runs from 0.0125 to 0.0875, every other input as you entered it (29 solutions). Marked: your accuracy = 0.05 gives exact = 245.9. Your inputs: proportion = 0.2, accuracy = 0.05, confidence = 0.95.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_work_sampling_sample_size', proportion=0.2, accuracy=0.05, confidence=0.95)
@@ -5069,9 +5461,13 @@ $$
 - **Assumes:** downtime < planned time; good <= total; performance <= 1
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![oee (availability x performance x quality) against planned_time (planned production time) from 210 to 630](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-oee-curve)
+![Availability x performance x quality as good_count runs from 71](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-oee-live-1)
 
-*oee (availability x performance x quality) against planned_time (planned production time) from 210 to 630. One curve for each value of ideal_cycle_time (ideal time per unit (same time unit)): 1, 0.5. Other inputs as in the worked example: downtime = 47.0, total_count = 300.0, good_count = 285.0. 21 points per curve computed by industrial-engineering-ai999x; marked: the worked example, planned_time = 420, oee = 0.678571.*
+*Availability x performance x quality as good_count runs from 71.25 to 295.7, every other input as you entered it (22 solutions). Marked: your good_count = 285 gives oee = 0.6786. Your inputs: planned_time = 420, downtime = 47, ideal_cycle_time = 1, total_count = 300, good_count = 285.*
+
+![Availability x performance x quality as ideal_cycle_time runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-oee-live-2)
+
+*Availability x performance x quality as ideal_cycle_time runs from 0.25 to 1.214, every other input as you entered it (19 solutions). Marked: your ideal_cycle_time = 1 gives oee = 0.6786. Your inputs: planned_time = 420, downtime = 47, ideal_cycle_time = 1, total_count = 300, good_count = 285.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_oee', planned_time=420, downtime=47, ideal_cycle_time=1.0, total_count=300, good_count=285)
@@ -5119,9 +5515,13 @@ $$
 - **Assumes:** capacities > 0; effective <= design; same units and period
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![utilization (actual / design) against actual_output (actual output) from 400 to 1200](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-capacity-utilization-curve)
+![Utilization as actual_output runs from 200 to 1400, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-capacity-utilization-live-1)
 
-*utilization (actual / design) against actual_output (actual output) from 400 to 1200. One curve for each value of design_capacity (design capacity): 1200, 2400. Other inputs as in the worked example: effective_capacity = 1000.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, actual_output = 800, utilization = 0.666667.*
+*Utilization as actual_output runs from 200 to 1400, every other input as you entered it (41 solutions). Marked: your actual_output = 800 gives utilization = 0.6667. Your inputs: design_capacity = 1200, effective_capacity = 1000, actual_output = 800.*
+
+![Effective share as effective_capacity runs from 250 to 1161, every other input as you entered it (18 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-capacity-utilization-live-2)
+
+*Effective share as effective_capacity runs from 250 to 1161, every other input as you entered it (18 solutions). Marked: your effective_capacity = 1000 gives effective_share = 0.8333. Your inputs: design_capacity = 1200, effective_capacity = 1000, actual_output = 800.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_capacity_utilization', design_capacity=1200, effective_capacity=1000, actual_output=800)
@@ -5175,17 +5575,17 @@ $$
 - **Assumes:** cost > 0; 0 <= salvage < cost; life a whole number of years; MACRS: recovery period 3, 5, 7, 10, 15 or 20, no salvage; declining balance: no switch to straight line
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![book_value (book value at the end of each year) for each index, as returned by industrial-engineering-ai999x for its example (5 values)](https://huggingface.co/AI999X/industrial-engineering-ai999x/resolve/main/figures/ie-depreciation-schedule-book-value-vs-k.svg)
+![Cost minus the final book value as cost runs from 2500 to 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-live-1)
 
-*book_value (book value at the end of each year) for each index, as returned by industrial-engineering-ai999x for its example (5 values).*
+*Cost minus the final book value as cost runs from 2500 to 1.75e+04, every other input as you entered it (41 solutions). Marked: your cost = 1e+04 gives total_depreciation = 8000. Your inputs: cost = 10000, life = 5, method = straight-line, salvage = 2000.*
 
-![depreciation charge of each year (depreciation) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 1600, last 1600, largest 1600); with book_value (book value at the end of each year)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-series)
+![Every entry of depreciation as computed for your inputs (5 entries: 1600, 1600, 1600, 1600, 1600)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-live-2)
 
-*depreciation charge of each year (depreciation) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (5 values, first 1600, last 1600, largest 1600); with book_value (book value at the end of each year). Inputs: cost = 10000.0, life = 5, method = straight-line, salvage = 2000.0.*
+*Every entry of depreciation as computed for your inputs (5 entries: 1600, 1600, 1600, 1600, 1600). Your inputs: cost = 10000, life = 5, method = straight-line, salvage = 2000.*
 
-![total_depreciation (cost minus the final book value) against cost (first (installed) cost of the asset) from 5000 to 15000](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-curve)
+![Cost minus the final book value as salvage runs from 500 to 3500, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-depreciation-schedule-live-3)
 
-*total_depreciation (cost minus the final book value) against cost (first (installed) cost of the asset) from 5000 to 15000. One curve for each value of salvage (estimated salvage value at the end of the life (default 0; not used by MACRS)): 2000, 1000, 4000. Other inputs as in the worked example: life = 5, method = straight-line. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, cost = 10000, total_depreciation = 8000.*
+*Cost minus the final book value as salvage runs from 500 to 3500, every other input as you entered it (29 solutions). Marked: your salvage = 2000 gives total_depreciation = 8000. Your inputs: cost = 10000, life = 5, method = straight-line, salvage = 2000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_depreciation_schedule', cost=10000, salvage=2000, life=5, method='straight-line')
@@ -5251,13 +5651,17 @@ $$
 - **Assumes:** 0 <= tax rate < 1; one depreciation value per year, each >= 0; sale price <= first cost (no capital gain); a negative taxable income gives a tax credit; the gain or loss on the sale is taxed at the same rate
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![BTCF - taxes of each year (without the sale) (after_tax_cash_flows) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 4500, last 4500, largest 4500); with taxable_income (BTCF - D of each year), taxes (t (BTCF - D) of each year (negative = a tax credit))](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-series)
+![T x gain on the sale as investment runs from 9000 to 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-live-1)
 
-*BTCF - taxes of each year (without the sale) (after_tax_cash_flows) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 4500, last 4500, largest 4500); with taxable_income (BTCF - D of each year), taxes (t (BTCF - D) of each year (negative = a tax credit)). Inputs: before_tax_cash_flows = [5000, 5000, 5000], depreciation = [3000, 3000, 3000], tax_rate = 0.25, investment = 9000.0, sale_price = 1000.0.*
+*T x gain on the sale as investment runs from 9000 to 1.575e+04, every other input as you entered it (21 solutions). Marked: your investment = 9000 gives tax_on_sale = 250. Your inputs: before_tax_cash_flows = 5000, 5000, 5000, depreciation = 3000, 3000, 3000, tax_rate = 0.25, investment = 9000, sale_price = 1000.*
 
-![total_tax (sum of the yearly taxes) against tax_rate (income tax rate (decimal; 25% = 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-curve)
+![Every entry of taxable_income, taxes as computed for your inputs (3 entries, taxable_income first: 2000, 2000, 2000)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-live-2)
 
-*total_tax (sum of the yearly taxes) against tax_rate (income tax rate (decimal; 25% = 0.25)) from 0.125 to 0.375. Other inputs as in the worked example: before_tax_cash_flows = [5000, 5000, 5000], depreciation = [3000, 3000, 3000], investment = 9000.0, sale_price = 1000.0. 31 points computed by industrial-engineering-ai999x; marked: the worked example, tax_rate = 0.25, total_tax = 1500.*
+*Every entry of taxable_income, taxes as computed for your inputs (3 entries, taxable_income first: 2000, 2000, 2000). Your inputs: before_tax_cash_flows = 5000, 5000, 5000, depreciation = 3000, 3000, 3000, tax_rate = 0.25, investment = 9000, sale_price = 1000.*
+
+![Sum of the yearly taxes as tax_rate runs from 0](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-after-tax-cash-flow-live-3)
+
+*Sum of the yearly taxes as tax_rate runs from 0.0625 to 0.4375, every other input as you entered it (29 solutions). Marked: your tax_rate = 0.25 gives total_tax = 1500. Your inputs: before_tax_cash_flows = 5000, 5000, 5000, depreciation = 3000, 3000, 3000, tax_rate = 0.25, investment = 9000, sale_price = 1000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_after_tax_cash_flow', before_tax_cash_flows=[5000, 5000, 5000], depreciation=[3000, 3000, 3000], tax_rate=0.25, investment=9000, sale_price=1000)
@@ -5315,9 +5719,13 @@ $$
 - **Assumes:** PV, $AC > 0$; 0 <= EV <= BAC; estimates at completion need $EV > 0$; TCPI only while the budget is not used up (BAC > AC)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![cpi (CPI = EV/AC) against actual_cost (actual cost (of work performed) to date) from 225 to 675](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-earned-value-curve)
+![Schedule variance as planned_value runs from 125 to 875, every other input as you entered it (41 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-earned-value-live-1)
 
-*cpi (CPI = EV/AC) against actual_cost (actual cost (of work performed) to date) from 225 to 675. One curve for each value of earned_value (earned value (budgeted cost of work performed) to date): 400, 200, 800. Other inputs as in the worked example: planned_value = 500.0, budget_at_completion = 1000.0. 31 points per curve computed by industrial-engineering-ai999x; marked: the worked example, actual_cost = 450, cpi = 0.888889.*
+*Schedule variance as planned_value runs from 125 to 875, every other input as you entered it (41 solutions). Marked: your planned_value = 500 gives schedule_variance = -100. Your inputs: planned_value = 500, earned_value = 400, actual_cost = 450, budget_at_completion = 1000.*
+
+![Cpi as earned_value runs from 100 to 700, every other input as you entered it (29 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-earned-value-live-2)
+
+*Cpi as earned_value runs from 100 to 700, every other input as you entered it (29 solutions). Marked: your earned_value = 400 gives cpi = 0.8889. Your inputs: planned_value = 500, earned_value = 400, actual_cost = 450, budget_at_completion = 1000.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_earned_value', planned_value=500, earned_value=400, actual_cost=450, budget_at_completion=1000)
@@ -5369,13 +5777,17 @@ $$
 - **Assumes:** output > 0; every input > 0; inputs in one unit for the multifactor ratio; the previous period lists the same inputs
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![output / each input (partial_productivities) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 5, last 20, largest 20)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-series)
+![Multifactor productivity as output runs from 2500 to 1](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-live-1)
 
-*output / each input (partial_productivities) returned by industrial-engineering-ai999x for the worked example, one value for each position in the list (3 values, first 5, last 20, largest 20). Inputs: output = 10000.0, input_amounts = [2000, 1500, 500].*
+*Multifactor productivity as output runs from 2500 to 1.75e+04, every other input as you entered it (41 solutions). Marked: your output = 1e+04 gives multifactor_productivity = 2.5. Your inputs: output = 10000, input_amounts = 2000, 1500, 500.*
 
-![multifactor_productivity (output / sum of inputs) against output (output of the period (units or value)) from 5000 to 15000](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-curve)
+![Every entry of partial_productivities as computed for your inputs (3 entries: 5, 6](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-live-2)
 
-*multifactor_productivity (output / sum of inputs) against output (output of the period (units or value)) from 5000 to 15000. Other inputs as in the worked example: input_amounts = [2000, 1500, 500]. 31 points computed by industrial-engineering-ai999x; marked: the worked example, output = 10000, multifactor_productivity = 2.5.*
+*Every entry of partial_productivities as computed for your inputs (3 entries: 5, 6.667, 20). Your inputs: output = 10000, input_amounts = 2000, 1500, 500.*
+
+![Multifactor productivity as input_amounts[1] runs from 1000 to 2932, every other input as you entered it (30 solutions)](https://www.ai999x.com/?ax_fig=industrial-engineering-ai999x/ie-productivity-live-3)
+
+*Multifactor productivity as input_amounts[1] runs from 1000 to 2932, every other input as you entered it (30 solutions). Marked: your input_amounts[1] = 2000 gives multifactor_productivity = 2.5. Your inputs: output = 10000, input_amounts = 2000, 1500, 500.*
 
 ```python
 industrial_engineering_ai999x.solve('ie_productivity', output=10000, input_amounts=[2000, 1500, 500])
